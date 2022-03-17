@@ -1,0 +1,53 @@
+<html>
+    <header>
+        <title>Авторизация</title>
+        <link rel="stylesheet" href="..\src\logIn.css">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    </header>
+    <body>
+        <div class="container-login">
+            <div class="wraper-login">
+                <h1 class="title-login">Вход</h1>
+                <form class="login-form" action="" method="post">
+                    <div class="wrapper-login-field form-field-wrapper">
+                        <input class="input-login-field input-field" type="text" name="login" placeholder="Логин">
+                        <div hidden class="wrapper-error-login-field">
+                            <img class="error-field-img" src="../src/img/box-important--v1.png" alt="Ошибки логина"/>
+                            <span hidden class="error-text-absolute"></span>
+                        </div>
+                    </div>
+                    <div class="wrapper-password-field form-field-wrapper">
+                        <input class="input-password-field input-field" type="password" name="password" placeholder="Пароль">
+                    </div>
+                    <input class="submit-button" type="submit" name="enter" value="Войти">
+                    <div class="wrapper-link-away">
+                        <span>Впервые? </span><a class="link-away" name="register" href="signIn.html">Создать профиль</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            let submit = document.querySelector('.submit-button');
+            submit.onclick = function(e){
+                let login = document.querySelector('[name="login"]').value;
+                if(login == 'Тест') {
+                    location.href = 'index.html';
+                    e.preventDefault();
+                } else {
+                    let loginFieldWrapper = document.querySelector('.wrapper-login-field');
+                    let errorFieldWrapper = document.querySelector('.wrapper-error-login-field');
+                    let errorText = document.querySelector('.error-text-absolute');
+                    loginFieldWrapper.classList.add("error-field");
+                    errorFieldWrapper.hidden = false;
+                    errorText.textContent = 'Неверный логин. (Логин "Тест" существует)';
+                    e.preventDefault();
+                }
+            }
+            let errorFieldImg = document.querySelector('.error-field-img');
+            errorFieldImg.onclick = function(){
+                let errorText = document.querySelector('.error-text-absolute');
+                errorText.hidden = !errorText.hidden;
+            }
+        </script>
+    </body>
+</html>

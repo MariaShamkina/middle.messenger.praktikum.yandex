@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-family: 'Raleway', sans-serif;
+  color: #3e3e3e;
+}
+
+.container-signin{    
+  background-color: white;
+  background-image: url("img/photo-1492045379936-abb525f8dacb.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  padding-top: 10vh;
+}
+
+.wraper-signin{
+  margin: 0 auto;
+  width: 390px;
+  background: rgba(166, 238, 197, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 75px 55px 35px;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+}
+
+.title-signin{
+  font-size: 40px;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.form-field-wrapper{
+  display: flex;
+  align-items: center;
+  border: none;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, rgb(113, 141, 125, 0.3) 0%, rgb(113, 141, 125) 50%, rgb(113, 141, 125, 0.3) 100%);
+  border-image-slice: 1;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 45px;
+}
+
+.input-field{
+  background: inherit;
+  border: none;
+  font-size: 1em;
+  height: inherit;
+  padding: 0 5px;
+  outline: none;
+  width: 100%;
+}
+
+.error-field-img{
+  width: 20px;
+}
+
+.error-text-absolute{
+  position: absolute;
+  background-color: rgba(219, 10, 91, 0.8);
+  color: #fdfdfd;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  max-width: 200px;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.error-field{
+  border-image: linear-gradient(to right, rgb(219, 10, 91, 0.3) 0%, rgb(219, 10, 91) 50%, rgb(219, 10, 91, 0.3) 100%);
+  border-image-slice: 1;
+}
+
+.submit-button{
+  background-color: rgb(49, 45, 45);
+  border-radius: 25px;
+  font-size: 15px;
+  color: #fdfdfd;
+  text-transform: uppercase;
+  width: 100%;
+  height: 50px;
+  margin-top: 80px;
+}
+
+.submit-button:hover{
+  background-color: rgb(41, 37, 37);
+  cursor: pointer;
+}
+
+.wrapper-link-away{
+  margin-top: 10px;
+  text-align: center;
+}
+
+a:link {
+  color:  #3e3e3e;
+}
+a:hover {
+  color: #8a2be2;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+transition: color 9999s ease-out, background-color 9999s ease-out;
+transition-delay: 9999s;
+}

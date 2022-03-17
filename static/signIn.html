@@ -1,0 +1,82 @@
+<html>
+    <header>
+        <title>Регистрация</title>
+        <link rel="stylesheet" href="..\src\signIn.css">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    </header>
+    <body>
+        <div class="container-signin">
+            <div class="wraper-signin">
+                <h1 class="title-signin">Регистрация</h1>
+                <form class="signin-form" action="" method="post">
+                    <div class="wrapper-email-field form-field-wrapper">
+                        <input class="input-email-field input-field" type="email" name="email" placeholder="Почта">
+                    </div>
+                    <div class="wrapper-login-field form-field-wrapper">
+                        <input class="input-login-field input-field" type="text" name="login" placeholder="Логин">
+                    </div>
+                    <div class="wrapper-name-field form-field-wrapper">
+                        <input class="input-name-field input-field" type="text" name="first_name" placeholder="Имя">
+                    </div>
+                    <div class="wrapper-second_name-field form-field-wrapper">
+                        <input class="input-second_name-field input-field" type="text" name="second_name" placeholder="Фамилия">
+                    </div>
+                    <div class="wrapper-phone-field form-field-wrapper">
+                        <input class="input-phone-field input-field" type="tel" name="phone" placeholder="Телефон">
+                    </div>
+                    <div class="wrapper-password-field form-field-wrapper">
+                        <input class="input-password-field input-field" type="password" name="password" placeholder="Пароль">
+                    </div>
+                    <div class="wrapper-confirm-password-field form-field-wrapper">
+                        <input class="input-confirm-password-field input-field" type="password" name="confirmPassword" placeholder="Пароль (еще раз)">
+                        <div hidden class="wrapper-error-signin-field">
+                            <img class="error-field-img" src="../src/img/box-important--v1.png" alt="Ошибка при повторе пароля"/>
+                            <span hidden class="error-text-absolute"></span>
+                        </div>
+                    </div>
+
+                    <input class="submit-button" type="submit" name="register" value="Зарегистрироваться">
+                    <div class="wrapper-link-away">
+                        <span>Не впервые? </span><a class="link-away" name="login" href="logIn.html">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            let submit = document.querySelector('.submit-button');
+            submit.onclick = function(e){
+                location.href = 'index.html';
+                e.preventDefault();
+            }
+
+            var password = document.querySelector('[name="password"]');
+            var confirm_password = document.querySelector('[name="confirmPassword"]');
+            let confPasswordFieldWrapper = document.querySelector('.wrapper-confirm-password-field');
+            let errorFieldWrapper = document.querySelector('.wrapper-error-signin-field');
+            let errorText = document.querySelector('.error-text-absolute');
+
+            function validatePassword(){
+                if(password.value != confirm_password.value) {
+                    confPasswordFieldWrapper.classList.add("error-field");
+                    errorFieldWrapper.hidden = false;
+                    errorText.textContent = 'Пароли не совпадают';
+                }
+                else{
+                    confPasswordFieldWrapper.classList.remove("error-field");
+                    errorFieldWrapper.hidden = true;
+                    errorText.textContent = '';
+                }
+            }
+
+            password.onkeyup = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+
+            let errorFieldImg = document.querySelector('.error-field-img');
+            errorFieldImg.onclick = function(){
+            let errorText = document.querySelector('.error-text-absolute');
+            errorText.hidden = !errorText.hidden;
+            }
+
+        </script>
+    </body>
+</html>
