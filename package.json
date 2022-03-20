@@ -1,0 +1,27 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "description": "---",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "parcel": "^2.3.2",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "dev": "parcel src/pages/chat/chat.shbs --no-cache",
+    "build": "parcel src/pages/chat/chat.shbs --no-cache",
+    "cleanBuild": "rimraf dist && parcel src/pages/chat/chat.shbs --no-cache",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariaShamkina/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Shamkina Maria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariaShamkina/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/MariaShamkina/middle.messenger.praktikum.yandex#readme"
+}

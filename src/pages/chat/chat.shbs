@@ -1,0 +1,19 @@
+---
+title: Чат
+pathToLayout: ../..
+---
+{{!< base}}
+
+<main class="chat">
+    <div class="chat-contacts-panel">
+        <a class="my-profile-link" href="../profile/profile.html">Профиль</a>
+        <div class="search-field-wrapper">
+            <input type="search" class="search-chat-contact" placeholder="Поиск">
+        </div>
+        <div class="wrapper-chat-contacts-list scrollbar-style">
+        </div>
+    </div>
+    <section class="content">
+    </section>
+</main>
+<script src="index.js" type="module"></script>

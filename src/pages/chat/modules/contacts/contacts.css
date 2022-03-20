@@ -1,0 +1,42 @@
+.chat-contacts-list{
+    list-style: none;
+    height: 100%;
+    direction:ltr;
+}
+
+.tab{
+    margin-bottom: 1px;
+    width: 85%;
+    background-color: rgb(41, 37, 37);
+    color: #fdfdfd;
+    position: relative;
+}
+
+.avatar{
+    background-size: cover;
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+}
+
+.tab:last-child{
+    margin-bottom: 0;
+}
+
+.tab-link{
+    display: block;
+    min-height: 70px;
+    padding: 10px 10px 10px 70px;
+    text-decoration: none;
+    color:inherit;
+    color: #fdfdfd;
+}
+
+.active{
+    margin-left: auto;
+    background-color: #fdfdfd;
+    color: #3e3e3e;
+}
