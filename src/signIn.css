@@ -41,7 +41,7 @@ html{
   align-items: center;
   border: none;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, rgb(113, 141, 125, 0.3) 0%, rgb(113, 141, 125) 50%, rgb(113, 141, 125, 0.3) 100%);
+  border-image: linear-gradient(to right, rgb(179 213 194) 0%, rgb(113 141 125) 50%, rgb(179 213 194) 100%);
   border-image-slice: 1;
   width: 100%;
   margin-bottom: 20px;
@@ -76,7 +76,7 @@ html{
 }
 
 .error-field{
-  border-image: linear-gradient(to right, rgb(219, 10, 91, 0.3) 0%, rgb(219, 10, 91) 50%, rgb(219, 10, 91, 0.3) 100%);
+  border-image: linear-gradient(to right, rgb(212 172 183) 0%, rgb(219, 10, 91) 50%, rgb(212 172 183) 100%);
   border-image-slice: 1;
 }
 
