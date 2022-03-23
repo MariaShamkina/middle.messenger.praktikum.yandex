@@ -1,0 +1,18 @@
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorCode{
+    margin-bottom: 10px;
+    font-size: xxx-large;
+}
+
+.errorText{
+    font-size: large;
+    margin-bottom: 10px;
+}

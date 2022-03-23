@@ -6,7 +6,7 @@ pathToLayout: ../..
 
 <main class="chat">
     <div class="chat-contacts-panel">
-        <a class="my-profile-link" href="../profile/profile.html">Профиль</a>
+        <a class="my-profile-link" href="../profile/profile.shbs">Профиль</a>
         <div class="search-field-wrapper">
             <input type="search" class="search-chat-contact" placeholder="Поиск">
         </div>
