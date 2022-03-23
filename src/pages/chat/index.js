@@ -4,10 +4,8 @@ import contactsTemplate from './modules/contacts';
 import contentTemplate from './modules/content';
 
 import {contactsData} from './data/contactsData';
-import getContactData from './data/contactsData';
-import getConversation from './data/contentData';
 
-import {switchScrollbar, activateTab, stretchableTextArea} from "./chat.js"
+import {switchScrollbar, activateTab, stretchableTextArea, displayContactMenu} from "./chat.js"
 
 document.addEventListener('DOMContentLoaded', () => {
     let contacts = document.querySelector(".wrapper-chat-contacts-list");
@@ -15,16 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     contacts.innerHTML = contactsHtml;
 
     let content = document.querySelector(".content");
-    let conversationData = getConversation();
-    let contentHtml = contentTemplate({
-        contactInfo: getContactData(), 
-        content: conversationData, 
-        fileIconSrc: require("../../img/add_file.svg"),
-        sendMessIconSrc: require("../../img/send-comment.svg")
-    });
+    let contentHtml = contentTemplate();
     content.innerHTML = contentHtml;
 
     switchScrollbar('wrapper-chat-contacts-list');
     activateTab();
     stretchableTextArea();
+    displayContactMenu();
 });

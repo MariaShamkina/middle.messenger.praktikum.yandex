@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html{
+  font-family: 'Raleway', sans-serif;
+  color: #3e3e3e;
+}
+
 a:link {
   color:  #3e3e3e;
 }

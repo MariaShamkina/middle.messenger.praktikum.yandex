@@ -1,6 +1,13 @@
 <div class="contact-info">
     <img src="{{contactInfo.imgSrc}}" class="contact-avatar">
     <span class="contact-name">{{contactInfo.name}}</span>
+    <div class="contactMenu-wrapper">
+        <img class="contactMenuImg" src="{{contactMenuSrc}}">
+        <div hidden class="contactMenu-panel">
+            <a class="addContact">Добавить пользователя</a>
+            <a class="deleteContact">Удалить пользователя</a>
+        </div>
+    </div>
 </div>
     <div class="messages-dashboard scrollbar-style">
     {{#each content}}

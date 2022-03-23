@@ -1,0 +1,40 @@
+  .container-enter{    
+    background-color: white;
+    background-image: url("../img/photo-1492045379936-abb525f8dacb.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .wrapper-enter{
+    margin: 0 auto;
+    width: 390px;
+    background: rgba(166, 238, 197, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 75px 55px 35px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+  }
+  
+  .title-enter{
+    font-size: 40px;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  
+  .form-field-wrapper{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, rgb(179 213 194) 0%, rgb(113 141 125) 50%, rgb(179 213 194) 100%);
+    border-image-slice: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 45px;
+  }
+  

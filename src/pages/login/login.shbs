@@ -1,0 +1,15 @@
+---
+title: Авторизация
+pathToLayout: ../..
+pageTitle: Вход
+pageName: login
+---
+{{!< enter}}
+
+{{> inputField fieldName="login" fieldType="text" fieldPlaceholder="Логин" isValidate=true}}
+{{> inputField fieldName="password" fieldType="password" fieldPlaceholder="Пароль"}}
+
+{{> submitButton name="enter" title="Войти"}}
+{{> linkAway labelText="Впервые? " name="register" linkHref="../signin/signIn.shbs" linkText="Создать профиль"}}
+
+<script src="index.js" type="module"></script>

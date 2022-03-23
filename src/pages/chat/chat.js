@@ -33,10 +33,12 @@ function updateContent(contactId){
         contactInfo: getContactData(contactId), 
         content: conversationData, 
         fileIconSrc: require("../../img/add_file.svg"),
-        sendMessIconSrc: require("../../img/send-comment.svg")
+        sendMessIconSrc: require("../../img/send-comment.svg"),
+        contactMenuSrc: require("../../img/contactMenu.svg")
     });
     content.innerHTML = contentHtml;
     stretchableTextArea();
+    displayContactMenu();
 }
 
 export function stretchableTextArea(){
@@ -49,4 +51,20 @@ export function stretchableTextArea(){
         let newHeight = this.scrollHeight;
         this.style.height = ((newHeight > minHeightArea)?newHeight:minHeightArea) + 'px';
     });
+}
+
+export function displayContactMenu(){
+    let contactMenuImg = document.querySelector('.contactMenuImg');
+    if (!contactMenuImg) return;        
+    let contactMenuPanel = document.querySelector('.contactMenu-panel');
+    contactMenuImg.onclick = function(){
+        contactMenuPanel.hidden = !contactMenuPanel.hidden;
+    }
+    document.onclick = function(event) { 
+        let target = event.target;
+        if(!target.closest('.contactMenu-wrapper') &&
+        !contactMenuPanel.hidden) {
+            contactMenuPanel.hidden = true;
+        }
+    };
 }

@@ -41,6 +41,45 @@
     font-weight: bold;
 }
 
+.contactMenuImg{
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.contactMenu-wrapper{
+    position: relative;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.contactMenu-panel{    
+    background-color: rgb(41, 37, 37);
+    position: absolute;
+    right: 0;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: rgb(113, 141, 125);
+    color: #fdfdfd;
+    z-index: 1;
+    padding: 10px;
+}
+
+.contactMenu-panel a{
+    display: block;
+    white-space: nowrap;
+    padding: 2px 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    direction: rtl;
+}
+
+.contactMenu-panel a:last-child{
+    margin-bottom: 0;
+}
+
 .messages-dashboard{
     overflow-y: scroll;
     margin-top: auto;
