@@ -32,11 +32,14 @@
     padding: 10px 10px 10px 70px;
     text-decoration: none;
     color:inherit;
-    color: #fdfdfd;
 }
 
 .active{
     margin-left: auto;
     background-color: #fdfdfd;
     color: #3e3e3e;
+}
+
+.active .tab-link{
+    color: #3e3e3e;;
 }

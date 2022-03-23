@@ -54,9 +54,6 @@
     overflow-y: hidden;
 }
 
-
-
-
 .showScrollbar{
     overflow-y: scroll;
     padding-left: 20px;
@@ -74,28 +71,4 @@
     background-color: rgb(154, 180, 165);
     border: 1px solid;
     border-color: rgb(99, 92, 92);
-}
-
-
-
-
-.tab{
-    margin-bottom: 1px;
-    width: 85%;
-    background-color: rgb(41, 37, 37);
-    color: #fdfdfd;
-}
-  
-.tab:last-child{
-    margin-bottom: 0;
-}
-
-.tab-link{
-    display: block;
-    min-height: 70px;
-    padding: 10px 10px 10px 70px;
-    position: relative;
-    text-decoration: none;
-    color:inherit;
-    color: #fdfdfd;
 }

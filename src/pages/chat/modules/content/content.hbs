@@ -1,24 +1,27 @@
 <div class="contact-info">
-    <div class="contact-avatar avatar2"></div>
-    <span class="contact-name">{{contactName}}</span>
+    <img src="{{contactInfo.imgSrc}}" class="contact-avatar">
+    <span class="contact-name">{{contactInfo.name}}</span>
 </div>
-    {{#each conversation}}
     <div class="messages-dashboard scrollbar-style">
-        <div class="message {{!--contact-message user-message --}}"><p>{{this.message}}
-    </p><span class="dateTime">{{this.dateTime}}</span><img src={{this.imgsrc}}></div>
+    {{#each content}}
+        <div class="message {{#if this.isAuthorMe}}user-message{{else}}contact-message{{/if}}">
+        <p>{{this.message}}</p>
+        {{#if this.imgSrc}}<img src={{this.imgSrc}}>{{/if}}
+        <span class="dateTime">{{this.dateTime}}</span>
+        </div>
     {{/each}}
 </div>
 <div class="new-message-wrapper">
     <form class="new-message-form" id="new-message-form" action="" method="post" enctype="multipart/form-data">
         <label for="file-upload" class="custom-file-upload">
-            <img src="../../../../img/add_file.svg">
+            <img src="{{fileIconSrc}}">
         </label>
         <input id="file-upload" type="file"/>
         <div class="new-message-field-wrapper">
             <textarea class="new-message-textarea" rows="1" autofocus minlength="1" form="new-message-form" name="message" placeholder="Сообщение"></textarea>
         </div>
         <label for="send-new-message" class="custom-send-button" aria-autocomplete="none">
-            <img src="../../../../img/send-comment.svg">
+            <img src="{{sendMessIconSrc}}">
         </label>
         <input type="submit" name="sendMessage" id="send-new-message">
     </form>
