@@ -3,7 +3,7 @@ import "./chat.css";
 import contactsTemplate from './modules/contacts';
 import contentTemplate from './modules/content';
 
-import {contactsData} from './data/contactsData';
+import {contactsData} from '../../data/contactsData';
 
 import {switchScrollbar, activateTab, stretchableTextArea, displayContactMenu} from "./chat.js"
 

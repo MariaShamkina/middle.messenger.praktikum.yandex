@@ -1,5 +1,6 @@
 <div class="wrapper-{{fieldName}}-field form-field-wrapper">
-    <input class="input-{{fieldName}}-field input-field" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}">
+    <label class="lableFor-{{fieldName}}" hidden for="{{fieldName}}">{{fieldPlaceholder}}</label>
+    <input class="input-{{fieldName}}-field input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}">
     {{#if isValidate}}
     <div hidden class="wrapper-error-field">
         <img class="error-field-img" src="../../img/box-important--v1.png" alt="Ошибки"/>

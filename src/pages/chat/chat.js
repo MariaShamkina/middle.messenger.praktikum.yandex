@@ -23,8 +23,8 @@ export function activateTab(){
 }
 
 import contentTemplate from './modules/content';
-import getConversation from './data/contentData';
-import getContactData from './data/contactsData';
+import getConversation from '../../data/contentData';
+import getContactData from '../../data/contactsData';
 
 function updateContent(contactId){
     let content = document.querySelector(".content");
