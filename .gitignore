@@ -1,0 +1,6 @@
+project disign/
+node_modules/
+.parcel-cache/
+dist/
+dist/profile.38c0a146.js
+.vscode/launch.json
