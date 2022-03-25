@@ -8,17 +8,40 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
 }
 
 .profile-wrapper{
     margin: 0 auto;
-    min-width: 500px;
+    min-width: 600px;
     background: rgb(253, 253, 253, 0.8);
     border-radius: 10px;
     overflow: hidden;
-    padding: 75px 55px 35px;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+    padding: 35px 25px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-avatar-zone{
+    display: flex;
+    flex-direction: column;
+}
+
+.left-avatar-zone{
+    align-items: center;
+    justify-content: center;
+}
+
+.right-info-zone{
+    padding: 0 15px;
+    flex-grow: .5;
+    border-left: 3px solid;
+    border-color: #fdfdfd;
+}
+
+.userName{
+    font-weight: bold;
+    font-size: larger;
 }
 
 .avatar-wrapper{
@@ -27,7 +50,9 @@
     border-radius: 50%;
     border: 5px solid;
     border-color: #718d7d;
-    margin-bottom: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
     cursor: pointer;
 }
 
@@ -35,4 +60,77 @@
     width: 100%;
     height: 100%;
     border-radius: inherit;
+}
+
+.contact-profile-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.contact-profile-container div{    
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+
+.contact-profile-container div:last-child{
+    margin-bottom: 0;
+}
+
+.contact-profile-container label {
+    font-size: larger;
+    margin-right: 10px;
+}
+
+.contact-profile-container input {
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: #718d7d;
+    outline: none;
+}
+
+.contact-profile-container input:read-only {
+    direction: rtl;
+    padding-right: 10px;
+}
+
+.data-change-section input:read-write {
+    width: 100%;
+    padding-left: 10px;
+}
+
+.contact-profile-container input:read-only::placeholder{
+    color: #fdfdfd;
+}
+
+.control-container{
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+.control-container a{
+    padding: 5px 0;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.control-container a:last-child{
+    text-align: right;
+}
+
+.password-change-section{
+    width: 100%;
+}
+
+.contact-profile-container .submit-button{
+    margin-top: 40px;
+}
+
+.password-change-section .submit-button{
+    width: 80%;
+    align-self: center;
 }

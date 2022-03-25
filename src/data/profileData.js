@@ -1,9 +1,9 @@
 export let profileData = 
 {
     id: 0,
-    chatName: "Я",
-    firstName: "Мария", 
-    secondName: "Шамкина",
+    display_name: "Я",
+    first_name: "Мария", 
+    second_name: "Шамкина",
     imgSrc: "https://cspromogame.ru//storage/upload_images/avatars/1237.jpg",
     email: "test@yandex.ru",
     login: "Murxe",

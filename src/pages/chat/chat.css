@@ -23,14 +23,21 @@
     margin-right: 15%;
 }
 
+
 .search-chat-contact{
     background: inherit;
+    background-image: url('../../img/search_icon.svg');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: left;
+    background-position-x: 5px;
     border: 2px solid;
     border-radius: 10px;
     border-color: rgb(113, 141, 125);
     font-size: 1em;
     height: 40px;
     padding: 0 5px;
+    padding-left: 40px;
     outline: none;
     width: 100%;
     display: block;

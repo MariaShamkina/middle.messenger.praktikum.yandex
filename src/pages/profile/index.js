@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     avatar.src = profileData.imgSrc;
     
     let userName = document.querySelector(".userName");
-    userName.textContent = profileData.chatName;
+    userName.textContent = profileData.display_name;
     
     generateProfileFields();
     showProfileData();
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 import inputFieldTemplate from "../partials/inputField.hbs"
 function generateProfileFields(){
     let fieldGenData = [
-        {name: "firstName",  type: "text",  placeholder: "Имя"},
-        {name: "secondName", type: "text",  placeholder: "Фамилия"},
-        {name: "chatName",   type: "text",  placeholder: "Имя в чате"},
+        {name: "first_name",  type: "text",  placeholder: "Имя"},
+        {name: "second_name", type: "text",  placeholder: "Фамилия"},
+        {name: "display_name",   type: "text",  placeholder: "Имя в чате"},
         {name: "login",      type: "text",  placeholder: "Логин"},
         {name: "email",      type: "email", placeholder: "Почта"},
         {name: "phone",      type: "tel",   placeholder: "Телефон"},
