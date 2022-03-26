@@ -1,6 +1,4 @@
-import "../partials/inputField.css";
-import "../partials/submitButton.css";
-import "../partials/linkAway.css";
+import "../signin";
 
 import {submitClickDummy, passwordEqualityValidation} from './signin.js';
 

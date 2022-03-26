@@ -1,4 +1,4 @@
-import "./changeAvatarModalWindow.css";
+import "./changeAvatarModalWindow.scss";
 
 import template from './changeAvatarModalWindow.hbs';
 export default function changeAvatarTemplate(model) {

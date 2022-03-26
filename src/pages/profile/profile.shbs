@@ -20,8 +20,8 @@ pathToLayout: ../..
                     {{>submitButton name="saveChanges" title="Сохранить изменения" hidden=true}}
                 </form>
                 <div class="control-container">
-                    <a class="change-profile-control" href="#">Изменить профиль</a>
-                    <a class="change-password-control" href="#">Изменить пароль<img></a>
+                    <button class="change-profile-control" href="#">Изменить профиль</button>
+                    <button class="change-password-control" href="#">Изменить пароль</button>
                     <a class="go-away-link" href="../login/login.shbs">Выйти</a>
                 </div>
             </div>

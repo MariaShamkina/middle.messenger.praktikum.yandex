@@ -1,1 +1,1 @@
-import "../partials/errorPageContent.css";
+import "../partials/errorPageContent.scss";

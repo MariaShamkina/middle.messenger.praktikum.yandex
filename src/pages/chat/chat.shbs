@@ -5,14 +5,14 @@ pathToLayout: ../..
 {{!< base}}
 
 <main class="chat">
-    <div class="chat-contacts-panel">
+    <nav class="chat-contacts-panel">
         <a class="my-profile-link" href="../profile/profile.shbs">Профиль</a>
         <div class="search-field-wrapper">
             <input type="search" class="search-chat-contact" placeholder="Поиск">
         </div>
         <div class="wrapper-chat-contacts-list scrollbar-style">
         </div>
-    </div>
+    </nav>
     <section class="content">
     </section>
 </main>

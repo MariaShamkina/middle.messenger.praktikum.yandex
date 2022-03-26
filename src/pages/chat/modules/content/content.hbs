@@ -2,22 +2,22 @@
     <img src="{{contactInfo.imgSrc}}" class="contact-avatar">
     <span class="contact-name">{{contactInfo.name}}</span>
     <div class="contactMenu-wrapper">
-        <img class="contactMenuImg" src="{{contactMenuSrc}}">
+        <button class="contactMenu-img"><img src="{{contactMenuSrc}}"></button>
         <div hidden class="contactMenu-panel">
             <a class="addContact">Добавить пользователя</a>
             <a class="deleteContact">Удалить пользователя</a>
         </div>
     </div>
 </div>
-    <div class="messages-dashboard scrollbar-style">
+<ul class="messages-dashboard scrollbar-style">
     {{#each content}}
-        <div class="message {{#if this.isAuthorMe}}user-message{{else}}contact-message{{/if}}">
+    <li class="message {{#if this.isAuthorMe}}message-user{{else}}message-contact{{/if}}">
         <p>{{this.message}}</p>
         {{#if this.imgSrc}}<img src={{this.imgSrc}}>{{/if}}
         <span class="dateTime">{{this.dateTime}}</span>
-        </div>
+    </li>
     {{/each}}
-</div>
+</ul>
 <div class="new-message-wrapper">
     <form class="new-message-form" id="new-message-form" action="" method="post" enctype="multipart/form-data">
         <label for="file-upload" class="custom-file-upload">

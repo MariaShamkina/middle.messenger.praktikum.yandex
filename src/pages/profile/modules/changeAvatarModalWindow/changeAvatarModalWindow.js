@@ -4,17 +4,17 @@ export function activateChangingAvatarModal(){
     let closeModalButton = modalWindow.querySelector('.modal-closeButton');
     
     callBackButton.onclick = function () {
-        modalWindow.classList.add('modal_active');
+        modalWindow.classList.add('modal-active');
     }
     
     closeModalButton.onclick = function () {
-        modalWindow.classList.remove('modal_active');
+        modalWindow.classList.remove('modal-active');
     }
 
     modalWindow.onmousedown = function (e) {
         
         if (e.target.closest(".changeAvatar-wrapper") === null) {
-          this.classList.remove('modal_active');
+          this.classList.remove('modal-active');
         }
       };
   };

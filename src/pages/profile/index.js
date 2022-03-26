@@ -1,7 +1,4 @@
-import "../partials/linkGoBack.css";
-import "../partials/submitButton.css";
-// import "../partials/inputField.css"
-import "./profile.css";
+import "./profile.scss";
 
 import {profileData} from "../../data/profileData"
 

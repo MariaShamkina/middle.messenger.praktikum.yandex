@@ -1,4 +1,4 @@
-import "./contacts.css";
+import "./contacts.scss";
 import template from "./contacts.hbs";
 
 export default function contactsTemplate(model) {

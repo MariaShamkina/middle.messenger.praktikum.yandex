@@ -1,14 +1,3 @@
-export function switchScrollbar(className){
-    if (!className) return;
-    let chatContactsList = document.querySelector(`.${className}`);
-    chatContactsList.onmouseenter = function(){
-        chatContactsList.classList.add("showScrollbar");
-    }            
-    chatContactsList.onmouseleave = function(){
-        chatContactsList.classList.remove("showScrollbar");
-    }
-}
-
 export function activateTab(){
     let tabs = document.querySelectorAll(".tab");
     tabs.forEach(tab => {
@@ -25,6 +14,7 @@ export function activateTab(){
 import contentTemplate from './modules/content';
 import getConversation from '../../data/contentData';
 import getContactData from '../../data/contactsData';
+import {stretchableTextArea, displayContactMenu} from "./modules/content/content"
 
 function updateContent(contactId){
     let content = document.querySelector(".content");
@@ -41,30 +31,3 @@ function updateContent(contactId){
     displayContactMenu();
 }
 
-export function stretchableTextArea(){
-    let textarea = document.querySelector('.new-message-textarea');
-    if (!textarea) return;
-    textarea.addEventListener('keyup', function(e){
-        let styles = getComputedStyle(textarea);
-        this.style.height = 0;
-        let minHeightArea = parseInt(styles.minHeight);
-        let newHeight = this.scrollHeight;
-        this.style.height = ((newHeight > minHeightArea)?newHeight:minHeightArea) + 'px';
-    });
-}
-
-export function displayContactMenu(){
-    let contactMenuImg = document.querySelector('.contactMenuImg');
-    if (!contactMenuImg) return;        
-    let contactMenuPanel = document.querySelector('.contactMenu-panel');
-    contactMenuImg.onclick = function(){
-        contactMenuPanel.hidden = !contactMenuPanel.hidden;
-    }
-    document.onclick = function(event) { 
-        let target = event.target;
-        if(!target.closest('.contactMenu-wrapper') &&
-        !contactMenuPanel.hidden) {
-            contactMenuPanel.hidden = true;
-        }
-    };
-}

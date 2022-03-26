@@ -1,5 +1,7 @@
+  @import 'variables';
+
   .container-enter{    
-    background-color: #fdfdfd;
+    background-color: $primary-light-color;
     background-image: url("../img/photo-1492045379936-abb525f8dacb.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -12,7 +14,7 @@
   .wrapper-enter{
     margin: 0 auto;
     width: 390px;
-    background: rgba(166, 238, 197, 0.5);
+    background: rgba($primary-background-color, 0.5);
     border-radius: 10px;
     overflow: hidden;
     padding: 75px 55px 35px;
@@ -31,7 +33,7 @@
     align-items: center;
     border: none;
     border-bottom: 2px solid;
-    border-image: linear-gradient(to right, rgb(179 213 194) 0%, rgb(113 141 125) 50%, rgb(179 213 194) 100%);
+    border-image: $lines-gradient;
     border-image-slice: 1;
     width: 100%;
     margin-bottom: 15px;

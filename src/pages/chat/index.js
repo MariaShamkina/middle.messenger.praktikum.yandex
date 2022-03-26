@@ -1,11 +1,12 @@
-import "./chat.css";
+import "./chat.scss";
 
 import contactsTemplate from './modules/contacts';
 import contentTemplate from './modules/content';
 
 import {contactsData} from '../../data/contactsData';
 
-import {switchScrollbar, activateTab, stretchableTextArea, displayContactMenu} from "./chat.js"
+import {switchScrollbar} from "./modules/contacts/contacts"
+import {activateTab} from "./chat"
 
 document.addEventListener('DOMContentLoaded', () => {
     let contacts = document.querySelector(".wrapper-chat-contacts-list");
@@ -18,6 +19,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     switchScrollbar('wrapper-chat-contacts-list');
     activateTab();
-    stretchableTextArea();
-    displayContactMenu();
 });

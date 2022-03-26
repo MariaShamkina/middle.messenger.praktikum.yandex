@@ -1,4 +1,4 @@
-import "./content.css"
+import "./content.scss"
 import template from './content.hbs';
 import emptyTemplate from './emptyContent.hbs';
 
