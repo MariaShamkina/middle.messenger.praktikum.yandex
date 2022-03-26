@@ -34,7 +34,7 @@
     border-image: linear-gradient(to right, rgb(179 213 194) 0%, rgb(113 141 125) 50%, rgb(179 213 194) 100%);
     border-image-slice: 1;
     width: 100%;
-    margin-bottom: 20px;
-    height: 45px;
+    margin-bottom: 15px;
+    height: 30px;
   }
   
