@@ -10,11 +10,11 @@ dirs.forEach(d => {
 });
 
 app.get('/index.html', (req, res) => {
-    res.redirect("/chat.html");
+    res.status(200).sendFile(`${__dirname}/dist/chat/chat.html`);
 });
 
 app.get('/', (req, res) => {
-    res.redirect("/chat.html");
+    res.status(200).sendFile(`${__dirname}/dist/chat/chat.html`);
 });
 
 app.listen(PORT, function () {
