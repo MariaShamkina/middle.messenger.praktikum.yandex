@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activateChangingAvatarModal();
 });
 
-import inputFieldTemplate from "../partials/inputFieldPrecompile.hbs"
+import inputFieldTemplate from "./modules/inputFieldPrecompile.hbs"
 function generateProfileFields(){
     let fieldGenData = [
         {name: "first_name",  type: "text",  placeholder: "Имя"},
