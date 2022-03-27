@@ -13,6 +13,10 @@ app.get('/index.html', (req, res) => {
     res.redirect("/chat.html");
 });
 
+app.get('/', (req, res) => {
+    res.redirect("/chat.html");
+});
+
 app.listen(PORT, function () {
   console.log(`Chat is listening on port ${PORT}!`);
 }); 
