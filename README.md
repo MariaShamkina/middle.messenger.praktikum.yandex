@@ -13,3 +13,7 @@
 >npm run start
 ```
 Сайт запускается по адресу http://localhost:3000
+
+## Ссылки на пул-реквесты
+
+[Sprint 1](https://github.com/MariaShamkina/middle.messenger.praktikum.yandex/pull/1)
