@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let userName = document.querySelector(".userName");
     userName.textContent = profileData.display_name;
     
-    generateProfileFields();
+    // generateProfileFields();
     showProfileData();
 
     let changeProfileControl = document.querySelector('.change-profile-control');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activateChangingAvatarModal();
 });
 
-import inputFieldTemplate from "./modules/inputFieldPrecompile.hbs"
+// import inputFieldTemplate from "./modules/inputFieldPrecompile.hbs"
 function generateProfileFields(){
     let fieldGenData = [
         {name: "first_name",  type: "text",  placeholder: "Имя"},
