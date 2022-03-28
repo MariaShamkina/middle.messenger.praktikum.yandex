@@ -1,0 +1,19 @@
+.linkGoBack{
+  border: none;
+  background: inherit;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.GoBackImg{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px 0 rgba(black,.6);
+
+  &:hover{
+    box-shadow: 0 5px 10px 0 rgba(black,.9);
+  }
+}

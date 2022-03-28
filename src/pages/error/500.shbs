@@ -1,0 +1,10 @@
+---
+title: Error 500
+pathToBaseStyles: ../../layout/base.scss
+pathToindexJS: index.js
+---
+{{!< base}}
+
+{{>errorPageContent errorCode=500 errorText="Внутренняя ошибка сервера"}}
+
+<script type="module" src="./index.js"></script>

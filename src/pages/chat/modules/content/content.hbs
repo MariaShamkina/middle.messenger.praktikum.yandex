@@ -1,0 +1,36 @@
+<div class="contact-info">
+  <img src="{{contactInfo.imgSrc}}" class="contact-avatar" alt="Аватар собеседника">
+  <span class="contact-name">{{contactInfo.name}}</span>
+  <div class="contactMenu-wrapper">
+    <button type="menu" class="contactMenu-button"><img src="{{contactMenuSrc}} alt="Меню собеседника"></button>
+    <div hidden class="contactMenu-panel">
+      <a class="addContact contactMenu-link">Добавить пользователя</a>
+      <a class="deleteContact contactMenu-link">Удалить пользователя</a>
+    </div>
+  </div>
+</div>
+<ul class="messages-dashboard scrollbar-style">
+  {{#each content}}
+  <li class="message {{#if this.isAuthorMe}}message-user{{else}}message-contact{{/if}}">
+    <p>{{this.message}}</p>
+    {{#if this.imgSrc}}<img src={{this.imgSrc}} alt="Картинка в сообщении">{{/if}}
+    <span class="dateTime">{{this.dateTime}}</span>
+  </li>
+  {{/each}}
+</ul>
+<div class="new-message-wrapper">
+  <form class="new-message-form" id="new-message-form" action="" method="post" enctype="multipart/form-data">
+    <label for="file-upload" class="file-upload-button">
+      <img class="new-message-button" src="{{fileIconSrc}}" alt="Прикрепить картинку к сообщению">
+    </label>
+    <input id="file-upload" type="file"/>
+    <div class="new-message-field-wrapper">
+      <textarea class="new-message-textarea" rows="1" autofocus minlength="1" form="new-message-form" name="message" placeholder="Сообщение"></textarea>
+    </div>
+    <label for="send-new-message" class="message-send-button" aria-autocomplete="none">
+      <img class="new-message-button" src="{{sendMessIconSrc}}" alt="Отправить сообщение">
+    </label>
+    <input type="submit" name="sendMessage" id="send-new-message">
+  </form>
+</div>
+<script src="index.js" type="module"></script>

@@ -1,0 +1,1 @@
+import "../partials/errorPageContent.scss";

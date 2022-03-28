@@ -1,0 +1,10 @@
+---
+title: Error 404
+pathToBaseStyles: ../../layout/base.scss
+pathToindexJS: index.js
+---
+{{!< base}}
+
+{{>errorPageContent errorCode=404 errorText="Страница не найдена"}}
+
+<script type="module" src="./index.js"></script>
