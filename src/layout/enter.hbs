@@ -3,18 +3,17 @@
   <head>
     <meta charset="utf-8" />
       <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-      <link rel="stylesheet" href="{{pathToLayout}}/layout/base.scss">
-      <link rel="stylesheet" href="{{pathToLayout}}/layout/enter.scss">
+      <link rel="stylesheet" href="{{pathToBaseStyles}}">
+      <link rel="stylesheet" href="{{pathToEnterStyles}}">
+      <script src="{{pathToindexJS}}" type="module"></script>
     <title>{{title}}</title>
   </head>
   <body>
     <div class="container-enter">
-        <main class="wrapper-enter">
-            <h1 class="title-enter">{{pageTitle}}</h1>
-            <form class="form-enter" action="" method="post">
-                {{{body}}}
-            </form>
-        </main>
+      <main class="wrapper-enter">
+        <h1 class="title-enter">{{pageTitle}}</h1>
+          {{{body}}}
+      </main>
     </div>
   </body>
 </html>

@@ -1,20 +1,24 @@
 export function showProfileData(){
-    let fieldsLabels = document.querySelectorAll(".contact-profile-container label");
-    fieldsLabels.forEach(label => label.hidden = false);
-    let profileInputs = document.querySelectorAll(".data-change-section input");
-    profileInputs.forEach(input => input.readOnly = true);
+  const fieldsLabels = document.querySelectorAll(".contact-profile-container label");
+  fieldsLabels.forEach(label => label.hidden = false);
+  const profileInputs = document.querySelectorAll(".data-change-section input");
+  profileInputs.forEach(input => input.readOnly = true);
 }
 
 export function changeProfileData(){
-    let fieldsLabels = document.querySelectorAll(".contact-profile-container label");
-    fieldsLabels.forEach(label => label.hidden = true);
-    let profileInputs = document.querySelectorAll(".data-change-section input");
-    profileInputs.forEach(input => input.readOnly = false);
-    document.querySelector(".control-container").style.display = "none";
-    document.querySelector(".contact-profile-container .submit-button").hidden = false;
+  const fieldsLabels = document.querySelectorAll(".contact-profile-container label");
+  fieldsLabels.forEach(label => label.hidden = true);
+  const profileInputs = document.querySelectorAll(".data-change-section input");
+  profileInputs.forEach(input => input.readOnly = false);
+  const controlContainer = document.querySelector(".control-container");
+  !controlContainer || (controlContainer.style.display = "none");
+  const submitButton = document.querySelector(".contact-profile-container .submit-button")
+  !submitButton || (submitButton.hidden = false);
 }
 
 export function showChangePasswordSection(){
-    document.querySelector(".data-change-section").hidden = true;
-    document.querySelector(".password-change-section").hidden = false;
+  const dataChangeSection = document.querySelector(".data-change-section");
+  !dataChangeSection || (dataChangeSection.hidden = true);
+  const passwordChangeSection = document.querySelector(".password-change-section");
+  !passwordChangeSection || (passwordChangeSection.hidden = false);
 }

@@ -1,23 +1,26 @@
 export function displayErrors(){
-    let submit = document.querySelector('.submit-button');
-    submit.onclick = function(e){
-        let login = document.querySelector('[name="login"]').value;
-        if(login == 'Тест') {
-            location.href = '../chat/chat.html';
-            e.preventDefault();
-        } else {
-            let loginFieldWrapper = document.querySelector('.wrapper-login-field');
-            let errorFieldWrapper = document.querySelector('.wrapper-error-field');
-            let errorText = document.querySelector('.error-text-absolute');
-            loginFieldWrapper.classList.add("error-field");
-            errorFieldWrapper.hidden = false;
-            errorText.textContent = 'Неверный логин. (Логин "Тест" существует)';
-            e.preventDefault();
-        }
+  const submit = document.querySelector(".submit-button");
+  if (!submit) return;
+  submit.onclick = function(e){
+    const login = document.querySelector("[name='login']")?.value;
+    if(login == "Тест") {
+      location.href = "../chat/chat.html";
+    } else {
+      const loginFieldWrapper = document.querySelector(".wrapper-login-field");
+      loginFieldWrapper?.classList.add("error-field");
+
+      const errorFieldWrapper = document.querySelector(".wrapper-error-field");
+      !errorFieldWrapper || (errorFieldWrapper.hidden = false);
+
+      const errorText = document.querySelector(".error-text-absolute");
+      !errorText || (errorText.textContent = 'Неверный логин. (Логин "Тест" существует)');
     }
-    let errorFieldImg = document.querySelector('.error-field-img');
-    errorFieldImg.onclick = function(){
-        let errorText = document.querySelector('.error-text-absolute');
-        errorText.hidden = !errorText.hidden;
-    }
+    e.preventDefault();
+  }
+  const errorFieldImg = document.querySelector(".error-field-img");
+  if(!errorFieldImg) return;
+  errorFieldImg.onclick = function(){
+    const errorText = document.querySelector(".error-text-absolute");
+    errorText.hidden = !errorText.hidden;
+  }
 }

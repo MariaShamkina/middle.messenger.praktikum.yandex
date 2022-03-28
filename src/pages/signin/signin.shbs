@@ -1,6 +1,8 @@
 ---
 title: Регистрация
-pathToLayout: ../..
+pathToBaseStyles: ../../layout/base.scss
+pathToEnterStyles: ../../layout/enter.scss
+pathToindexJS: index.js
 pageTitle: Регистрация
 pageName: signin
 ---
@@ -16,5 +18,3 @@ pageName: signin
 
 {{> submitButton name="register" title="Зарегистрироваться"}}
 {{> linkAway labelText="Не впервые? " name="login" linkHref="../login/login.shbs" linkText="Войти"}}
-
-<script src="index.js" type="module"></script>

@@ -1,15 +1,17 @@
 ---
 title: Авторизация
-pathToLayout: ../..
+pathToBaseStyles: ../../layout/base.scss
+pathToEnterStyles: ../../layout/enter.scss
+pathToindexJS: index.js
 pageTitle: Вход
 pageName: login
 ---
 {{!< enter}}
 
-{{> inputField fieldName="login" fieldType="text" fieldPlaceholder="Логин" isValidate=true}}
-{{> inputField fieldName="password" fieldType="password" fieldPlaceholder="Пароль"}}
+<form class="form-enter" action="" method="post">
+  {{> inputField fieldName="login" fieldType="text" fieldPlaceholder="Логин" isValidate=true}}
+  {{> inputField fieldName="password" fieldType="password" fieldPlaceholder="Пароль"}}
 
-{{> submitButton name="enter" title="Войти"}}
+  {{> submitButton name="enter" title="Войти"}}
+</form>
 {{> linkAway labelText="Впервые? " name="register" linkHref="../signin/signin.shbs" linkText="Создать профиль"}}
-
-<script src="index.js" type="module"></script>

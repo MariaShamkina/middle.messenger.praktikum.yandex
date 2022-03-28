@@ -1,6 +1,7 @@
 import "./changeAvatarModalWindow.scss";
 
-import template from './changeAvatarModalWindow.hbs';
+import template from "./changeAvatarModalWindow.hbs";
+
 export default function changeAvatarTemplate(model) {
-    return template(model);
+  return template(model);
 };

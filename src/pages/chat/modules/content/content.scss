@@ -1,27 +1,27 @@
-@import '../../../../layout/variables';
+@import "../../../../layout/variables";
 
 .content{    
-    background-color: $primary-light-color;
-    font-size: 14px;
-    line-height: 20px;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    padding: 20px 0 20px 30px;
-    margin-right: 5px;
-    flex-grow: 1;
+  background-color: $primary-light-color;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 20px 0 20px 30px;
+  margin-right: 5px;
+  flex-grow: 1;
 }
 
 .emptyContactInfo{
-    margin-right: 30px;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center;
+  margin-right: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
 }
 
 .contact{
-    &-info{
+  &-info{
     display: flex;
     align-items: center;
     border: none;
@@ -30,160 +30,150 @@
     border-image-slice: 1;
     padding-bottom: 5px;
     margin-right: 30px;
-    }
+  }
 
-    &-avatar{
+  &-avatar{
     background-size: cover;
     width: 35px;
     height: 35px;
     display: inline-block;
-    }
+  }
 
-    &-name{
+  &-name{
     margin-left: 5px;
     font-weight: bold;
-    }
+  }
 }
 
 .contactMenu{
-    &-img{
-            border: none;
-            background-color: inherit;
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
-        }
+  &-wrapper{
+    position: relative;
+    margin-right: 0;
+    margin-left: auto;
+  }
 
-    &-wrapper{
-        position: relative;
-        margin-right: 0;
-        margin-left: auto;
-    }
+  &-button{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
 
-    &-panel{    
-        background-color: $button-color;
-        position: absolute;
-        right: 0;
-        border: 2px solid;
-        border-radius: 10px;
-        border-color: $border-color;
+  &-panel{ 
+    background-color: $button-color-darker;
+    position: absolute;
+    right: 0;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: $border-color;
+    z-index: 1;
+    padding: 10px;
+
+    & .contactMenu-link{
+      display: block;
+      white-space: nowrap;
+      padding: 2px 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      direction: rtl;
+
+      &:not(:hover){
         color: $primary-light-color;
-        z-index: 1;
-        padding: 10px;
-    }
+      }
 
-    &-panel a{
-        display: block;
-        white-space: nowrap;
-        padding: 2px 5px;
-        margin-bottom: 5px;
-        cursor: pointer;
-        direction: rtl;
-
-        &:last-child{
-            margin-bottom: 0;
-        }
+      &:last-child{
+          margin-bottom: 0;
+      }
     }
+  }
 }
 
 .message{
-    &s-dashboard{
-        list-style: none;
-        overflow-y: scroll;
-        margin-top: auto;
-        margin-bottom: 0;
-    }
+  &s-dashboard{
+    list-style: none;
+    overflow-y: scroll;
+    margin-top: auto;
+    margin-bottom: 0;
+  }
 
-    width: 70%;
-    border: 1px solid;
-    border-radius: 10px;
-    margin: 5px;
-    padding: 10px;
-    margin-right: 30px;
-    position: relative;
+  width: 70%;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  margin-right: 30px;
+  position: relative;
 
-    &-user{
-        background-color: #e5faee;
-        border-color: #bbf5d3;
-        margin-left: auto;
-    }
+  &-user{
+    background-color: $first-message-color;
+    border-color: $first-message-border-color;
+    margin-left: auto;
+  }
 
-    &-contact{
-        background-color: #f3f1fb;
-        border-color: #cfc5f6;
-    }
+  &-contact{
+    background-color: $second-message-color;
+    border-color: $second-message-border-color;
+  }
 }
 
 .dateTime {
-    font-size: small;
-    position: absolute;
-    bottom: -3px;
-    right: 5px;
+  font-size: small;
+  position: absolute;
+  bottom: -3px;
+  right: 5px;
 }
 
 .new-message{
-    &-wrapper{
-        border: none;
-        border-top: 2px solid;
-        border-image: $lines-gradient;
-        border-image-slice: 1;
-        margin-right: 30px;
-        margin-bottom: 0;
-        padding: 5px 0;
-    }
+  &-wrapper{
+    border: none;
+    border-top: 2px solid;
+    border-image: $lines-gradient;
+    border-image-slice: 1;
+    margin-right: 30px;
+    margin-bottom: 0;
+    padding: 5px 0;
+  }
 
-    &-form{
-        display: flex;
-        align-items: flex-end;
-        width: 100%;
-    }
+  &-form{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+  }
     
-    &-field-wrapper{
-        width: 100%;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+  &-field-wrapper{
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 
-    &-textarea{
-        width: 100%;
-        background: inherit;
-        font-size: 1em;
-        padding: 5px 5px;
-        outline: none;
-        border: 2px solid;
-        border-radius: 10px;
-        border-color: rgb(113, 141, 125);
-        resize: none;
-        overflow: hidden;
-        min-height: 35px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-    }
+  &-textarea{
+    width: 100%;
+    background: inherit;
+    font-size: 1em;
+    padding: 5px 5px;
+    outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: rgb(113, 141, 125);
+    resize: none;
+    overflow: hidden;
+    min-height: 30px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 }
 
-input[type="file"],
+#file-upload,
 #send-new-message {
-    display: none;
+  display: none;
 }
 
-.custom-file-upload {
-    display: inline-block;
-    cursor: pointer;
-    width: 35px;
+.file-upload-button,
+.message-send-button {
+  display: inline-block;
+  cursor: pointer;
 
-    & img{
-        height: 35px;
-        width: 35px;
-    }
-}
-
-.custom-send-button {
-    display: inline-block;
-    cursor: pointer;
+  & .new-message-button{
+    height: 35px;
     width: 35px;
-    
-    & img{
-        height: 35px;
-        width: 35px;
-    }
+  }
 }

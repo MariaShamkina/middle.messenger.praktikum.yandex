@@ -1,15 +1,14 @@
 <div class="modal-container-changeAvatar">
-   <form class="changeAvatar-wrapper">
-        <button class="modal-closeButton">
-            <img src="{{closeButtonImgSrc}}" width="24" title="Закрыть">
-        </button>
-        <p class="changeAvatar-title">Загрузите файл</p>
-        <label for="file-upload" class="changeAvatar-file-upload">
-            <img src="{{addFileImgSrc}}">
-        </label>
-        <input id="file-upload" type="file"/>
-        
-        <input class="submit-button" type="submit" name="changeAvatar" value="Изменить аватар">
-   </form>
+  <form class="changeAvatar-wrapper">
+    <button type="button" class="modal-closeButton">
+      <img src="{{closeButtonImgSrc}}" width="24" title="Закрыть" alt="Закрыть окно">
+    </button>
+    <p class="changeAvatar-title">Загрузите файл</p>
+    <label type="button" for="file-upload" class="changeAvatar-file-upload">
+      <img src="{{addFileImgSrc}}" alt="Загрузить изображение">
+    </label>
+    <input id="file-upload" type="file"/>
+    <input type="submit" class="submit-button" id="changeAvatar" name="changeAvatar" value="Изменить аватар">
+  </form>
 </div>
 <script src="index.js" type="module"></script>

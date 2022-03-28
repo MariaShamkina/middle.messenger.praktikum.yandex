@@ -1,6 +1,7 @@
 ---
 title: Error 500
-pathToLayout: ../..
+pathToBaseStyles: ../../layout/base.scss
+pathToindexJS: index.js
 ---
 {{!< base}}
 
