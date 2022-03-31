@@ -1,6 +1,6 @@
 import profileId from "./profileData";
 
-let conversationsData = [
+let conversationsData: conversation[] = [
   {
     contactId: 1,
     conversation:[
@@ -77,7 +77,7 @@ let conversationsData = [
   },
 ];
 
-export default function getConversation(contactId){
+export default function getConversation(contactId: number){
   let conversation = conversationsData.find(conversationData => conversationData.contactId === contactId)?.conversation;
   conversation?.map(massage => massage.isAuthorMe = massage.authorId === profileId);
   return conversation;

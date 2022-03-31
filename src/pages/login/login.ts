@@ -1,15 +1,15 @@
 export function displayErrors(){
-  const submit = document.querySelector(".submit-button");
+  const submit: HTMLElement | null = document.querySelector(".submit-button");
   if (!submit) return;
   submit.onclick = function(e){
-    const login = document.querySelector("[name='login']")?.value;
+    const login = (document.querySelector("[name='login']") as HTMLInputElement)?.value;
     if(login == "Тест") {
       location.href = "../chat/chat.html";
     } else {
       const loginFieldWrapper = document.querySelector(".wrapper-login-field");
       loginFieldWrapper?.classList.add("error-field");
 
-      const errorFieldWrapper = document.querySelector(".wrapper-error-field");
+      const errorFieldWrapper: HTMLElement | null = document.querySelector(".wrapper-error-field");
       !errorFieldWrapper || (errorFieldWrapper.hidden = false);
 
       const errorText = document.querySelector(".error-text-absolute");
@@ -17,10 +17,11 @@ export function displayErrors(){
     }
     e.preventDefault();
   }
-  const errorFieldImg = document.querySelector(".error-field-img");
+
+  const errorFieldImg: HTMLElement | null = document.querySelector(".error-field-img");
   if(!errorFieldImg) return;
   errorFieldImg.onclick = function(){
-    const errorText = document.querySelector(".error-text-absolute");
-    errorText.hidden = !errorText.hidden;
+    const errorText: HTMLElement | null = document.querySelector(".error-text-absolute");
+    errorText?.toggleAttribute('hidden');
   }
 }

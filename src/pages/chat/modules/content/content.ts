@@ -1,22 +1,22 @@
 export function displayContactMenu(){
-  const contactMenuImg = document.querySelector(".contactMenu-button");
-  const contactMenuPanel = document.querySelector(".contactMenu-panel");
+  const contactMenuImg: HTMLElement | null = document.querySelector(".contactMenu-button");
+  const contactMenuPanel: HTMLElement | null = document.querySelector(".contactMenu-panel");
   if (!contactMenuImg || !contactMenuPanel) return;        
   contactMenuImg.onclick = function(){
     contactMenuPanel.hidden = !contactMenuPanel.hidden;
   }
-  document.onclick = function(event) { 
-    const target = event.target;
+  document.addEventListener('click', function(event) { 
+    const target = event.target as HTMLElement;
     if(!target.closest(".contactMenu-wrapper") && !contactMenuPanel.hidden) {
       contactMenuPanel.hidden = true;
     }
-  };
+  });
 }
 
 export function stretchableTextArea(){
   const textarea = document.querySelector(".new-message-textarea");
   if (!textarea) return;
-  textarea.addEventListener("keyup", function(e){
+  textarea.addEventListener("keyup", function(){
     let styles = getComputedStyle(textarea);
     this.style.height = 0;
     let minHeightArea = parseInt(styles.minHeight);

@@ -1,10 +1,11 @@
-import contentTemplate from "./modules/content";
+import contentTemplate from "./modules/content/content.hbs";
 import getConversation from "../../data/contentData";
 import getContactData from "../../data/contactsData";
 import {stretchableTextArea, displayContactMenu} from "./modules/content/content";
 
-function updateContent(contactId){
+function updateContent(contactId: number){
   const content = document.querySelector(".content");
+  if (!content) return;
   const conversationData = getConversation(contactId);
   const contentHtml = contentTemplate({
     contactInfo: getContactData(contactId), 
@@ -19,17 +20,19 @@ function updateContent(contactId){
 }
 
 export function activateTab(){
-  let chatContactsList = document.querySelector(".chat-contacts-list");
-  if (!chatContactsList) return;
-  chatContactsList.onclick = function(event){
-    let tab = event.target.closest('.tab');    
-    if (!tab) return;
-    if (!chatContactsList.contains(tab)) return;
+  const chatContactsList: HTMLElement | null = document.querySelector(".chat-contacts-list");
+  chatContactsList?.addEventListener('click', function(this: HTMLElement, event) {
+    const tab = (event.target as HTMLElement).closest('.tab');
+    if (!tab || !this.contains(tab)) return;
 
     const prevActTab = this.querySelector(".tab.active");
     tab.classList.add("active");
     if (prevActTab)
       prevActTab.classList.remove("active");
-    updateContent(parseInt(tab.querySelector("#id").textContent));
-  }
+    
+    const idField: HTMLElement | null = tab.querySelector("#id");
+    if (idField && idField.textContent){
+      updateContent(parseInt(idField.textContent));
+    }
+  });
 }

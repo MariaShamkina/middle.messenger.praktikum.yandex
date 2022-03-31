@@ -2,7 +2,7 @@
 title: Авторизация
 pathToBaseStyles: ../../layout/base.scss
 pathToEnterStyles: ../../layout/enter.scss
-pathToindexJS: index.js
+pathToindexJS: index.ts
 pageTitle: Вход
 pageName: login
 ---

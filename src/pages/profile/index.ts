@@ -2,11 +2,11 @@ import "./profile.scss";
 
 import {profileData} from "../../data/profileData";
 
-import {activateChangingAvatarModal} from "./modules/changeAvatarModalWindow/changeAvatarModalWindow.js";
-import {showProfileData, changeProfileData, showChangePasswordSection} from "./profile.js";
+import {activateChangingAvatarModal} from "./modules/changeAvatarModalWindow/changeAvatarModalWindow";
+import {showProfileData, changeProfileData, showChangePasswordSection} from "./profile";
 
 
-const avatar = document.getElementById("avatarImg");
+const avatar = document.getElementById("avatarImg") as HTMLImageElement;
 !avatar || (avatar.src = profileData.imgSrc);
 
 const userName = document.querySelector(".userName");
@@ -16,10 +16,10 @@ generateProfileFields();
 showProfileData();  
 
 const changeProfileControl = document.querySelector(".change-profile-button");
-!changeProfileControl || (changeProfileControl.onclick = changeProfileData);
+changeProfileControl?.addEventListener('click', changeProfileData);
 
 const changePasswordControl = document.querySelector(".change-password-button");
-!changePasswordControl || (changePasswordControl.onclick = showChangePasswordSection);
+changePasswordControl?.addEventListener('click', showChangePasswordSection);
 
 generateAvatarChangingModalWindow();
 activateChangingAvatarModal();
@@ -29,7 +29,9 @@ function generateProfileFields(){
   const contactProfileContainer = document.querySelector(".contact-profile-container");
   if (!contactProfileContainer) return;
 
-  let fieldGenData = [
+  type fieldData = Record<string, string>[];
+
+  let fieldGenData: fieldData = [
     {name: "first_name",    type: "text",  placeholder: "Имя"},
     {name: "second_name",   type: "text",  placeholder: "Фамилия"},
     {name: "display_name",  type: "text",  placeholder: "Имя в чате"},
@@ -37,7 +39,11 @@ function generateProfileFields(){
     {name: "email",         type: "email", placeholder: "Почта"},
     {name: "phone",         type: "tel",   placeholder: "Телефон"},
   ];
-  fieldGenData.map(field => field.value = profileData[field.name]);
+  fieldGenData.map(field => isValidName(field.name) && (field.value = `${profileData[field.name]}`));
+
+  function isValidName(value: string): value is keyof typeof profileData {
+      return value in profileData;
+  }
 
   const fieldsHtml = fieldGenData.reduce((res, field) => res += inputFieldTemplate({
     fieldName: field.name, 
@@ -51,8 +57,13 @@ import changeAvatarTemplate from "./modules/changeAvatarModalWindow";
 function generateAvatarChangingModalWindow(){
   const changeAvatarPlace = document.getElementById("changeAvatarPlace");
   if(!changeAvatarPlace) return;
-  changeAvatarPlace.innerHTML = changeAvatarTemplate({
+  const avatarPlaceParent = changeAvatarPlace.parentNode;
+  if (!avatarPlaceParent) return;
+  let newNode = document.createElement('template');
+  newNode.innerHTML = changeAvatarTemplate({
     closeButtonImgSrc: new URL("../../img/close_button.svg", import.meta.url), 
     addFileImgSrc: new URL("../../img/add_file.svg", import.meta.url),
   });
+  if (newNode.content.firstChild)
+    avatarPlaceParent.replaceChild(newNode.content.firstChild, changeAvatarPlace);
 }

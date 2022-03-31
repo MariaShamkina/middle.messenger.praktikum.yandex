@@ -2,7 +2,7 @@
 title: Регистрация
 pathToBaseStyles: ../../layout/base.scss
 pathToEnterStyles: ../../layout/enter.scss
-pathToindexJS: index.js
+pathToindexJS: index.ts
 pageTitle: Регистрация
 pageName: signin
 ---
