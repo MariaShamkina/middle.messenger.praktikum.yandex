@@ -29,7 +29,6 @@
   }
   
   &-field{
-    border-image: $error-lines-gradient;
-    border-image-slice: 1;
+    border-image: $error-lines-gradient 1;
   }
 }

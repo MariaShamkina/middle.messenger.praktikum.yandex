@@ -3,3 +3,4 @@ node_modules/
 dist/
 .vscode/launch.json
 To do.txt
+.idea

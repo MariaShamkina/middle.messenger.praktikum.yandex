@@ -1,5 +1,5 @@
-import "./login.scss";
+import './login.scss';
 
-import {displayErrors} from "./login";
+import { displayErrors } from './login';
 
 displayErrors();

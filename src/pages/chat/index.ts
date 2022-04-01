@@ -1,31 +1,25 @@
-import "./chat.scss";
+import './chat.scss';
 
-import contactsTemplate from "./modules/contacts";
-import contentTemplate from "./modules/content";
+import * as Handlebars from 'handlebars';
+import contactsTemplate from './modules/contacts';
+import contentTemplate from './modules/content';
 
-import {contactsData} from "../../data/contactsData";
+import { contactsData } from '../../data/contactsData';
 
-import {switchScrollbar} from "./modules/contacts/contacts";
-import {activateTab} from "./chat";
+import { switchScrollbar } from './modules/contacts/contacts';
+import { activateTab } from './chat';
 
-import * as Handlebars from 'handlebars'
+Handlebars.registerHelper('getShortName', (aString, num) => ((aString.length <= num) ? aString : (`${aString.slice(0, num)}…`)));
 
-Handlebars.registerHelper('getShortName', function (aString, num) {
-  return (aString.length <= num)?aString:(aString.slice(0, num)+ "…");
-})
-
-const contacts = document.querySelector(".wrapper-chat-contacts-list");
-if(contacts){
-
-  const contactsHtml = contactsTemplate({contacts: contactsData});
-  contacts.innerHTML = contactsHtml;
+const contacts = document.querySelector('.wrapper-chat-contacts-list');
+if (contacts) {
+  contacts.innerHTML = contactsTemplate({ contacts: contactsData });
 }
 
-const content = document.querySelector(".content");
-if(content){
-  const contentHtml = contentTemplate();
-  content.innerHTML = contentHtml;
+const content = document.querySelector('.content');
+if (content) {
+  content.innerHTML = contentTemplate();
 }
 
-switchScrollbar("wrapper-chat-contacts-list");
+switchScrollbar('wrapper-chat-contacts-list');
 activateTab();

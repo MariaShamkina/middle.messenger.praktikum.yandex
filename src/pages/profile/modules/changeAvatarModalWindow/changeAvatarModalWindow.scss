@@ -78,10 +78,10 @@
     margin-bottom: 15px;
     cursor: pointer;
     background: inherit;
-    border: 2px solid;
     border-radius: 50%;
-    border-color: $border-color;
-      & img{
+    border: 2px solid $border-color;
+
+    & img{
       width: 30%;
       height: 30%;
       margin: 35% 35%;

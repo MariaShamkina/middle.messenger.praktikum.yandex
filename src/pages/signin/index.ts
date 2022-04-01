@@ -1,4 +1,4 @@
-import {submitClickDummy, passwordEqualityValidation} from "./signin";
+import { submitClickDummy, passwordEqualityValidation } from './signin';
 
 submitClickDummy();
 passwordEqualityValidation();

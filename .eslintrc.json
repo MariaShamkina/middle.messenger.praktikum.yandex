@@ -1,0 +1,40 @@
+{
+  "settings": {
+    "import/extensions": [".js", ".ts"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
+  },
+  "extends": "airbnb",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: Профиль
 pathToBaseStyles: ../../layout/base.scss
-pathToindexJS: index.ts
+pathToIndexJS: index.ts
 ---
 {{!< base}}
 
@@ -21,8 +21,8 @@ pathToindexJS: index.ts
           {{>submitButton name="saveChanges" title="Сохранить изменения" hidden=true}}
         </form>
         <div class="control-container">
-          <button type="button" class="change-profile-button control-container-button" href="#">Изменить профиль</button>
-          <button type="button" class="change-password-button control-container-button" href="#">Изменить пароль</button>
+          <button type="button" class="change-profile-button control-container-button">Изменить профиль</button>
+          <button type="button" class="change-password-button control-container-button">Изменить пароль</button>
           <a class="go-away-link" href="../login/login.shbs">Выйти</a>
         </div>
       </div>

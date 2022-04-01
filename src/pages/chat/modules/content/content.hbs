@@ -2,7 +2,7 @@
   <img src="{{contactInfo.imgSrc}}" class="contact-avatar" alt="Аватар собеседника">
   <span class="contact-name">{{contactInfo.name}}</span>
   <div class="contactMenu-wrapper">
-    <button type="menu" class="contactMenu-button"><img src="{{contactMenuSrc}} alt="Меню собеседника"></button>
+    <button type="button" class="contactMenu-button"><img src="{{contactMenuSrc}}" alt="Меню собеседника"></button>
     <div hidden class="contactMenu-panel">
       <a class="addContact contactMenu-link">Добавить пользователя</a>
       <a class="deleteContact contactMenu-link">Удалить пользователя</a>
@@ -27,7 +27,7 @@
     <div class="new-message-field-wrapper">
       <textarea class="new-message-textarea" rows="1" autofocus minlength="1" form="new-message-form" name="message" placeholder="Сообщение"></textarea>
     </div>
-    <label for="send-new-message" class="message-send-button" aria-autocomplete="none">
+    <label for="send-new-message" class="message-send-button">
       <img class="new-message-button" src="{{sendMessIconSrc}}" alt="Отправить сообщение">
     </label>
     <input type="submit" name="sendMessage" id="send-new-message">

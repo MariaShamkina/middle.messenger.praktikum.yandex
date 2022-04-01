@@ -26,8 +26,7 @@
     align-items: center;
     border: none;
     border-bottom: 2px solid;
-    border-image: $lines-gradient;
-    border-image-slice: 1;
+    border-image: $lines-gradient 1;
     padding-bottom: 5px;
     margin-right: 30px;
   }
@@ -62,9 +61,8 @@
     background-color: $button-color-darker;
     position: absolute;
     right: 0;
-    border: 2px solid;
     border-radius: 10px;
-    border-color: $border-color;
+    border: 2px solid $border-color;
     z-index: 1;
     padding: 10px;
 
@@ -98,9 +96,8 @@
   width: 70%;
   border: 1px solid;
   border-radius: 10px;
-  margin: 5px;
   padding: 10px;
-  margin-right: 30px;
+  margin: 5px 30px 5px 5px;
   position: relative;
 
   &-user{
@@ -126,8 +123,7 @@
   &-wrapper{
     border: none;
     border-top: 2px solid;
-    border-image: $lines-gradient;
-    border-image-slice: 1;
+    border-image: $lines-gradient 1;
     margin-right: 30px;
     margin-bottom: 0;
     padding: 5px 0;
@@ -151,9 +147,8 @@
     font-size: 1em;
     padding: 5px 5px;
     outline: none;
-    border: 2px solid;
     border-radius: 10px;
-    border-color: rgb(113, 141, 125);
+    border: 2px solid $border-color;
     resize: none;
     overflow: hidden;
     min-height: 30px;

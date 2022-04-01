@@ -27,19 +27,16 @@
   }
 
   &-chat-contact{
-    background: inherit;
-    background-image: url("../../img/search_icon.svg");
-    background-repeat: no-repeat;
     background-size: 30px;
-    background-position: left;
+    background: url("../../img/search_icon.svg") no-repeat left;
+    background-attachment: inherit;
+    background-color: inherit;
     background-position-x: 5px;
-    border: 2px solid;
     border-radius: 10px;
-    border-color: $border-color;
+    border: 2px solid $border-color;
     font-size: 1em;
     height: 40px;
-    padding: 0 5px;
-    padding-left: 40px;
+    padding: 0 5px 0 40px;
     outline: none;
     width: 100%;
     display: block;
@@ -56,8 +53,7 @@
 .wrapper-chat-contacts-list{
   border: none;
   border-top: 2px solid;
-  border-image: $lines-gradient;
-  border-image-slice: 1;
+  border-image: $lines-gradient 1;
   padding-top: 5px;
   padding-left: 24px;
   direction: rtl; 
@@ -81,7 +77,6 @@
 
   &.scrollbar-style::-webkit-scrollbar-thumb{ 
     background-color: $primary-scrollbar-color;
-    border-color: $secondary-scrollbar-color;
-    border: 1px solid;
+    border: 1px solid $secondary-scrollbar-color;
   }
 }

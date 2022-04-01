@@ -1,4 +1,4 @@
 module.exports = {
-  layouts: "src/layout",
-  partials: "src/pages/partials",
+  layouts: 'src/layout',
+  partials: 'src/pages/partials',
 };
