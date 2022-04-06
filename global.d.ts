@@ -15,9 +15,12 @@ type message = {
   dateTime: string,
   imgSrc?: string,
 }
-// eslint-disable-next-line no-unused-vars
+
 type conversation = {
   contactId: number,
   conversation: message[],
 };
+
+type handler = (...args: unknown[]) => void;
+
 /* eslint-enable no-unused-vars */

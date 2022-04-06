@@ -8,6 +8,7 @@
     "@parcel/config-default": "^2.4.0",
     "@parcel/core": "^2.4.0",
     "@parcel/transformer-sass": "^2.4.0",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "eslint": "^8.12.0",
@@ -20,9 +21,9 @@
   },
   "scripts": {
     "start": "npm run build && node ./server.ts",
-    "build": "parcel build src/pages/*/*.shbs --no-cache",
+    "build": "parcel build src/index.html src/pages/*/*.shbs --no-cache",
     "clean": "rimraf dist",
-    "dev": "parcel src/pages/*/*.shbs --no-cache",
+    "dev": "parcel src/index.html src/pages/*/*.shbs --no-cache",
     "cleanDev": "npm run clean && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -37,6 +38,7 @@
   },
   "homepage": "https://github.com/MariaShamkina/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "uuid": "^8.3.2"
   }
 }
