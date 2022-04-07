@@ -1,19 +1,6 @@
-import SubmitButton from './components/submitButton/submitButton';
 import renderDOM from './utils/renderDOM';
+import LoginPage from './components/pages/login';
 
-const button = new SubmitButton({
-  name: 'test',
-  hidden: false,
-  title: 'test',
-  events: {
-    click: () => console.log('Click'),
-  },
-});
+const loginPage = new LoginPage();
 
-renderDOM('#app', button);
-
-setTimeout(() => {
-  button.setProps({
-    title: 'Wow',
-  });
-}, 5000);
+renderDOM('#app', loginPage);

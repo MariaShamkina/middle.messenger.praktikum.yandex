@@ -1,13 +1,14 @@
-import Component, { IProperties } from '../../utils/component';
-import buttonTemplate from '../../pages/partials/submitButton.hbs';
+import Component, { IProperties } from '../../../utils/component';
+import buttonTemplate from './submitButton.hbs';
+import './_submitButton.scss';
 
 interface IButtonProps extends IProperties{
     name: string;
     title: string;
-    hidden: boolean;
+    hidden?: boolean;
 }
 
-export default class SubmitButton extends Component {
+export class SubmitButton extends Component {
   constructor(props: IButtonProps) {
     super(props);
   }

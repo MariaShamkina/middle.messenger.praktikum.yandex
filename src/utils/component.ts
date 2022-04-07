@@ -10,7 +10,7 @@ export interface IProperties {
 
 export interface IChildren {
   // eslint-disable-next-line no-use-before-define
-  [propName: string]: Component;
+  [propName: string]: Component | Component[];
 }
 
 export default class Component {
@@ -33,7 +33,7 @@ export default class Component {
 
   protected props: IProperties = {};
 
-  private children: IChildren;
+  protected children: IChildren;
 
   protected eventBus: () => EventBus;
 
@@ -41,6 +41,7 @@ export default class Component {
     const eventBus = new EventBus();
     const { children, props } = Component._getChildren(propsAndChildren);
     this.children = children;
+    this.initChildren();
     this._meta = {
       props,
     };
@@ -57,7 +58,8 @@ export default class Component {
     const props: IProperties = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (value instanceof Component) {
+      if (value instanceof Component
+          || (Array.isArray(value) && value.every((v) => (v instanceof Component)))) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -66,6 +68,8 @@ export default class Component {
 
     return { children, props };
   }
+
+  protected initChildren():void {}
 
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
@@ -101,15 +105,15 @@ export default class Component {
     });
   }
 
-  compileProps() {
-    const propsAndStubs = { ...this.props };
-
-    Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = child.getContent();
-    });
-
-    return propsAndStubs;
-  }
+  // compileProps() {
+  //   const propsAndStubs = { ...this.props };
+  //
+  //   Object.entries(this.children).forEach(([key, child]) => {
+  //     propsAndStubs[key] = child.getContent();
+  //   });
+  //
+  //   return propsAndStubs;
+  // }
   //
   // compile(template, props) {
   //   const propsAndStubs = { ...props };
@@ -133,7 +137,29 @@ export default class Component {
 
   compile(template: (arg: IProperties | IChildren) => string, props: IProperties | IChildren) {
     const fragment: HTMLTemplateElement = this._createDocumentElement('template') as HTMLTemplateElement;
+
+    Object.entries(this.children).forEach(([key, child]) => {
+      if (Array.isArray(child)) {
+        props[key] = child.map(((ch) => `<div data-id="${ch._id}"></div>`));
+      } else {
+        props[key] = `<div data-id="${child._id}"></div>`;
+      }
+    });
+
     fragment.innerHTML = template(props);
+
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((ch) => {
+          const stub = fragment.content.querySelector(`[data-id="${ch._id}"]`);
+          stub?.replaceWith(ch.getContent());
+        });
+      } else {
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        stub?.replaceWith(child.getContent());
+      }
+    });
+
     return fragment.content;
   }
 
@@ -168,7 +194,11 @@ export default class Component {
     this.componentDidMount(oldProps);
 
     Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+      if (Array.isArray(child)) {
+        child.forEach((ch) => ch.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 

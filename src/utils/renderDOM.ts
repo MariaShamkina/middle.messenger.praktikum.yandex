@@ -7,6 +7,8 @@ export default function renderDOM(rootSelector: string, component: Component) {
     throw new Error('Root not found');
   }
 
+  component.dispatchComponentDidMount();
+
   root.innerHTML = '';
 
   root.append(component.getContent());
