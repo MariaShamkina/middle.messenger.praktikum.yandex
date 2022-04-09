@@ -21,6 +21,7 @@ type conversation = {
   conversation: message[],
 };
 
-type handler = (...args: unknown[]) => void;
+type eventHandler = (...args: unknown[]) => void;
+type validationHandler = (value: string) => string[];
 
 /* eslint-enable no-unused-vars */

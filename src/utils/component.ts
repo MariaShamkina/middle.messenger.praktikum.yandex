@@ -3,7 +3,7 @@ import EventBus from './eventBus';
 
 export interface IProperties {
   [propName: string]: unknown;
-  events?: Record<string, handler>;
+  events?: Record<string, eventHandler[]>;
   settings?: { withInternalID: boolean };
   _id?: string;
 }
@@ -11,6 +11,11 @@ export interface IProperties {
 export interface IChildren {
   // eslint-disable-next-line no-use-before-define
   [propName: string]: Component | Component[];
+}
+
+export interface IState {
+  [propName: string]: unknown;
+  isValid?: boolean;
 }
 
 export default class Component {
@@ -25,15 +30,17 @@ export default class Component {
 
   private _meta: {props: IProperties };
 
-  private _id: string | null = null;
+  private readonly _id: string | null = null;
 
   get id(): string | null {
     return this._id;
   }
 
-  protected props: IProperties = {};
+  public props: IProperties = {};
 
-  protected children: IChildren;
+  public state: IState = {};
+
+  public children: IChildren;
 
   protected eventBus: () => EventBus;
 
@@ -69,6 +76,7 @@ export default class Component {
     return { children, props };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   protected initChildren():void {}
 
   private _registerEvents(eventBus: EventBus) {
@@ -92,16 +100,16 @@ export default class Component {
   private _addEvents() {
     const { events = {} } = this.props;
 
-    Object.entries(events).forEach(([eventName, listener]) => {
-      this.element.addEventListener(eventName, listener);
+    Object.entries(events).forEach(([eventName, listenerArr]) => {
+      listenerArr.forEach((listener) => this.element.addEventListener(eventName, listener));
     });
   }
 
   private _removeEvents() {
     const { events = {} } = this.props;
 
-    Object.entries(events).forEach(([eventName, listener]) => {
-      this.element.removeEventListener(eventName, listener);
+    Object.entries(events).forEach(([eventName, listenerArr]) => {
+      listenerArr.forEach((listener) => this.element.removeEventListener(eventName, listener));
     });
   }
 
@@ -138,15 +146,15 @@ export default class Component {
   compile(template: (arg: IProperties | IChildren) => string, props: IProperties | IChildren) {
     const fragment: HTMLTemplateElement = this._createDocumentElement('template') as HTMLTemplateElement;
 
+    const propsAndStubs = { ...props };
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
-        props[key] = child.map(((ch) => `<div data-id="${ch._id}"></div>`));
+        propsAndStubs[key] = child.map(((ch) => `<div data-id="${ch._id}"></div>`));
       } else {
-        props[key] = `<div data-id="${child._id}"></div>`;
+        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
       }
     });
-
-    fragment.innerHTML = template(props);
+    fragment.innerHTML = template(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
@@ -190,8 +198,8 @@ export default class Component {
     return new DocumentFragment();
   }
 
-  private _componentDidMount(oldProps:Object) {
-    this.componentDidMount(oldProps);
+  private _componentDidMount() {
+    this.componentDidMount();
 
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
@@ -202,22 +210,20 @@ export default class Component {
     });
   }
 
-  // Может переопределять пользователь, необязательно трогать
-  public componentDidMount(oldProps:Object) {}
+  public componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps:IProperties, newProps:IProperties) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string) {
+    if (this.componentDidUpdate(oldProp, newProp, propName)) {
       this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
     }
   }
 
-  // Может переопределять пользователь, необязательно трогать
-  public componentDidUpdate(oldProps:IProperties, newProps:IProperties):boolean {
-    // return !(oldProps === newProps);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected componentDidUpdate(_oldProp: unknown, _newProp: unknown, _propName: string):boolean {
     return true;
   }
 
@@ -243,7 +249,7 @@ export default class Component {
         const oldValue = target[prop];
         // eslint-disable-next-line no-param-reassign
         target[prop] = value;
-        this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldValue, value);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldValue, value, prop);
         return true;
       }.bind(this),
 

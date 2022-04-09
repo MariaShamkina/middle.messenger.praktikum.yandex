@@ -3,13 +3,14 @@ import linkAwayTemplate from './linkAway.hbs';
 import './_linkAway.scss';
 
 interface IlinkAwayProps extends IProperties{
-    labelText: string;
     name: string;
     linkHref: string;
     linkText: string;
+    className: string;
 }
 
-export class LinkAway extends Component {
+export default class LinkAway extends Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props: IlinkAwayProps) {
     super(props);
   }

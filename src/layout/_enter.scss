@@ -1,8 +1,8 @@
 @import "variables";
 
-.container-enter{    
+.container-enter{
   background-color: $primary-light-color;
-  background-image: url("../../../img/photo-1492045379936-abb525f8dacb.png");
+  background-image: $background-img-url;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

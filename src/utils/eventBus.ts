@@ -1,11 +1,11 @@
 export default class EventBus {
-  private listeners: Record<string, handler[]>;
+  private listeners: Record<string, eventHandler[]>;
 
   constructor() {
     this.listeners = {};
   }
 
-  public on(event: string, callback: handler):void {
+  public on(event: string, callback: eventHandler):void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -13,7 +13,7 @@ export default class EventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event:string, callback:handler):void {
+  off(event:string, callback:eventHandler):void {
     if (!this.listeners[event]) {
       return;
     }

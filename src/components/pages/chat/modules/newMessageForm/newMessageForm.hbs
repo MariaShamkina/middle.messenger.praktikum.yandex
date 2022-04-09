@@ -1,0 +1,15 @@
+<div class="new-message-wrapper">
+  <form class="new-message-form" id="new-message-form" action="" method="post" enctype="multipart/form-data">
+    <label for="file-upload" class="file-upload-button">
+      <img class="new-message-button" src="{{fileIconSrc}}" alt="Прикрепить картинку к сообщению">
+    </label>
+    <input id="file-upload" type="file"/>
+    <div class="new-message-field-wrapper">
+      <textarea class="new-message-textarea" rows="1" autofocus minlength="1" form="new-message-form" name="message" placeholder="Сообщение"></textarea>
+    </div>
+    <label for="send-new-message" class="message-send-button">
+      <img class="new-message-button" src="{{sendMessIconSrc}}" alt="Отправить сообщение">
+    </label>
+    <input type="submit" name="sendMessage" id="send-new-message">
+  </form>
+</div>

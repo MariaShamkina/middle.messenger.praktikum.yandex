@@ -1,1 +1,3 @@
-export { LinkAway as default } from './linkAway';
+import LinkAway from './linkAway';
+
+export default LinkAway;

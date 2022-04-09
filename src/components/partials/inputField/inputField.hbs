@@ -1,10 +1,14 @@
-<div class="wrapper-{{fieldName}}-field form-field-wrapper">
+<div class="form-field-wrapper">
   <label class="field-label" hidden for="{{fieldName}}">{{fieldPlaceholder}}</label>
-  <input class="input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}">
+  <input class="input-field {{fieldName}}-input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}">
   {{#if isValidate}}
   <div hidden class="wrapper-error-field">
-    <img class="error-field-img" src="../../../img/box-important--v1.png" alt="Показать список ошибок"/>
-    <span hidden class="error-text-absolute"></span>
+    <img class="error-field-img" src="{{errorImgSrc}}" alt="Показать список ошибок"/>
+    <div hidden class="error-text-absolute">
+        {{#each errorsText}}
+            <div>{{this}}</div>
+        {{/each}}
+    </div>
   </div>
   {{/if}}
 </div>
