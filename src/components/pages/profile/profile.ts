@@ -3,13 +3,16 @@ import profileTemplate from './profile.hbs';
 import AvatarZone from './modules/avatarZone';
 import { profileData } from '../../../data/profileData';
 import LinkAway from '../../partials/linkAway';
-import DataChangeZone from './modules/dataChangeZone';
 import renderDOM from '../../../utils/renderDOM';
+// todo убрать, когда настрою Routing
+/* eslint-disable import/no-cycle */
+import DataChangeZone from './modules/dataChangeZone';
 import ChatPage from '../chat';
 import LoginPage from '../login';
+import PasswordChangeZone from './modules/passwordChangeZone';
+/* eslint-enable import/no-cycle */
 import InputField from '../../partials/inputField';
 import SubmitButton from '../../partials/submitButton';
-import PasswordChangeZone from './modules/passwordChangeZone';
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 
 export default class ProfilePage extends Component {
