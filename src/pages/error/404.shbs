@@ -1,8 +1,0 @@
----
-title: Error 404
-pathToBaseStyles: ../../layout/base.scss
-pathToIndexJS: index.ts
----
-{{!< base}}
-
-{{>errorPageContent errorCode=404 errorText="Страница не найдена"}}
