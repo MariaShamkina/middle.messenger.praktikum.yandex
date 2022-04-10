@@ -17,3 +17,5 @@
 ## Ссылки на пул-реквесты
 
 [Sprint 1](https://github.com/MariaShamkina/middle.messenger.praktikum.yandex/pull/1)
+
+[Sprint 2](https://github.com/MariaShamkina/middle.messenger.praktikum.yandex/pull/3)
