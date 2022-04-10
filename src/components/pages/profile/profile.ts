@@ -10,6 +10,7 @@ import LoginPage from '../login';
 import InputField from '../../partials/inputField';
 import SubmitButton from '../../partials/submitButton';
 import PasswordChangeZone from './modules/passwordChangeZone';
+import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 
 export default class ProfilePage extends Component {
   constructor() {
@@ -19,6 +20,24 @@ export default class ProfilePage extends Component {
 
   // eslint-disable-next-line react/no-unused-class-component-methods
   protected initChildren() {
+    this.children.changeAvatarModalWindow = new ChangeAvatarModalWindow({
+      events: {
+        click: [
+          (e: Event) => {
+            if ((e.target as HTMLElement).closest('.modal-closeButton')) {
+              (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
+            }
+          },
+        ],
+        mousedown: [
+          (e: Event) => {
+            if (!(e.target as HTMLElement).closest('.changeAvatar-wrapper')) {
+              (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
+            }
+          },
+        ],
+      },
+    });
     this.children.linkGoBack = new LinkAway({
       className: 'linkGoBack',
       linkHref: '#',
@@ -35,6 +54,14 @@ export default class ProfilePage extends Component {
     this.children.avatarZone = new AvatarZone({
       avatarImgSrc: new URL(profileData.imgSrc, import.meta.url),
       userName: profileData.display_name,
+      events: {
+        click: [
+          (e: Event) => {
+            if (!(e.target as HTMLElement).closest('.changeAvatarButton')) return;
+            (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).activate();
+          },
+        ],
+      },
     });
     this.children.dataChangeZone = new DataChangeZone({
       events: {
