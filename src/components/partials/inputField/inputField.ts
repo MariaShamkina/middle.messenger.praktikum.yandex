@@ -1,7 +1,7 @@
 import Component, { IProperties } from '../../../utils/component';
 import inputFieldTemplate from './inputField.hbs';
 
-interface IInputFieldProps extends IProperties{
+export interface IInputFieldProps extends IProperties{
     fieldName: string;
     fieldPlaceholder: string;
     fieldType: string;
@@ -10,6 +10,7 @@ interface IInputFieldProps extends IProperties{
     errorsText?: string[];
     isValidate?: boolean;
     validateHandler?: validationHandler;
+    boundFieldHandler?: eventHandler;
 }
 
 function displayErrors(inputWrapper: HTMLElement) {
@@ -65,6 +66,12 @@ export default class InputField extends Component {
       return true;
     }
     return false;
+  }
+
+  // eslint-disable-next-line react/no-unused-class-component-methods
+  protected componentRenderFinished() {
+    const props = this.props as IInputFieldProps;
+    if (props.boundFieldHandler) props.boundFieldHandler();
   }
 
   render() {

@@ -18,6 +18,7 @@ export default class ChatPage extends Component {
   // eslint-disable-next-line react/no-unused-class-component-methods
   initChildren() {
     this.children.linkAway = new LinkAway({
+      title: 'Перейти к профилю',
       linkHref: '#',
       linkText: 'Профиль',
       name: 'profile-link',

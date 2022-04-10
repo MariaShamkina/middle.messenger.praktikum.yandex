@@ -18,6 +18,36 @@ export function validatePassword(text: string): string[] {
   return errors;
 }
 
+export function validateName(text: string): string[] {
+  const errors: string[] = [];
+  if (!text) errors.push('Обязательное поле.');
+  else if (!text.match(/^[A-ZА-Я]/)) errors.push('Первая буква должна быть заглавной.');
+  if (text.match(/[0-9 ]/)) errors.push('Имя не должно содержать цифры и пробелы.');
+  if (!text.match(/^[a-zA-Zа-яА-Я\\-]*$/)) errors.push('Можно использовать только буквы и дефис.');
+  return errors;
+}
+
+export function validatePasswordMatch(text: string, text2: string): string[] {
+  const errors: string[] = [];
+  if (text !== text2) errors.push('Пароли не совпадают.');
+  return errors;
+}
+
+export function validatePhoneNumber(text: string): string[] {
+  const errors: string[] = [];
+  if (!text) errors.push('Обязательное поле.');
+  if (!text.match(/^.{10,15}$/)) errors.push('Длина номера должна быть от 10 до 15 чисел.');
+  if (!text.match(/^[+0-9][0-9]*$/)) errors.push('Номер должен состоять из чисел, может начинаться с плюса.');
+  return errors;
+}
+
+export function validateEmail(text: string): string[] {
+  const errors: string[] = [];
+  if (!text) errors.push('Обязательное поле.');
+  if (!text.match(/^[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]+[a-zA-Z]$/)) errors.push('Некорректный адрес. Пример подходящего: your-name8@test.ru');
+  return errors;
+}
+
 export function InvalidFormData(): Component[] {
   const invalidInputs: Component[] = [];
   Object.values((this as Component).children)

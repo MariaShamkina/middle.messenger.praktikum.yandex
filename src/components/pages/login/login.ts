@@ -37,7 +37,7 @@ export default class LoginPage extends Component {
     this.children.submitButton = new SubmitButton({
       name: 'enter',
       title: 'Войти',
-      events: {
+      events: { // todo enter неправильно работает
         click: [(e: Event) => {
           e.preventDefault();
           const invalidInputs = InvalidFormData.bind(this)();
@@ -46,7 +46,7 @@ export default class LoginPage extends Component {
                 (e.target as HTMLElement).closest('form') as HTMLFormElement,
             ).entries());
             // eslint-disable-next-line no-console
-            formData.forEach((pair) => console.log(pair));
+            console.log(formData);
             renderDOM('#app', new ChatPage());
           } else {
             invalidInputs.forEach(
@@ -57,6 +57,7 @@ export default class LoginPage extends Component {
       },
     });
     this.children.linkAway = new LinkAway({
+      title: 'Перейти к регистрации',
       linkHref: '#',
       linkText: 'Создать профиль',
       name: 'register',

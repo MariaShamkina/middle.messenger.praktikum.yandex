@@ -24,6 +24,7 @@ export default class Component {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CRF: 'flow:component-render-finished',
   };
 
   private _element: HTMLElement | null = null;
@@ -65,8 +66,9 @@ export default class Component {
     const props: IProperties = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (value instanceof Component
-          || (Array.isArray(value) && value.every((v) => (v instanceof Component)))) {
+      if (value && (value instanceof Component
+          || (Array.isArray(value) && value.length > 0
+              && value.every((v) => (v instanceof Component))))) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -84,6 +86,7 @@ export default class Component {
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CRF, this._componentRenderFinished.bind(this));
   }
 
   private _createDocumentElement(tagName: string): HTMLElement {
@@ -182,6 +185,7 @@ export default class Component {
     }
     this._element = newElement;
     this._addEvents();
+    this.eventBus().emit(Component.EVENTS.FLOW_CRF);
   }
 
   private get element(): HTMLElement {
@@ -226,6 +230,13 @@ export default class Component {
   protected componentDidUpdate(_oldProp: unknown, _newProp: unknown, _propName: string):boolean {
     return true;
   }
+
+  private _componentRenderFinished() {
+    this.componentRenderFinished();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  protected componentRenderFinished() {}
 
   public setProps = (newProps:IProperties) => {
     if (!newProps) {

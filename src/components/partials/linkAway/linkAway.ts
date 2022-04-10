@@ -1,12 +1,13 @@
 import Component, { IProperties } from '../../../utils/component';
 import linkAwayTemplate from './linkAway.hbs';
-import './_linkAway.scss';
 
 interface IlinkAwayProps extends IProperties{
     name: string;
     linkHref: string;
     linkText: string;
     className: string;
+    title: string;
+    backArrowImgSrc?: URL;
 }
 
 export default class LinkAway extends Component {
