@@ -1,5 +1,5 @@
 import passwordChangeZoneTemplate from './passwordChangeZone.hbs';
-import Component, { IProperties } from '../../../../../utils/component';
+import Component from '../../../../../utils/component';
 import InputField from '../../../../partials/inputField';
 import SubmitButton from '../../../../partials/submitButton';
 import {
@@ -8,15 +8,14 @@ import {
   validatePasswordMatch,
 } from '../../../../../utils/validationRules';
 import { IInputFieldProps } from '../../../../partials/inputField/inputField';
-
-interface IPasswordChangeZone extends IProperties{
-  hidden?: boolean;
-}
+import ProfilePage from '../../profile';
+import renderDOM from '../../../../../utils/renderDOM';
 
 export default class PasswordChangeZone extends Component {
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: IPasswordChangeZone) {
-    super(props);
+  constructor() {
+    super();
+    this.hide();
   }
 
   // eslint-disable-next-line react/no-unused-class-component-methods
@@ -61,7 +60,7 @@ export default class PasswordChangeZone extends Component {
             ).entries());
             // eslint-disable-next-line no-console
             console.log(formData);
-            // renderDOM('#app', new Page());//todo сделатьпереход к профилю
+            renderDOM('#app', new ProfilePage());
           } else {
             invalidInputs.forEach(
               (el:Component) => el.getContent().dispatchEvent(new Event('focusout')),
