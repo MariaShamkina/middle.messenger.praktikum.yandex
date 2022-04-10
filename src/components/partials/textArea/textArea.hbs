@@ -1,0 +1,13 @@
+<div class="new-message-field-wrapper">
+    <textarea class="{{textareaName}}-textarea" rows="1" autofocus minlength="1" form="{{textareaName}}-form" name="{{inputName}}" placeholder="{{textareaPlaceholder}}">{{value}}</textarea>
+    {{#if isValidate}}
+        <div hidden class="wrapper-error-field">
+            <img class="error-field-img" src="{{errorImgSrc}}" alt="Показать список ошибок"/>
+            <div hidden class="error-text-absolute">
+                {{#each errorsText}}
+                    <div>{{this}}</div>
+                {{/each}}
+            </div>
+        </div>
+    {{/if}}
+</div>

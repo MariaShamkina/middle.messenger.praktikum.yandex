@@ -48,6 +48,12 @@ export function validateEmail(text: string): string[] {
   return errors;
 }
 
+export function messageValidation(text: string): string[] {
+  const errors: string[] = [];
+  if (!text) errors.push('Пустое сообщение');
+  return errors;
+}
+
 export function InvalidFormData(): Component[] {
   const invalidInputs: Component[] = [];
   Object.values((this as Component).children)

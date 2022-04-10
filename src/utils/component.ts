@@ -116,36 +116,6 @@ export default class Component {
     });
   }
 
-  // compileProps() {
-  //   const propsAndStubs = { ...this.props };
-  //
-  //   Object.entries(this.children).forEach(([key, child]) => {
-  //     propsAndStubs[key] = child.getContent();
-  //   });
-  //
-  //   return propsAndStubs;
-  // }
-  //
-  // compile(template, props) {
-  //   const propsAndStubs = { ...props };
-  //
-  //   Object.entries(this.children).forEach(([key, child]) => {
-  //     propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
-  //   });
-  //
-  //   const fragment: HTMLTemplateElement = this._createDocumentElement('template') as HTMLTemplateElement;
-  //
-  //   fragment.innerHTML = template(propsAndStubs);
-  //
-  //   Object.values(this.children).forEach((child) => {
-  //     const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-  //
-  //     stub?.replaceWith(child.getContent());
-  //   });
-  //
-  //   return fragment.content;
-  // }
-
   compile(template: (arg: IProperties | IChildren) => string, props: IProperties | IChildren) {
     const fragment: HTMLTemplateElement = this._createDocumentElement('template') as HTMLTemplateElement;
 
