@@ -11,6 +11,8 @@ export interface IInputFieldProps extends IProperties{
     isValidate?: boolean;
     validateHandler?: validationHandler;
     boundFieldHandler?: eventHandler;
+    isReadOnly?: boolean;
+    isLabelShown?: boolean;
 }
 
 function displayErrors(inputWrapper: HTMLElement) {
@@ -52,20 +54,20 @@ export default class InputField extends Component {
         });
     }
     if (changedProps.isValidate && changedProps.validateHandler) {
-      changedProps.errorsText = changedProps.validateHandler('');
+      changedProps.errorsText = changedProps.validateHandler(changedProps.value ?? '');
     }
     super(changedProps);
     if (changedProps.isValidate) this.state.isValid = changedProps.errorsText?.length === 0;
   }
 
-  protected componentDidUpdate(_oldProp: unknown, newProp: unknown, propName: string): boolean {
+  protected componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string): boolean {
     const props = this.props as IInputFieldProps;
     if (propName === 'value' && props.validateHandler) {
       props.errorsText = props.validateHandler(newProp as string);
       this.state.isValid = props.errorsText.length === 0;
       return true;
     }
-    return false;
+    return oldProp !== newProp;
   }
 
   // eslint-disable-next-line react/no-unused-class-component-methods

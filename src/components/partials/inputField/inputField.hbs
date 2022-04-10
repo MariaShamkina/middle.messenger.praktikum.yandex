@@ -1,6 +1,6 @@
 <div class="form-field-wrapper">
-  <label class="field-label" hidden for="{{fieldName}}">{{fieldPlaceholder}}</label>
-  <input class="input-field {{fieldName}}-input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}">
+  <label class="field-label" {{#unless isLabelShown}}hidden{{/unless}} for="{{fieldName}}">{{fieldPlaceholder}}</label>
+  <input class="input-field {{fieldName}}-input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}" {{#if isReadOnly}}readOnly{{/if}}>
   {{#if isValidate}}
   <div hidden class="wrapper-error-field">
     <img class="error-field-img" src="{{errorImgSrc}}" alt="Показать список ошибок"/>

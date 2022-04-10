@@ -10,6 +10,8 @@ import {
   validatePhoneNumber,
 } from '../../../../../utils/validationRules';
 import { profileData } from '../../../../../data/profileData';
+import ProfilePage from '../../index';
+import renderDOM from '../../../../../utils/renderDOM';
 
 export default class ProfileDataZone extends Component {
   // eslint-disable-next-line react/no-unused-class-component-methods
@@ -20,6 +22,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'text',
       isValidate: true,
       value: profileData.first_name,
+      isReadOnly: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_secondName = new InputField({
@@ -28,6 +31,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'text',
       isValidate: true,
       value: profileData.second_name,
+      isReadOnly: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_displayName = new InputField({
@@ -36,6 +40,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'text',
       isValidate: true,
       value: profileData.display_name,
+      isReadOnly: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_login = new InputField({
@@ -44,6 +49,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'text',
       isValidate: true,
       value: profileData.login,
+      isReadOnly: true,
       validateHandler: (value) => validateLogin(value),
     });
     this.children.inputField_email = new InputField({
@@ -52,6 +58,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'email',
       isValidate: true,
       value: profileData.email,
+      isReadOnly: true,
       validateHandler: (value) => validateEmail(value),
     });
     this.children.inputField_phone = new InputField({
@@ -60,6 +67,7 @@ export default class ProfileDataZone extends Component {
       fieldType: 'tel',
       isValidate: true,
       value: profileData.phone,
+      isReadOnly: true,
       validateHandler: (value) => validatePhoneNumber(value),
     });
     this.children.submitButton = new SubmitButton({
@@ -76,7 +84,7 @@ export default class ProfileDataZone extends Component {
             ).entries());
             // eslint-disable-next-line no-console
             console.log(formData);
-            // renderDOM('#app', new Page());//todo сделатьпереход к профилю
+            renderDOM('#app', new ProfilePage());
           } else {
             invalidInputs.forEach(
               (el:Component) => el.getContent().dispatchEvent(new Event('focusout')),

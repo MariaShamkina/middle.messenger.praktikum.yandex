@@ -6,7 +6,7 @@ export const profileData = {
   imgSrc: 'https://cspromogame.ru//storage/upload_images/avatars/1237.jpg',
   email: 'test@yandex.ru',
   login: 'Murxe',
-  phone: '',
+  phone: '89045627456',
 };
 
 export default profileData.id;

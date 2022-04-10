@@ -8,6 +8,9 @@ import ProfileDataZone from './modules/profileDataZone';
 import renderDOM from '../../../utils/renderDOM';
 import ChatPage from '../chat';
 import ControlZone from './modules/controlZone';
+import LoginPage from '../login';
+import InputField from '../../partials/inputField';
+import SubmitButton from '../../partials/submitButton';
 
 export default class ProfilePage extends Component {
   constructor() {
@@ -38,7 +41,28 @@ export default class ProfilePage extends Component {
     this.children.passwordChangeZone = new PasswordChangeZone({
       hidden: true,
     });
-    this.children.controlZone = new ControlZone();
+    this.children.controlZone = new ControlZone({
+      events: {
+        click: [(e: Event) => {
+          if ((e.target as HTMLElement).classList.contains('change-profile-button')) {
+            Object.values((this.children.profileDataZone as Component).children).forEach((comp) => {
+              if (comp instanceof InputField) {
+                comp.props.isReadOnly = false;
+                comp.props.isLabelShown = true;
+              }
+              if (comp instanceof SubmitButton) comp.props.hidden = false;
+            });
+            (this.children.controlZone as Component).hide();
+          }
+          if ((e.currentTarget as HTMLElement).classList.contains('change-password-button')) {
+
+          }
+          if ((e.currentTarget as HTMLElement).classList.contains('go-away-link')) {
+            renderDOM('#app', new LoginPage());
+          }
+        }],
+      },
+    });
   }
 
   render() {
