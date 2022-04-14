@@ -1,13 +1,24 @@
-$background-img-url: url('./img/photo-1492045379936-abb525f8dacb.webp');
-@import "./layout/variables";
+$background-img-url: url("./img/photo-1492045379936-abb525f8dacb.webp");
+$search-icon-url: url("./img/search_icon.svg");
+@import "basicStyles/variables";
 
-@import "./layout/base";
-@import "./layout/enter";
+@import "basicStyles/base";
+@import "basicStyles/enter";
 
 @import "./components/partials/inputField/inputField";
 @import "./components/partials/searchField/searchField";
 @import "./components/partials/submitButton/submitButton";
-@import "./components/partials/linkAway/linkAway";
+@import "./components/partials/textArea/textArea";
 
-@import './components/pages/profile/profile.scss';
-@import './components/pages/profile/modules/changeAvatarModalWindow/changeAvatarModalWindow.scss';
+@import "./components/pages/profile/profile";
+@import "./components/pages/profile/modules/avatarZone/avatarZone";
+@import "./components/pages/profile/modules/changeAvatarModalWindow/changeAvatarModalWindow";
+@import "./components/pages/profile/modules/controlZone/controlZone";
+@import "./components/pages/profile/modules/dataChangeZone/dataChangeZone";
+@import "./components/pages/profile/modules/passwordChangeZone/passwordChangeZone";
+@import "./components/pages/chat/chat";
+@import "./components/pages/chat/modules/contacts/contacts";
+@import "./components/pages/chat/modules/content/content";
+@import "./components/pages/chat/modules/contentInfo/contentInfo";
+@import "./components/pages/chat/modules/messagesDashboard/messagesDashboard";
+@import "./components/pages/chat/modules/newMessageForm/newMessageForm";

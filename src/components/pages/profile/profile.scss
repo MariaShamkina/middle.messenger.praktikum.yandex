@@ -9,60 +9,12 @@
   align-items: center;
 }
 
-.profile-wrapper{
-  margin: 0 auto;
-  min-width: 600px;
-  background: rgba($primary-light-color, .8);
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 35px 25px;
-  box-shadow: 0 5px 10px 0 rgba(black, .2);
-  display: flex;
-  justify-content: space-between;
-}
-
-.left-avatar-zone{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.right-info-zone{
-  padding: 0 15px;
-  flex-grow: .5;
-  border-left: 3px solid;
-  border-color: $primary-light-color;
-}
-
-.userName{
-  font-weight: bold;
-  font-size: larger;
-}
-
-.avatar-button{
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 5px solid $border-color;
-  margin-right: 15px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  cursor: pointer;
-
-  & #avatarImg{
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-  }
-}
-
 .contact-profile-container{
   display: flex;
   flex-direction: column;
   height: 100%;
 
-  & .form-field-wrapper{    
+  & .form-field-wrapper{
     display: flex;
     margin-bottom: 5px;
     justify-content: space-between;
@@ -78,15 +30,16 @@
   }
 
   & .input-field{
+    background: $primary-light-color;
+    width: auto;
     padding: 5px;
     border-radius: 5px;
     border: 2px solid $border-color;
-    outline: none;
-    
+
     &:read-only{
       direction: rtl;
       padding-right: 10px;
-      
+
       &::placeholder{
         color: $primary-light-color;
       }
@@ -98,49 +51,41 @@
   }
 }
 
-.data-change-section .input-field:read-write{
-  width: 100%;
-  padding-left: 10px;
-}
-
-.control-container{
+.profile-wrapper{
+  margin: 0 auto;
+  min-width: 600px;
+  background: rgba($primary-light-color, .8);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 35px 25px;
+  box-shadow: 0 5px 10px 0 rgba(black, .2);
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-bottom: 0;
-  margin-top: 15px;
+  justify-content: space-between;
+}
 
-  & *{
-    font-family: inherit;
-    padding: 3px 0;
-    font-size: large;
-    font-weight: bold;
-    color: $primary-dark-color;
-  }
+.linkGoBack{
+  border: none;
+  background: inherit;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
 
-  & .control-container-button{
-    cursor: pointer;
+.GoBackImg{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px 0 rgba(black,.6);
 
-    &:hover{
-      color: $link-color;
-    }
-  }
-
-  & .go-away-link{
-    text-decoration: none;
-    align-self: end;
+  &:hover{
+    box-shadow: 0 5px 10px 0 rgba(black,.9);
   }
 }
 
-.password-change-section{
-  width: 100%;
-
-  & .submit-button{
-    width: 80%;
-    align-self: center;
-  }
-
-  & .input-field::placeholder{
-    color: $primary-light-color;
-  }
+.right-info-zone{
+  padding: 0 15px;
+  flex-grow: .5;
+  border-left: 3px solid;
+  border-color: $primary-light-color;
 }

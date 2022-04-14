@@ -1,0 +1,33 @@
+.messages-dashboard{
+    list-style: none;
+    overflow-y: scroll;
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+.message{
+  width: 70%;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 30px 5px 5px;
+  position: relative;
+
+  &-user{
+    background-color: $first-message-color;
+    border-color: $first-message-border-color;
+    margin-left: auto;
+  }
+
+  &-contact{
+    background-color: $second-message-color;
+    border-color: $second-message-border-color;
+  }
+}
+
+.dateTime {
+  font-size: small;
+  position: absolute;
+  bottom: -3px;
+  right: 5px;
+}

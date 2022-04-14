@@ -1,7 +1,7 @@
-<div class="form-field-wrapper">
+<div class="form-field-wrapper{{#unless withoutBorder}} form-field-wrapper-border-and-width{{/unless}}">
   <label class="field-label" {{#unless isLabelShown}}hidden{{/unless}} for="{{fieldName}}">{{fieldPlaceholder}}</label>
   <input class="input-field {{fieldName}}-input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}" {{#if isReadOnly}}readOnly{{/if}}>
-  {{#if isValidate}}
+  {{#if isValidate}} <!--todo выделить в отдельный паршилз-->
   <div hidden class="wrapper-error-field">
     <img class="error-field-img" src="{{errorImgSrc}}" alt="Показать список ошибок"/>
     <div hidden class="error-text-absolute">

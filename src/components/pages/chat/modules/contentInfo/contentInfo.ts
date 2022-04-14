@@ -1,6 +1,5 @@
 import Component, { IProperties } from '../../../../../utils/component';
 import contentInfoTemplate from './contentInfo.hbs';
-import './contentInfo.scss';
 
 interface IContentInfo extends IProperties{
   contactInfo?: contactData,

@@ -7,7 +7,6 @@ import ProfilePage from '../profile';
 import ContactsModule from './modules/contacts';
 import ContentModule from './modules/content';
 import { contactsData } from '../../../data/contactsData';
-import './chat.scss';
 
 export default class ChatPage extends Component {
   constructor() {
@@ -45,6 +44,8 @@ export default class ChatPage extends Component {
             this.children.content.props.contactId = parseInt(idField.textContent, 10);
           }
         }.bind(this)],
+        mouseenter: [(e: Event) => (e.target as HTMLElement).classList.add('showScrollbar')],
+        mouseleave: [(e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar')],
       },
     });
     this.children.content = new ContentModule({

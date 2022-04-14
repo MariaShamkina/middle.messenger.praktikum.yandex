@@ -1,4 +1,4 @@
-@import "../../../layout/variables";
+@import "../../../basicStyles/variables";
 
 .chat {
   height: 100vh;
@@ -19,48 +19,11 @@
   margin-left: 20px;
 }
 
-.wrapper-search-field{
-  margin-bottom: 5px;
-  margin-left: 24px;
-  margin-right: 15%;
-}
-
-.search-input-field{
-  background-size: 30px;
-  background: url("../../../img/search_icon.svg") no-repeat left;
-  background-attachment: inherit;
-  background-color: inherit;
-  background-position-x: 5px;
-  border-radius: 10px;
-  border: 2px solid $border-color;
-  font-size: 1em;
-  height: 40px;
-  padding: 0 5px 0 40px;
-  outline: none;
-  width: 100%;
-  display: block;
-}
-
 .chat-contacts-panel{
   display: flex;
   flex-direction: column;
   min-width: 250px;
   height: 100%;
-}
-
-.wrapper-chat-contacts-list{
-  border: none;
-  border-top: 2px solid;
-  border-image: $lines-gradient 1;
-  padding-top: 5px;
-  padding-left: 24px;
-  direction: rtl; 
-  overflow-y: hidden;
-}
-
-.showScrollbar{
-  overflow-y: scroll;
-  padding-left: 20px;
 }
 
 .scrollbar-style{

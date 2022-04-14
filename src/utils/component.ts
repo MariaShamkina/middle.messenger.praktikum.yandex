@@ -49,13 +49,12 @@ export default class Component {
     const eventBus = new EventBus();
     const { children, props } = Component._getChildren(propsAndChildren);
     this.children = children;
-    this.initChildren();
     this._meta = {
       props,
     };
     this._id = makeUUID();
-    const props1 : IChildren | IProperties = { ...props, _id: this._id };
-    this.props = this._makePropsProxy(props1);
+    this.props = this._makePropsProxy({ ...props, _id: this._id });
+    this.initChildren();
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     eventBus.emit(Component.EVENTS.INIT);

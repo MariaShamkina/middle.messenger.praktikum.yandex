@@ -1,6 +1,5 @@
 import Component, { IProperties } from '../../../../../utils/component';
 import messageDashboardTemplate from './messagesDashboard.hbs';
-import './messagesDashboard.scss';
 
 interface IMessageDashboard extends IProperties{
     content?: message[],

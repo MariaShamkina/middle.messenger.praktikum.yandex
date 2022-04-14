@@ -1,4 +1,12 @@
-@import "../../../../../layout/variables";
+.wrapper-chat-contacts-list{
+  border: none;
+  border-top: 2px solid;
+  border-image: $lines-gradient 1;
+  padding-top: 5px;
+  padding-left: 24px;
+  direction: rtl;
+  overflow-y: hidden;
+}
 
 .chat-contacts-list{
   list-style: none;
@@ -44,4 +52,9 @@
   height: 50px;
   top: 10px;
   left: 10px;
+}
+
+.showScrollbar{
+  overflow-y: scroll;
+  padding-left: 20px;
 }

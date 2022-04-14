@@ -23,6 +23,8 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.first_name,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_secondName = new InputField({
@@ -32,6 +34,8 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.second_name,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_displayName = new InputField({
@@ -41,6 +45,8 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.display_name,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validateName(value),
     });
     this.children.inputField_login = new InputField({
@@ -50,6 +56,8 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.login,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validateLogin(value),
     });
     this.children.inputField_email = new InputField({
@@ -59,6 +67,8 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.email,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validateEmail(value),
     });
     this.children.inputField_phone = new InputField({
@@ -68,12 +78,14 @@ export default class ProfileDataZone extends Component {
       isValidate: true,
       value: profileData.phone,
       isReadOnly: true,
+      isLabelShown: true,
+      withoutBorder: true,
       validateHandler: (value) => validatePhoneNumber(value),
     });
     this.children.submitButton = new SubmitButton({
       name: 'saveChanges',
       title: 'Сохранить изменения',
-      hidden: true,
+      hiddenInput: true,
       events: {
         click: [(e: Event) => {
           e.preventDefault();

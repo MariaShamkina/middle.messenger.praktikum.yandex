@@ -1,6 +1,5 @@
 import Component from '../../../../../utils/component';
 import messageDashboardTemplate from './newMessageForm.hbs';
-import './newMessageForm.scss';
 import SubmitButton from '../../../../partials/submitButton';
 import { InvalidFormData, messageValidation } from '../../../../../utils/validationRules';
 import TextArea from '../../../../partials/textArea';
@@ -18,6 +17,7 @@ export default class NewMessageForm extends Component {
     this.children.submitButton = new SubmitButton({
       name: 'sendMessage',
       title: 'Отправить сообщение',
+      hiddenInput: true,
       submitButtonIconSrc: new URL('../../../../../img/send-comment.svg', import.meta.url),
       events: { // todo enter неправильно работает
         click: [(e: Event) => {
@@ -29,10 +29,6 @@ export default class NewMessageForm extends Component {
             ).entries());
             // eslint-disable-next-line no-console
             console.log(formData);
-          } else {
-            invalidInputs.forEach(
-              (el:Component) => el.getContent().dispatchEvent(new Event('focusout')),
-            );
           }
         }],
       },

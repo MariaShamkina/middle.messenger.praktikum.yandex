@@ -3,11 +3,6 @@
   publish = "dist"
 [[redirects]]
   from = "/"
-  to = "/chat/chat.html"
-  status = 200
-  force = false
-[[redirects]]
-  from = "/index.html"
-  to = "/chat/chat.html"
+  to = "/index.html"
   status = 200
   force = false

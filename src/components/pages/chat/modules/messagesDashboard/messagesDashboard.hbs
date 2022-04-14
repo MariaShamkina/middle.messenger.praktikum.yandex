@@ -3,7 +3,7 @@
         <li class="message {{#if this.isAuthorMe}}message-user{{else}}message-contact{{/if}}">
             <p>{{this.message}}</p>
             {{#if this.imgSrc}}<img src={{this.imgSrc}} alt="Картинка в сообщении">{{/if}}
-            <span class="dateTime">{{this.dateTime}}</span>
+            <time class="dateTime">{{this.dateTime}}</time>
         </li>
     {{/each}}
 </ul>

@@ -1,11 +1,10 @@
 import Component, { IProperties } from '../../../utils/component';
 import buttonTemplate from './submitButton.hbs';
-import './_submitButton.scss';
 
-interface ISubmitButtonProps extends IProperties{
+export interface ISubmitButtonProps extends IProperties{
     name: string;
     title: string;
-    hidden?: boolean;
+    hiddenInput?: boolean;
     submitButtonIconSrc?: URL;
 }
 

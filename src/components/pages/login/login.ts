@@ -1,16 +1,14 @@
 import loginTemplate from './login.hbs';
 import Component from '../../../utils/component';
 import SigninPage from '../signin';
-import ChatPage from '../chat';
-import SubmitButton from '../../partials/submitButton';
 import LinkAway from '../../partials/linkAway';
 import InputField from '../../partials/inputField/inputField';
 import renderDOM from '../../../utils/renderDOM';
 import {
-  InvalidFormData,
   validateLogin,
   validatePassword,
 } from '../../../utils/validationRules';
+import DataForm from '../../partials/dataForm';
 
 export default class LoginPage extends Component {
   constructor() {
@@ -20,42 +18,30 @@ export default class LoginPage extends Component {
 
   // eslint-disable-next-line react/no-unused-class-component-methods
   initChildren() {
-    this.children.inputField_login = new InputField({
-      fieldName: 'login',
-      fieldPlaceholder: 'Логин',
-      fieldType: 'text',
-      isValidate: true,
-      validateHandler: (value: string) => validateLogin(value),
-    });
-    this.children.inputField_password = new InputField({
-      fieldName: 'password',
-      fieldPlaceholder: 'Пароль',
-      fieldType: 'password',
-      isValidate: true,
-      validateHandler: (value: string) => validatePassword(value),
-    });
-    this.children.submitButton = new SubmitButton({
-      name: 'enter',
-      title: 'Войти',
-      events: { // todo enter неправильно работает
-        click: [(e: Event) => {
-          e.preventDefault();
-          const invalidInputs = InvalidFormData.bind(this)();
-          if (invalidInputs.length === 0) {
-            const formData = Array.from(new FormData(
-                (e.target as HTMLElement).closest('form') as HTMLFormElement,
-            ).entries());
-            // eslint-disable-next-line no-console
-            console.log(formData);
-            renderDOM('#app', new ChatPage());
-          } else {
-            invalidInputs.forEach(
-              (el:Component) => el.getContent().dispatchEvent(new Event('focusout')),
-            );
-          }
-        }],
+    this.children.formData = new DataForm({
+      formClass: 'form-enter',
+      inputFields: [
+        new InputField({
+          fieldName: 'login',
+          fieldPlaceholder: 'Логин',
+          fieldType: 'text',
+          isValidate: true,
+          validateHandler: (value: string) => validateLogin(value),
+        }),
+        new InputField({
+          fieldName: 'password',
+          fieldPlaceholder: 'Пароль',
+          fieldType: 'password',
+          isValidate: true,
+          validateHandler: (value: string) => validatePassword(value),
+        }),
+      ],
+      submitButtonProps: {
+        name: 'enter',
+        title: 'Войти',
       },
     });
+
     this.children.linkAway = new LinkAway({
       title: 'Перейти к регистрации',
       linkHref: '#',

@@ -75,9 +75,9 @@ export default class ProfilePage extends Component {
               .forEach((comp) => {
                 if (comp instanceof InputField) {
                   comp.props.isReadOnly = false;
-                  comp.props.isLabelShown = true;
+                  comp.props.isLabelShown = false;
                 }
-                if (comp instanceof SubmitButton) comp.props.hidden = false;
+                if (comp instanceof SubmitButton) comp.props.hiddenInput = false;
               });
             (dataZoneChildren.controlZone as Component).hide();
           }

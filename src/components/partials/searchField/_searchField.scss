@@ -1,11 +1,23 @@
-@import "../../../layout/variables";
+.search{
+  &-field-wrapper{
+    margin-bottom: 5px;
+    margin-left: 24px;
+    margin-right: 15%;
+  }
 
-.input-field{
-  background: inherit;
-  border: none;
-  font-size: 1em;
-  height: inherit;
-  padding: 0 5px;
-  outline: none;
-  width: 100%;
+  &-chat-contact{
+    background-size: 30px;
+    background: $search-icon-url no-repeat left;
+    background-attachment: inherit;
+    background-color: inherit;
+    background-position-x: 5px;
+    border-radius: 10px;
+    border: 2px solid $border-color;
+    font-size: 1em;
+    height: 40px;
+    padding: 0 5px 0 40px;
+    outline: none;
+    width: 100%;
+    display: block;
+  }
 }

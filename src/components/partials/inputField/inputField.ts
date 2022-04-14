@@ -11,6 +11,7 @@ export interface IInputFieldProps extends IProperties{
     isValidate?: boolean;
     validateHandler?: validationHandler;
     boundFieldHandler?: eventHandler;
+    withoutBorder?: boolean;
     isReadOnly?: boolean;
     isLabelShown?: boolean;
 }
@@ -42,13 +43,15 @@ export default class InputField extends Component {
     if (changedProps.isValidate) {
       if (!changedProps.events) changedProps.events = {};
       (changedProps.events.click = changedProps.events.click || [])
-        .push((e: Event) => displayErrorText(e));
-      (changedProps.events.focusin = changedProps.events.focus || [])
-        .push((e: Event) => hideErrors(e));
-      (changedProps.events.focusout = changedProps.events.blur || [])
         .push((e: Event) => {
-          const login = (e.target as HTMLInputElement).value ?? '';
-          this.props.value = login.trim();
+          displayErrorText(e);
+        });
+      (changedProps.events.focusin = changedProps.events.focusin || [])
+        .push((e: Event) => hideErrors(e));
+      (changedProps.events.focusout = changedProps.events.focusout || [])
+        .push((e: Event) => {
+          const value = ((e.currentTarget as HTMLElement).querySelector('input') as HTMLInputElement).value ?? '';
+          this.props.value = value.trim();
           const { state } = this;
           if (!state.isValid) displayErrors(this.getContent());
         });

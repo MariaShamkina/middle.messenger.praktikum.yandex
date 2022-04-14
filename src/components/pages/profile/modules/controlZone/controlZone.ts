@@ -1,6 +1,5 @@
 import Component from '../../../../../utils/component';
 import controlZoneTemplate from './controlZone.hbs';
-import './controlZone.scss';
 import Button from '../../../../partials/button';
 import LinkAway from '../../../../partials/linkAway';
 

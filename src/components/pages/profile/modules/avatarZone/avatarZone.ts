@@ -1,6 +1,5 @@
 import Component, { IProperties } from '../../../../../utils/component';
 import avatarZoneTemplate from './avatarZone.hbs';
-import './avatarZone.scss';
 
 interface IAvatarZone extends IProperties{
   avatarImgSrc: URL,
