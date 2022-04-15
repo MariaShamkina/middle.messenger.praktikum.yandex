@@ -11,9 +11,8 @@ import ChatPage from '../chat';
 import LoginPage from '../login';
 import PasswordChangeZone from './modules/passwordChangeZone';
 /* eslint-enable import/no-cycle */
-import InputField from '../../partials/inputField';
-import SubmitButton from '../../partials/submitButton';
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
+import DataForm from '../../partials/dataForm';
 
 export default class ProfilePage extends Component {
   constructor() {
@@ -70,15 +69,14 @@ export default class ProfilePage extends Component {
       events: {
         click: [(e: Event) => {
           if ((e.target as HTMLElement).classList.contains('change-profile-button')) {
-            const dataZoneChildren = (this.children.dataChangeZone as Component).children;
-            Object.values((dataZoneChildren.profileDataZone as Component).children)
+            const dataZoneChildren = (this.children.dataChangeZone as DataChangeZone).children;
+            const profileDataChildren = (dataZoneChildren.profileDataform as DataForm).children;
+            (profileDataChildren.inputFields as Component[])
               .forEach((comp) => {
-                if (comp instanceof InputField) {
-                  comp.props.isReadOnly = false;
-                  comp.props.isLabelShown = false;
-                }
-                if (comp instanceof SubmitButton) comp.props.hiddenInput = false;
+                comp.props.isReadOnly = false;
+                comp.props.isLabelShown = false;
               });
+            (profileDataChildren.submitButton as Component).props.hiddenInput = false;
             (dataZoneChildren.controlZone as Component).hide();
           }
           if ((e.target as HTMLElement).classList.contains('change-password-button')) {

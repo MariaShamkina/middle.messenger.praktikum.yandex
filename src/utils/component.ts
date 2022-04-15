@@ -29,7 +29,7 @@ export default class Component {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: {props: IProperties };
+  private _meta: { props: IProperties };
 
   private readonly _id: string | null = null;
 

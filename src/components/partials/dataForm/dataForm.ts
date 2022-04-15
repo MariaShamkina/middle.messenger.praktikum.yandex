@@ -15,33 +15,32 @@ interface IDataFormProps extends IProperties{
 export default class DataForm extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: IDataFormProps) {
+    props.events = props.events || {};
+    props.events.submit = [(e: Event) => {
+      e.preventDefault();
+      if (document.activeElement && document.activeElement.classList.contains('input-field')) {
+        document.activeElement.closest('.form-field-wrapper')?.dispatchEvent(new Event('focusout'));
+      }
+      const invalidInputs = InvalidFormData.bind(this)();
+      if (invalidInputs.length === 0) {
+        const formData = Array.from(new FormData(this.getContent() as HTMLFormElement)
+          .entries());
+        // eslint-disable-next-line no-console
+        console.log(formData);
+        renderDOM('#app', new ChatPage());//todo рендеринг на разные страницы должен быть
+      } else {
+        invalidInputs.forEach(
+          (el: Component) => el.getContent().dispatchEvent(new Event('focusout')),
+        );
+      }
+    }];
     super(props);
   }
 
   // eslint-disable-next-line react/no-unused-class-component-methods
   protected initChildren() {
     const props = this.props as IDataFormProps;
-    this.children.submitButton = new SubmitButton({
-      name: props.submitButtonProps.name,
-      title: props.submitButtonProps.title,
-      events: {
-        click: [(e: Event) => {
-          e.preventDefault();
-          const invalidInputs = InvalidFormData.bind(this)();
-          if (invalidInputs.length === 0) {
-            const formData = Array.from(new FormData(this.getContent() as HTMLFormElement)
-              .entries());
-            // eslint-disable-next-line no-console
-            console.log(formData);
-            renderDOM('#app', new ChatPage());
-          } else {
-            invalidInputs.forEach(
-              (el: Component) => el.getContent().dispatchEvent(new Event('focusout')),
-            );
-          }
-        }],
-      },
-    });
+    this.children.submitButton = new SubmitButton(props.submitButtonProps);
   }
 
   render() {

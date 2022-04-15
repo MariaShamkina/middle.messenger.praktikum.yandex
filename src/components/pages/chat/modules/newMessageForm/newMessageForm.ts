@@ -13,13 +13,23 @@ export default class NewMessageForm extends Component {
       textareaPlaceholder: 'Сообщение',
       isValidate: true,
       validateHandler: (value) => messageValidation(value),
+      events: {
+        keyup: [(e: Event) => {
+          const textarea = e.target as HTMLElement;
+          const styles = getComputedStyle(textarea);
+          textarea.style.height = '0';
+          const minHeightArea = parseInt(styles.minHeight, 10);
+          const newHeight = textarea.scrollHeight;
+          textarea.style.height = `${(newHeight > minHeightArea) ? newHeight : minHeightArea}px`;
+        }],
+      },
     });
     this.children.submitButton = new SubmitButton({
       name: 'sendMessage',
       title: 'Отправить сообщение',
       hiddenInput: true,
       submitButtonIconSrc: new URL('../../../../../img/send-comment.svg', import.meta.url),
-      events: { // todo enter неправильно работает
+      events: {
         click: [(e: Event) => {
           e.preventDefault();
           const invalidInputs = InvalidFormData.bind(this)();

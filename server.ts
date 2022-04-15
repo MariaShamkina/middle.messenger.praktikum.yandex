@@ -10,5 +10,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Chat is listening on port ${PORT}!`);
 });

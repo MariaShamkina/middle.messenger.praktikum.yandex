@@ -32,18 +32,23 @@ export default class ChatPage extends Component {
     this.children.contacts = new ContactsModule({
       contacts: contactsData,
       events: {
-        click: [function (e: Event) {
+        click: [(e: Event) => {
           const tab = (e.target as HTMLElement).closest('.tab');
           if (!tab || !(e.currentTarget as HTMLElement).contains(tab)) return;
           const prevActTab = (e.currentTarget as HTMLElement).querySelector('.tab.active');
-          tab.classList.add('active');
-          if (prevActTab) { prevActTab.classList.remove('active'); }
+          const contentProps = (this.children.content as Component).props;
+          if (prevActTab === tab) {
+            contentProps.contactId = null;
+          } else {
+            tab.classList.add('active');
+            if (prevActTab) { prevActTab.classList.remove('active'); }
 
-          const idField: HTMLElement | null = tab.querySelector('#id');
-          if (idField && idField.textContent) {
-            this.children.content.props.contactId = parseInt(idField.textContent, 10);
+            const idField: HTMLElement | null = tab.querySelector('#id');
+            if (idField && idField.textContent) {
+              contentProps.contactId = parseInt(idField.textContent, 10);
+            }
           }
-        }.bind(this)],
+        }],
         mouseenter: [(e: Event) => (e.target as HTMLElement).classList.add('showScrollbar')],
         mouseleave: [(e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar')],
       },

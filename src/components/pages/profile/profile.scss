@@ -88,4 +88,14 @@
   flex-grow: .5;
   border-left: 3px solid;
   border-color: $primary-light-color;
+
+  & .input-field:read-write{
+    width: 100%;
+    padding-left: 10px;
+  }
+
+  & .submit-button{
+    width: 80%;
+    align-self: center;
+  }
 }

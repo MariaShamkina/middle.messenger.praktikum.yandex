@@ -5,6 +5,7 @@ interface IButtonProps extends IProperties{
     buttonType: string;
     className: string;
     buttonText: string;
+    contactMenuImgSrc?: URL;
 }
 
 export default class Button extends Component {
