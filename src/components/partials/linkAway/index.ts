@@ -1,3 +1,3 @@
-import LinkAway from './linkAway';
+import { LinkAway } from './linkAway';
 
 export default LinkAway;

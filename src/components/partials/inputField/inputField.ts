@@ -1,5 +1,6 @@
 import Component, { IProperties } from '../../../utils/component';
 import inputFieldTemplate from './inputField.hbs';
+import { convertToArray } from '../../../utils/helpers';
 
 export interface IInputFieldProps extends IProperties{
     fieldName: string;
@@ -9,8 +10,8 @@ export interface IInputFieldProps extends IProperties{
     value?: string;
     errorsText?: string[];
     isValidate?: boolean;
-    validateHandler?: validationHandler;
-    boundFieldHandler?: eventHandler;
+    validateHandler?: ValidationHandler;
+    boundFieldHandler?: EventHandler;
     withoutBorder?: boolean;
     isReadOnly?: boolean;
     isLabelShown?: boolean;
@@ -37,24 +38,30 @@ function displayErrorText(e: Event) {
   errorText?.toggleAttribute('hidden');
 }
 
-export default class InputField extends Component {
+export class InputField extends Component<IInputFieldProps> {
   constructor(props: IInputFieldProps) {
     const changedProps = { ...props };
     if (changedProps.isValidate) {
-      if (!changedProps.events) changedProps.events = {};
-      (changedProps.events.click = changedProps.events.click || [])
-        .push((e: Event) => {
-          displayErrorText(e);
-        });
-      (changedProps.events.focusin = changedProps.events.focusin || [])
-        .push((e: Event) => hideErrors(e));
-      (changedProps.events.focusout = changedProps.events.focusout || [])
-        .push((e: Event) => {
-          const value = ((e.currentTarget as HTMLElement).querySelector('input') as HTMLInputElement).value ?? '';
-          this.props.value = value.trim();
-          const { state } = this;
-          if (!state.isValid) displayErrors(this.getContent());
-        });
+      if (!changedProps.events) {
+        changedProps.events = {};
+      }
+      const { events } = changedProps;
+
+      events.click = convertToArray<EventHandler>(events.click);
+      events.click.push((e: Event) => {
+        displayErrorText(e);
+      });
+
+      events.focusin = convertToArray<EventHandler>(events.focusin);
+      events.focusin.push((e: Event) => hideErrors(e));
+
+      events.focusout = convertToArray<EventHandler>(events.focusout);
+      events.focusout.push((e: Event) => {
+        const value = ((e.currentTarget as HTMLElement).querySelector('input') as HTMLInputElement).value ?? '';
+        this.props.value = value.trim();
+        const { state } = this;
+        if (!state.isValid) displayErrors(this.getContent());
+      });
     }
     if (changedProps.isValidate && changedProps.validateHandler) {
       changedProps.errorsText = changedProps.validateHandler(changedProps.value ?? '');
@@ -65,15 +72,16 @@ export default class InputField extends Component {
 
   protected componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string): boolean {
     const props = this.props as IInputFieldProps;
+
     if (propName === 'value' && props.validateHandler) {
       props.errorsText = props.validateHandler(newProp as string);
       this.state.isValid = props.errorsText.length === 0;
       return true;
     }
+
     return oldProp !== newProp;
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   protected componentRenderFinished() {
     const props = this.props as IInputFieldProps;
     if (props.boundFieldHandler) props.boundFieldHandler();
@@ -81,6 +89,7 @@ export default class InputField extends Component {
 
   render() {
     const props = this.props as IInputFieldProps;
+
     return this.compile(inputFieldTemplate, {
       ...props,
       errorImgSrc: new URL('../../../img/box-important--v1.png', import.meta.url),

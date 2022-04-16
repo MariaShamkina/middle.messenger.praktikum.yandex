@@ -1,4 +1,4 @@
-import Component from './component';
+import Component, { IChildren } from './component';
 
 export function validateLogin(text: string): string[] {
   const errors: string[] = [];
@@ -54,9 +54,9 @@ export function messageValidation(text: string): string[] {
   return errors;
 }
 
-export function InvalidFormData(): Component[] {
+export function getInvalidInputs(children: IChildren): Component[] {
   const invalidInputs: Component[] = [];
-  Object.values((this as Component).children)
+  Object.values(children)
     .forEach((child) => {
       if (Array.isArray(child)) {
         child.forEach((ch) => {

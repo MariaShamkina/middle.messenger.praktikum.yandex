@@ -3,8 +3,7 @@ import controlZoneTemplate from './controlZone.hbs';
 import Button from '../../../../partials/button';
 import LinkAway from '../../../../partials/linkAway';
 
-export default class ControlZone extends Component {
-  // eslint-disable-next-line react/no-unused-class-component-methods
+export class ControlZone extends Component {
   protected initChildren() {
     this.children.buttonChangeProfile = new Button({
       buttonText: 'Изменить профиль',

@@ -1,3 +1,3 @@
-import ContentModule from './content';
+import { ContentModule } from './content';
 
 export default ContentModule;

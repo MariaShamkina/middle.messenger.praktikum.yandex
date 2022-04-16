@@ -1,6 +1,6 @@
-import profileId from './profileData';
+import { PROFILE_DATA_ID } from './profileData';
 
-const conversationsData: conversation[] = [
+const CONVERSATIONS_DATA: Conversation[] = [
   {
     contactId: 1,
     conversation: [
@@ -77,10 +77,10 @@ const conversationsData: conversation[] = [
   },
 ];
 
-export default function getConversation(contactId: number) {
-  const conversation = conversationsData
+export function getConversation(contactId: number) {
+  const conversation = CONVERSATIONS_DATA
     .find((conversationData) => conversationData.contactId === contactId)?.conversation;
   return conversation?.map(
-    (message) => ({ isAuthorMe: message.authorId === profileId, ...message }),
+    (message) => ({ isAuthorMe: message.authorId === PROFILE_DATA_ID, ...message }),
   );
 }

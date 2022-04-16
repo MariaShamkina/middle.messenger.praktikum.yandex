@@ -2,17 +2,16 @@ import Component from '../../../../../utils/component';
 import changeAvatarModalWindowTemplate from './changeAvatarModalWindow.hbs';
 import SubmitButton from '../../../../partials/submitButton';
 
-export default class ChangeAvatarModalWindow extends Component {
-  // eslint-disable-next-line react/no-unused-class-component-methods
+export class ChangeAvatarModalWindow extends Component {
   protected initChildren() {
     this.children.submitButton = new SubmitButton({
       name: 'changeAvatar',
       title: 'Изменить аватар',
       events: {
-        click: [(e: Event) => {
+        click: (e: Event) => {
           e.preventDefault();
           this.inactivate();
-        }],
+        },
       },
     });
   }

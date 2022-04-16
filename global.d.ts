@@ -2,13 +2,13 @@
 
 declare module '*.hbs';
 
-type contactData = {
+type ContactData = {
   id: number,
   name: string,
   imgSrc: string
 };
 
-type message = {
+type Message = {
   authorId: number,
   isAuthorMe?: boolean,
   message: string,
@@ -16,12 +16,12 @@ type message = {
   imgSrc?: string,
 }
 
-type conversation = {
+type Conversation = {
   contactId: number,
-  conversation: message[],
+  conversation: Message[],
 };
 
-type eventHandler = (...args: unknown[]) => void;
-type validationHandler = (value: string) => string[];
+type EventHandler = (...args: unknown[]) => void;
+type ValidationHandler = (value: string) => string[];
 
 /* eslint-enable no-unused-vars */

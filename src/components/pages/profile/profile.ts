@@ -1,7 +1,7 @@
 import Component from '../../../utils/component';
 import profileTemplate from './profile.hbs';
 import AvatarZone from './modules/avatarZone';
-import { profileData } from '../../../data/profileData';
+import { PROFILE_DATA } from '../../../data/profileData';
 import LinkAway from '../../partials/linkAway';
 import renderDOM from '../../../utils/renderDOM';
 // todo убрать, когда настрою Routing
@@ -14,30 +14,25 @@ import PasswordChangeZone from './modules/passwordChangeZone';
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 import DataForm from '../../partials/dataForm';
 
-export default class ProfilePage extends Component {
+export class ProfilePage extends Component {
   constructor() {
     super();
     document.title = 'Профиль';
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   protected initChildren() {
     this.children.changeAvatarModalWindow = new ChangeAvatarModalWindow({
       events: {
-        click: [
-          (e: Event) => {
-            if ((e.target as HTMLElement).closest('.modal-closeButton')) {
-              (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
-            }
-          },
-        ],
-        mousedown: [
-          (e: Event) => {
-            if (!(e.target as HTMLElement).closest('.changeAvatar-wrapper')) {
-              (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
-            }
-          },
-        ],
+        click: (e: Event) => {
+          if ((e.target as HTMLElement).closest('.modal-closeButton')) {
+            (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
+          }
+        },
+        mousedown: (e: Event) => {
+          if (!(e.target as HTMLElement).closest('.changeAvatar-wrapper')) {
+            (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
+          }
+        },
       },
     });
     this.children.linkGoBack = new LinkAway({
@@ -48,26 +43,24 @@ export default class ProfilePage extends Component {
       title: 'Вернуться к чату',
       backArrowImgSrc: new URL('../../../img/back_arrow.svg', import.meta.url),
       events: {
-        click: [() => {
+        click: () => {
           renderDOM('#app', new ChatPage());
-        }],
+        },
       },
     });
     this.children.avatarZone = new AvatarZone({
-      avatarImgSrc: new URL(profileData.imgSrc, import.meta.url),
-      userName: profileData.display_name,
+      avatarImgSrc: new URL(PROFILE_DATA.imgSrc, import.meta.url),
+      userName: PROFILE_DATA.display_name,
       events: {
-        click: [
-          (e: Event) => {
-            if (!(e.target as HTMLElement).closest('.changeAvatarButton')) return;
-            (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).activate();
-          },
-        ],
+        click: (e: Event) => {
+          if (!(e.target as HTMLElement).closest('.changeAvatarButton')) return;
+          (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).activate();
+        },
       },
     });
     this.children.dataChangeZone = new DataChangeZone({
       events: {
-        click: [(e: Event) => {
+        click: (e: Event) => {
           if ((e.target as HTMLElement).classList.contains('change-profile-button')) {
             const dataZoneChildren = (this.children.dataChangeZone as DataChangeZone).children;
             const profileDataChildren = (dataZoneChildren.profileDataform as DataForm).children;
@@ -86,14 +79,13 @@ export default class ProfilePage extends Component {
           if ((e.target as HTMLElement).classList.contains('go-away-link')) {
             renderDOM('#app', new LoginPage());
           }
-        }],
+        },
       },
     });
     this.children.passwordChangeZone = new PasswordChangeZone();
   }
 
   render() {
-    const { props } = this;
-    return this.compile(profileTemplate, { ...props });
+    return this.compile(profileTemplate, this.props);
   }
 }

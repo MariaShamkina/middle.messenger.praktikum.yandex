@@ -3,19 +3,14 @@ import Component, { IProperties } from '../../../../../utils/component';
 import ContentInfo from '../contentInfo';
 import MessageDashboard from '../messagesDashboard';
 import NewMessageForm from '../newMessageForm';
-import getContactData from '../../../../../data/contactsData';
-import getConversation from '../../../../../data/contentData';
+import { getContactData } from '../../../../../data/contactsData';
+import { getConversation } from '../../../../../data/contentData';
 
 interface IContent extends IProperties{
   contactId: Number | null;
 }
 
-export default class ContentModule extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IContent) {
-    super(props);
-  }
-
+export class ContentModule extends Component<IContent> {
   protected componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string) {
     if (propName === 'contactId' && typeof newProp === 'number') {
       if (newProp === oldProp) return false;
@@ -32,7 +27,6 @@ export default class ContentModule extends Component {
   }
 
   render() {
-    const { props } = this;
-    return this.compile(contentTemplate, { ...props });
+    return this.compile(contentTemplate, this.props);
   }
 }

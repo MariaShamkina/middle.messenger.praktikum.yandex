@@ -1,4 +1,4 @@
-import ContentInfo from './contentInfo';
+import { ContentInfo } from './contentInfo';
 
 export default ContentInfo;
 

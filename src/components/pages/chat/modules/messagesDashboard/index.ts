@@ -1,3 +1,3 @@
-import MessageDashboard from './messagesDasboard';
+import { MessageDashboard } from './messagesDasboard';
 
 export default MessageDashboard;

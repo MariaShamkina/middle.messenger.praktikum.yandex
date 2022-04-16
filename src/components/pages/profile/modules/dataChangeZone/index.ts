@@ -1,3 +1,3 @@
-import DataChangeZone from './dataChangeZone';
+import { DataChangeZone } from './dataChangeZone';
 
 export default DataChangeZone;

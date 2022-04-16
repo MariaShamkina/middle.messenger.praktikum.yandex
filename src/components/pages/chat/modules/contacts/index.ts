@@ -1,3 +1,3 @@
-import ContactsModule from './contacts';
+import { ContactsModule } from './contacts';
 
 export default ContactsModule;

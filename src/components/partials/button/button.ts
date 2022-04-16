@@ -8,14 +8,8 @@ interface IButtonProps extends IProperties{
     contactMenuImgSrc?: URL;
 }
 
-export default class Button extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IButtonProps) {
-    super(props);
-  }
-
+export class Button extends Component<IButtonProps> {
   render() {
-    const props = this.props as IButtonProps;
-    return this.compile(buttonTemplate, { ...props });
+    return this.compile(buttonTemplate, this.props);
   }
 }

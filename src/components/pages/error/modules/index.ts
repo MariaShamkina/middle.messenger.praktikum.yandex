@@ -1,3 +1,3 @@
-import ErrorPageContent from './errorPageContent';
+import { ErrorPageContent } from './errorPageContent';
 
 export default ErrorPageContent;

@@ -8,14 +8,12 @@ import {
 import { IInputFieldProps } from '../../../../partials/inputField/inputField';
 import DataForm from '../../../../partials/dataForm';
 
-export default class PasswordChangeZone extends Component {
-  // eslint-disable-next-line no-useless-constructor
+export class PasswordChangeZone extends Component {
   constructor() {
     super();
     this.hide();
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   protected initChildren() {
     const inputFieldOldPassword = new InputField({
       fieldName: 'oldPassword',
@@ -49,7 +47,7 @@ export default class PasswordChangeZone extends Component {
       (inputFieldNewPassword.props as IInputFieldProps).value ?? '',
     );
 
-    this.children.passwordChangeform = new DataForm({
+    this.children.passwordChangeForm = new DataForm({
       formClass: 'contact-profile-container',
       inputFields: [
         inputFieldOldPassword,
@@ -64,7 +62,6 @@ export default class PasswordChangeZone extends Component {
   }
 
   render() {
-    const { props } = this;
-    return this.compile(passwordChangeZoneTemplate, { ...props });
+    return this.compile(passwordChangeZoneTemplate, this.props);
   }
 }

@@ -1,3 +1,3 @@
-import ChangeAvatarModalWindow from './changeAvatarModalWindow';
+import { ChangeAvatarModalWindow } from './changeAvatarModalWindow';
 
 export default ChangeAvatarModalWindow;

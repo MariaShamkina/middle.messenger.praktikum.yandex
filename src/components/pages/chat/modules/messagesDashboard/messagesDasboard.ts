@@ -2,15 +2,10 @@ import Component, { IProperties } from '../../../../../utils/component';
 import messageDashboardTemplate from './messagesDashboard.hbs';
 
 interface IMessageDashboard extends IProperties{
-    content?: message[],
+    content?: Message[],
 }
 
-export default class MessageDashboard extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IMessageDashboard) {
-    super(props);
-  }
-
+export class MessageDashboard extends Component<IMessageDashboard> {
   render() {
     const { props } = this;
     return this.compile(messageDashboardTemplate, {

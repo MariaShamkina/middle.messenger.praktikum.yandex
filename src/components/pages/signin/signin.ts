@@ -12,13 +12,12 @@ import {
 } from '../../../utils/validationRules';
 import DataForm from '../../partials/dataForm';
 
-export default class SigninPage extends Component {
+export class SigninPage extends Component {
   constructor() {
     super();
     document.title = 'Регистрация';
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   protected initChildren() {
     const inputFieldEmail = new InputField({
       fieldName: 'email',
@@ -102,15 +101,14 @@ export default class SigninPage extends Component {
       name: 'login',
       className: 'link-away',
       events: {
-        click: [() => {
+        click: () => {
           renderDOM('#app', new LoginPage());
-        }],
+        },
       },
     });
   }
 
   render() {
-    const { props } = this;
-    return this.compile(signinTemplate, { ...props });
+    return this.compile(signinTemplate, this.props);
   }
 }

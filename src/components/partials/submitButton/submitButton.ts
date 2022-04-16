@@ -8,14 +8,8 @@ export interface ISubmitButtonProps extends IProperties{
     submitButtonIconSrc?: URL;
 }
 
-export default class SubmitButton extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: ISubmitButtonProps) {
-    super(props);
-  }
-
+export class SubmitButton extends Component<ISubmitButtonProps> {
   render() {
-    const props = this.props as ISubmitButtonProps;
-    return this.compile(buttonTemplate, { ...props });
+    return this.compile(buttonTemplate, this.props);
   }
 }

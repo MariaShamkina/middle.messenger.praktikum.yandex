@@ -1,5 +1,6 @@
 import Component, { IProperties } from '../../../utils/component';
 import textAreaTemplate from './textArea.hbs';
+import { convertToArray } from '../../../utils/helpers';
 
 export interface ITextAreaProps extends IProperties{
     textareaName: string;
@@ -8,19 +9,23 @@ export interface ITextAreaProps extends IProperties{
     value?: string;
     isValidate?: boolean;
     errorsText?: string[];
-    validateHandler?: validationHandler;
+    validateHandler?: ValidationHandler;
 }
 
-export default class TextArea extends Component {
+export class TextArea extends Component<ITextAreaProps> {
   constructor(props: ITextAreaProps) {
     const changedProps = { ...props };
     if (changedProps.isValidate) {
-      if (!changedProps.events) changedProps.events = {};
-      (changedProps.events.focusout = changedProps.events.blur || [])
-        .push((e: Event) => {
-          const value = (e.target as HTMLInputElement).value ?? '';
-          this.props.value = value.trim();
-        });
+      if (!changedProps.events) {
+        changedProps.events = {};
+      }
+      const { events } = changedProps;
+
+      events.focusout = convertToArray<EventHandler>(events.focusout);
+      events.focusout.push((e: Event) => {
+        const value = (e.target as HTMLInputElement).value ?? '';
+        this.props.value = value.trim();
+      });
     }
     if (changedProps.isValidate && changedProps.validateHandler) {
       changedProps.errorsText = changedProps.validateHandler(changedProps.value ?? '');
@@ -40,7 +45,6 @@ export default class TextArea extends Component {
   }
 
   render() {
-    const props = this.props as ITextAreaProps;
-    return this.compile(textAreaTemplate, { ...props });
+    return this.compile(textAreaTemplate, this.props);
   }
 }

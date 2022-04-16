@@ -10,14 +10,8 @@ interface IlinkAwayProps extends IProperties{
     backArrowImgSrc?: URL;
 }
 
-export default class LinkAway extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IlinkAwayProps) {
-    super(props);
-  }
-
+export class LinkAway extends Component<IlinkAwayProps> {
   render() {
-    const props = this.props as IlinkAwayProps;
-    return this.compile(linkAwayTemplate, { ...props });
+    return this.compile(linkAwayTemplate, this.props);
   }
 }

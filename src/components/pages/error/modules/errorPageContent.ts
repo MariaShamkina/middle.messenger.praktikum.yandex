@@ -9,13 +9,7 @@ interface IErrorPageContent extends IProperties{
     errorText: string;
 }
 
-export default class ErrorPageContent extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IErrorPageContent) {
-    super(props);
-  }
-
-  // eslint-disable-next-line react/no-unused-class-component-methods
+export class ErrorPageContent extends Component<IErrorPageContent> {
   protected initChildren() {
     this.children.linkToGoBack = new LinkAway({
       className: 'linkToGoBack',
@@ -24,15 +18,14 @@ export default class ErrorPageContent extends Component {
       name: 'linkToGoBack',
       title: 'Вернуться на главную',
       events: {
-        click: [() => {
+        click: () => {
           renderDOM('#app', new ChatPage());
-        }],
+        },
       },
     });
   }
 
   render() {
-    const props = this.props as IErrorPageContent;
-    return this.compile(errorPageContentTemplate, { ...props });
+    return this.compile(errorPageContentTemplate, this.props);
   }
 }

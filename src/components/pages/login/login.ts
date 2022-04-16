@@ -2,7 +2,7 @@ import loginTemplate from './login.hbs';
 import Component from '../../../utils/component';
 import SigninPage from '../signin';
 import LinkAway from '../../partials/linkAway';
-import InputField from '../../partials/inputField/inputField';
+import InputField from '../../partials/inputField';
 import renderDOM from '../../../utils/renderDOM';
 import {
   validateLogin,
@@ -10,13 +10,12 @@ import {
 } from '../../../utils/validationRules';
 import DataForm from '../../partials/dataForm';
 
-export default class LoginPage extends Component {
+export class LoginPage extends Component {
   constructor() {
     super();
     document.title = 'Авторизация';
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   initChildren() {
     this.children.formData = new DataForm({
       formClass: 'form-enter',
@@ -49,15 +48,14 @@ export default class LoginPage extends Component {
       name: 'register',
       className: 'link-away',
       events: {
-        click: [() => {
+        click: () => {
           renderDOM('#app', new SigninPage());
-        }],
+        },
       },
     });
   }
 
   render() {
-    const { props } = this;
-    return this.compile(loginTemplate, { ...props });
+    return this.compile(loginTemplate, this.props);
   }
 }

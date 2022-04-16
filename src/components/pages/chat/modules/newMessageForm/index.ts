@@ -1,3 +1,3 @@
-import NewMessageForm from './newMessageForm';
+import { NewMessageForm } from './newMessageForm';
 
 export default NewMessageForm;

@@ -1,9 +1,8 @@
 node_modules/
 .parcel-cache/
 dist/
-.vscode/launch.json
+.vscode/
 .idea
 Disign/
 /src/img/Резерв/
-/src/pages/
 /ToDo.txt

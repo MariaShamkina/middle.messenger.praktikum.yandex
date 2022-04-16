@@ -1,3 +1,3 @@
-import ControlZone from './controlZone';
+import { ControlZone } from './controlZone';
 
 export default ControlZone;

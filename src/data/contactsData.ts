@@ -1,4 +1,4 @@
-export const contactsData: contactData[] = [
+export const CONTACTS_DATA: ContactData[] = [
   { id: 1, name: 'Тайное общество', imgSrc: 'https://cspromogame.ru//storage/upload_images/avatars/825.png' },
   { id: 2, name: 'Илья', imgSrc: 'https://cspromogame.ru//storage/upload_images/avatars/844.jpg' },
   { id: 3, name: 'Хористка Наташа', imgSrc: 'https://cspromogame.ru//storage/upload_images/avatars/4081.jpg' },
@@ -12,6 +12,6 @@ export const contactsData: contactData[] = [
   { id: 11, name: 'Лена', imgSrc: 'https://cspromogame.ru//storage/upload_images/avatars/4169.jpg' },
 ];
 
-export default function getContactData(contactId: number) {
-  return contactsData.find((contact) => contact.id === contactId);
+export function getContactData(contactId: number) {
+  return CONTACTS_DATA.find((contact) => contact.id === contactId);
 }

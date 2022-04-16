@@ -1,3 +1,3 @@
-import DataForm from './dataForm';
+import { DataForm } from './dataForm';
 
 export default DataForm;

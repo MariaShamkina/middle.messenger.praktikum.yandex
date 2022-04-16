@@ -1,4 +1,4 @@
-export const profileData = {
+export const PROFILE_DATA = {
   id: 0,
   display_name: 'Я',
   first_name: 'Мария',
@@ -9,4 +9,4 @@ export const profileData = {
   phone: '89045627456',
 };
 
-export default profileData.id;
+export const PROFILE_DATA_ID = PROFILE_DATA.id;

@@ -6,15 +6,14 @@ import SearchField from '../../partials/searchField';
 import ProfilePage from '../profile';
 import ContactsModule from './modules/contacts';
 import ContentModule from './modules/content';
-import { contactsData } from '../../../data/contactsData';
+import { CONTACTS_DATA } from '../../../data/contactsData';
 
-export default class ChatPage extends Component {
+export class ChatPage extends Component {
   constructor() {
     super();
     document.title = 'Чат';
   }
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
   initChildren() {
     this.children.linkAway = new LinkAway({
       title: 'Перейти к профилю',
@@ -23,19 +22,22 @@ export default class ChatPage extends Component {
       name: 'profile-link',
       className: 'my-profile-link',
       events: {
-        click: [() => {
+        click: () => {
           renderDOM('#app', new ProfilePage());
-        }],
+        },
       },
     });
     this.children.searchInput = new SearchField();
     this.children.contacts = new ContactsModule({
-      contacts: contactsData,
+      contacts: CONTACTS_DATA,
       events: {
-        click: [(e: Event) => {
+        click: (e: Event) => {
           const tab = (e.target as HTMLElement).closest('.tab');
-          if (!tab || !(e.currentTarget as HTMLElement).contains(tab)) return;
-          const prevActTab = (e.currentTarget as HTMLElement).querySelector('.tab.active');
+          const contactsListWrapper = e.currentTarget as HTMLElement;
+          if (!tab || !contactsListWrapper.contains(tab)) {
+            return;
+          }
+          const prevActTab = contactsListWrapper.querySelector('.tab.active');
           const contentProps = (this.children.content as Component).props;
           if (prevActTab === tab) {
             contentProps.contactId = null;
@@ -48,9 +50,9 @@ export default class ChatPage extends Component {
               contentProps.contactId = parseInt(idField.textContent, 10);
             }
           }
-        }],
-        mouseenter: [(e: Event) => (e.target as HTMLElement).classList.add('showScrollbar')],
-        mouseleave: [(e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar')],
+        },
+        mouseenter: (e: Event) => (e.target as HTMLElement).classList.add('showScrollbar'),
+        mouseleave: (e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar'),
       },
     });
     this.children.content = new ContentModule({
@@ -59,7 +61,6 @@ export default class ChatPage extends Component {
   }
 
   render() {
-    const { props } = this;
-    return this.compile(chatTemplate, { ...props });
+    return this.compile(chatTemplate, this.props);
   }
 }

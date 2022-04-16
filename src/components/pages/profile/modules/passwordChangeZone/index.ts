@@ -1,3 +1,3 @@
-import PasswordChangeZone from './passwordChangeZone';
+import { PasswordChangeZone } from './passwordChangeZone';
 
 export default PasswordChangeZone;

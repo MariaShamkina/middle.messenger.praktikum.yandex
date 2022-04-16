@@ -3,7 +3,7 @@ import Component from '../../../../../utils/component';
 import ControlZone from '../controlZone';
 import DataForm from '../../../../partials/dataForm';
 import InputField from '../../../../partials/inputField';
-import { profileData } from '../../../../../data/profileData';
+import { PROFILE_DATA } from '../../../../../data/profileData';
 import {
   validateEmail,
   validateLogin,
@@ -11,15 +11,14 @@ import {
   validatePhoneNumber,
 } from '../../../../../utils/validationRules';
 
-export default class DataChangeZone extends Component {
-  // eslint-disable-next-line react/no-unused-class-component-methods
+export class DataChangeZone extends Component {
   protected initChildren() {
     const inputFieldFirstName = new InputField({
       fieldName: 'first_name',
       fieldPlaceholder: 'Имя',
       fieldType: 'text',
       isValidate: true,
-      value: profileData.first_name,
+      value: PROFILE_DATA.first_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -30,7 +29,7 @@ export default class DataChangeZone extends Component {
       fieldPlaceholder: 'Фамилия',
       fieldType: 'text',
       isValidate: true,
-      value: profileData.second_name,
+      value: PROFILE_DATA.second_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -41,7 +40,7 @@ export default class DataChangeZone extends Component {
       fieldPlaceholder: 'Имя в чате',
       fieldType: 'text',
       isValidate: true,
-      value: profileData.display_name,
+      value: PROFILE_DATA.display_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -52,7 +51,7 @@ export default class DataChangeZone extends Component {
       fieldPlaceholder: 'Логин',
       fieldType: 'text',
       isValidate: true,
-      value: profileData.login,
+      value: PROFILE_DATA.login,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -63,7 +62,7 @@ export default class DataChangeZone extends Component {
       fieldPlaceholder: 'Почта',
       fieldType: 'email',
       isValidate: true,
-      value: profileData.email,
+      value: PROFILE_DATA.email,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -74,7 +73,7 @@ export default class DataChangeZone extends Component {
       fieldPlaceholder: 'Телефон',
       fieldType: 'tel',
       isValidate: true,
-      value: profileData.phone,
+      value: PROFILE_DATA.phone,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -100,7 +99,6 @@ export default class DataChangeZone extends Component {
   }
 
   render() {
-    const { props } = this;
-    return this.compile(dataChangeZoneTemplate, { ...props });
+    return this.compile(dataChangeZoneTemplate, this.props);
   }
 }

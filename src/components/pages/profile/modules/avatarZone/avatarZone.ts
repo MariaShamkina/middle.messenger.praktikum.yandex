@@ -6,12 +6,7 @@ interface IAvatarZone extends IProperties{
   userName: string,
 }
 
-export default class AvatarZone extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: IAvatarZone) {
-    super(props);
-  }
-
+export class AvatarZone extends Component<IAvatarZone> {
   render() {
     const { props } = this;
     return this.compile(avatarZoneTemplate, {

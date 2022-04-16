@@ -3,7 +3,7 @@ import EventBus from './eventBus';
 
 export interface IProperties {
   [propName: string]: unknown;
-  events?: Record<string, eventHandler[]>;
+  events?: Record<string, EventHandler | EventHandler[]>;
   settings?: { withInternalID: boolean };
   _id?: string;
 }
@@ -18,7 +18,7 @@ export interface IState {
   isValid?: boolean;
 }
 
-export default class Component {
+export default abstract class Component<PropsType extends (IProperties | IChildren) = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -45,9 +45,9 @@ export default class Component {
 
   protected eventBus: () => EventBus;
 
-  constructor(propsAndChildren:IProperties | IChildren = {}) {
+  constructor(propsAndChildren?: PropsType) {
     const eventBus = new EventBus();
-    const { children, props } = Component._getChildren(propsAndChildren);
+    const { children, props } = Component._getChildren(propsAndChildren ?? {});
     this.children = children;
     this._meta = {
       props,
@@ -102,16 +102,24 @@ export default class Component {
   private _addEvents() {
     const { events = {} } = this.props;
 
-    Object.entries(events).forEach(([eventName, listenerArr]) => {
-      listenerArr.forEach((listener) => this.element.addEventListener(eventName, listener));
+    Object.entries(events).forEach(([eventName, listeners]) => {
+      if (Array.isArray(listeners)) {
+        listeners.forEach((listener) => this.element.addEventListener(eventName, listener));
+      } else {
+        this.element.addEventListener(eventName, listeners);
+      }
     });
   }
 
   private _removeEvents() {
     const { events = {} } = this.props;
 
-    Object.entries(events).forEach(([eventName, listenerArr]) => {
-      listenerArr.forEach((listener) => this.element.removeEventListener(eventName, listener));
+    Object.entries(events).forEach(([eventName, listeners]) => {
+      if (Array.isArray(listeners)) {
+        listeners.forEach((listener) => this.element.removeEventListener(eventName, listener));
+      } else {
+        this.element.removeEventListener(eventName, listeners);
+      }
     });
   }
 
