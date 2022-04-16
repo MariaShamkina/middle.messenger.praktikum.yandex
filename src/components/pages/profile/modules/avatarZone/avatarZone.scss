@@ -1,0 +1,28 @@
+.left-avatar-zone{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-button{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid $border-color;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+
+  & #avatarImg{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}
+
+.userName{
+  font-weight: bold;
+  font-size: larger;
+}

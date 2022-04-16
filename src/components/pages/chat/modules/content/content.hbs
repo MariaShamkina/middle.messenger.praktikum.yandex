@@ -1,0 +1,11 @@
+<section class="content">
+    {{#if contactId}}
+        {{{contentInfo}}}
+        {{{messagesDashboard}}}
+        {{{newMessageForm}}}
+    {{else}}
+        <div class="emptyContactInfo">
+            <p>Выберите чат, чтобы отправить сообщение</p>
+        </div>
+    {{/if}}
+</section>

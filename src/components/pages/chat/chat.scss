@@ -1,0 +1,43 @@
+@import "../../../basicStyles/variables";
+
+.chat {
+  height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  font-family: "Raleway", sans-serif;
+  color: $primary-dark-color;
+  background-color: $secondary-background-color;
+}
+
+.my-profile-link{
+  padding: 5px 0;
+  display:block;
+  text-align: right;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 15%;
+  margin-left: 20px;
+}
+
+.chat-contacts-panel{
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  height: 100%;
+}
+
+.scrollbar-style{
+      
+  &::-webkit-scrollbar-track{
+    background-color: $primary-scrollbar-color;
+  }
+
+  &::-webkit-scrollbar{	
+    width: 4px;
+  }
+
+  &.scrollbar-style::-webkit-scrollbar-thumb{ 
+    background-color: $primary-scrollbar-color;
+    border: 1px solid $secondary-scrollbar-color;
+  }
+}

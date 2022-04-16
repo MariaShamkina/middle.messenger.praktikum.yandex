@@ -1,0 +1,101 @@
+.profile-container{
+  background-color: $primary-light-color;
+  background-image: url("https://images.unsplash.com/photo-1618215808516-de9e35674a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fGdyZWVuJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.contact-profile-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  & .form-field-wrapper{
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: space-between;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  & .field-label{
+    font-size: larger;
+    margin-right: 10px;
+  }
+
+  & .input-field{
+    background: $primary-light-color;
+    width: auto;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid $border-color;
+
+    &:read-only{
+      direction: rtl;
+      padding-right: 10px;
+
+      &::placeholder{
+        color: $primary-light-color;
+      }
+    }
+  }
+
+  & .submit-button{
+    margin-top: 40px;
+  }
+}
+
+.profile-wrapper{
+  margin: 0 auto;
+  min-width: 600px;
+  background: rgba($primary-light-color, .8);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 35px 25px;
+  box-shadow: 0 5px 10px 0 rgba(black, .2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkGoBack{
+  border: none;
+  background: inherit;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.GoBackImg{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px 0 rgba(black,.6);
+
+  &:hover{
+    box-shadow: 0 5px 10px 0 rgba(black,.9);
+  }
+}
+
+.right-info-zone{
+  padding: 0 15px;
+  flex-grow: .5;
+  border-left: 3px solid;
+  border-color: $primary-light-color;
+
+  & .input-field:read-write{
+    width: 100%;
+    padding-left: 10px;
+  }
+
+  & .submit-button{
+    width: 80%;
+    align-self: center;
+  }
+}

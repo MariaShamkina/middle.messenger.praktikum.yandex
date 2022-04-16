@@ -1,0 +1,50 @@
+@import "variables";
+
+.container-enter{
+  background-color: $primary-light-color;
+  background-image: $background-img-url;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+  
+.wrapper-enter{
+  margin: 0 auto;
+  width: 390px;
+  background: rgba($primary-background-color, .5);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 75px 55px 35px;
+  box-shadow: 0 5px 10px 0 rgba(black, .2);
+}
+
+.title-enter{
+  font-size: 40px;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 40px;
+}
+  
+.form-field-wrapper{
+  display: flex;
+  align-items: center;
+  border: none;
+  margin-bottom: 15px;
+  height: 30px;
+  width: 100%;
+  position: relative;
+}
+
+.form-field-wrapper-border-and-width{
+  border-bottom: 2px solid;
+  border-image: $lines-gradient 1;
+}
+
+.wrapper-link-away{
+  margin-top: 10px;
+  text-align: center;
+  z-index: 1;
+}

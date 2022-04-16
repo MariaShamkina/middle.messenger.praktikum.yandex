@@ -1,0 +1,39 @@
+.input-field{
+  background: inherit;
+  border: none;
+  font-size: 1em;
+  height: inherit;
+  padding: 0 5px;
+  outline: none;
+  width: 100%;
+}
+
+.wrapper-error-field{
+  position: absolute;
+  right: 5px;
+  height: 20px;
+}
+
+.error{
+  &-field-img{
+    width: 20px;
+  }
+  
+  &-text-absolute{
+    position: fixed;
+    z-index: 10;
+    background-color: rgba($error-color, .8);
+    color: $primary-light-color;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+    max-width: 200px;
+    word-wrap: break-word;
+    cursor: pointer;
+  }
+  
+  &-field{
+    border-image: $error-lines-gradient 1;
+  }
+}

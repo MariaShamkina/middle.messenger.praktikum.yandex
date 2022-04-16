@@ -1,0 +1,19 @@
+.content{
+  background-color: $primary-light-color;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 20px 0 20px 30px;
+  margin-right: 5px;
+  flex-grow: 1;
+}
+
+.emptyContactInfo{
+  margin-right: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+}
