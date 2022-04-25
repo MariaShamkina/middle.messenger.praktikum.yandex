@@ -2,6 +2,15 @@
 
 declare module '*.hbs';
 
+type ModelData = {
+  [propName: string]: unknown;
+  userData?: UserData;
+}
+
+type CreateChatData = {
+  title: string;
+}
+
 type ContactData = {
   id: number,
   name: string,

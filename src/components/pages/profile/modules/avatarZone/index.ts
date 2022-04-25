@@ -1,3 +1,3 @@
-import { AvatarZone } from './avatarZone';
+import { AvatarZoneWithStore } from './avatarZone';
 
-export default AvatarZone;
+export default AvatarZoneWithStore;

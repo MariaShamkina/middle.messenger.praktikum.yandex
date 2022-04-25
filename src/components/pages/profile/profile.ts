@@ -1,7 +1,6 @@
 import Component from '../../../utils/component';
 import profileTemplate from './profile.hbs';
 import AvatarZone from './modules/avatarZone';
-import { PROFILE_DATA } from '../../../data/profileData';
 import LinkAway from '../../partials/linkAway';
 import renderDOM from '../../../utils/renderDOM';
 // todo убрать, когда настрою Routing
@@ -13,23 +12,23 @@ import PasswordChangeZone from './modules/passwordChangeZone';
 /* eslint-enable import/no-cycle */
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 import DataForm from '../../partials/dataForm';
+import { store } from '../../../utils/store';
+import { UserController } from '../../../data/userController';
 
 export class ProfilePage extends Component {
   constructor() {
     super();
     document.title = 'Профиль';
+    const id = store.getState().userData?.id;
+    new UserController().getUser(id);
   }
 
   protected initChildren() {
     this.children.changeAvatarModalWindow = new ChangeAvatarModalWindow({
       events: {
         click: (e: Event) => {
-          if ((e.target as HTMLElement).closest('.modal-closeButton')) {
-            (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
-          }
-        },
-        mousedown: (e: Event) => {
-          if (!(e.target as HTMLElement).closest('.changeAvatar-wrapper')) {
+          if ((e.target as HTMLElement).closest('.modal-closeButton')
+              || !(e.target as HTMLElement).closest('.changeAvatar-wrapper')) {
             (this.children.changeAvatarModalWindow as ChangeAvatarModalWindow).inactivate();
           }
         },
@@ -49,8 +48,6 @@ export class ProfilePage extends Component {
       },
     });
     this.children.avatarZone = new AvatarZone({
-      avatarImgSrc: new URL(PROFILE_DATA.imgSrc, import.meta.url),
-      userName: PROFILE_DATA.display_name,
       events: {
         click: (e: Event) => {
           if (!(e.target as HTMLElement).closest('.changeAvatarButton')) return;

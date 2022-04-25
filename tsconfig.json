@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2016",
+    "target": "es2021",
     "declaration": false,
     "module": "ESNext",
     "noImplicitAny": true,
@@ -9,6 +9,6 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
   }
 }

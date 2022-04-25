@@ -13,6 +13,19 @@ export default class EventBus {
     this.listeners[event].push(callback);
   }
 
+  weakOn(event: string, callback: EventHandler):void {
+    const weakRef = new WeakRef({ callback });
+    const listener = () => {
+      const obj = weakRef.deref();
+      if (obj == null) {
+        this.off(event, listener);
+      } else {
+        obj.callback();
+      }
+    };
+    this.on(event, listener);
+  }
+
   off(event:string, callback:EventHandler):void {
     if (!this.listeners[event]) {
       return;
