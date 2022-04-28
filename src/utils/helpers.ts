@@ -4,6 +4,17 @@ export function convertToArray<T>(obj: T | T[]): T[] {
   return [obj];
 }
 
+export function getFormValueByName(formData: FormData, name: string) {
+  if (!formData.has(name)) {
+    throw new Error(`Form data conversion to api model failed. Field "${name}" is absent.`);
+  }
+  return formData.get(name);
+}
+
+export function isBadRequestError(response: unknown): response is BadRequestError {
+  return (response as BadRequestError).reason !== undefined;
+}
+
 type notNullObject = Exclude<Object, null | undefined>;
 function isNotNullObject(obj: unknown): obj is notNullObject {
   return obj !== null && typeof obj === 'object';

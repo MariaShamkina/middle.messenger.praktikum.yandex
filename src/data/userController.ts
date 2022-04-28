@@ -6,7 +6,6 @@ export class UserController {
 
   public getUser(id: Number | undefined) {
     if (!id) throw new Error('Пользователь не идетифицирован.');
-    this.profileAPI.getUserProfileById(id)
-      .then((data) => store.set('user', data));
+    this.profileAPI.getUserProfileById(id).then((data) => store.set('user', data));
   }
 }

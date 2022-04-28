@@ -5,7 +5,9 @@ $search-icon-url: url("./img/search_icon.svg");
 @import "basicStyles/base";
 @import "basicStyles/enter";
 
+@import "./components/partials/spinner/spinner";
 @import "./components/partials/inputField/inputField";
+@import "./components/partials/errorBlock/errorBlock";
 @import "./components/partials/searchField/searchField";
 @import "./components/partials/submitButton/submitButton";
 @import "./components/partials/textArea/textArea";

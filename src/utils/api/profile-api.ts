@@ -4,6 +4,6 @@ const profileAPIInstance = new HTTP(`${process.env.API_ENDPOINT}/user`);
 
 export class ProfileAPI {
   public getUserProfileById(id: Number) {
-    return profileAPIInstance.get<UserData>(`/user/${id}`);
+    return profileAPIInstance.get<UserData>(`/${id}`);
   }
 }

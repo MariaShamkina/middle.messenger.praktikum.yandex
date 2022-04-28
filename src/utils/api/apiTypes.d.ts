@@ -1,3 +1,20 @@
+type BadRequestError = {
+    reason: string,
+}
+
+type SignUpData = {
+    first_name: string,
+    second_name: string,
+    login: string,
+    email: string,
+    password: string,
+    phone: string,
+}
+
+type IdData = {
+    id: number,
+}
+
 type UserData = {
     id: number,
     first_name: string,
@@ -9,6 +26,11 @@ type UserData = {
     avatar: string,
 };
 
+type LogInData = {
+    login: string,
+    password: string,
+};
+
 type ChatsResponse = {
     id: number,
     title: string,
@@ -17,9 +39,4 @@ type ChatsResponse = {
     last_message: {
         user: UserData,
     },
-};
-
-type SignInData = {
-    login: string,
-    password: string,
 };

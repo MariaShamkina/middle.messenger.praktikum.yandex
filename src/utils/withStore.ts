@@ -3,7 +3,7 @@ import { store, StoreEvents } from './store';
 import { isDeepEqual } from './helpers';
 
 export function withStore<PropsType extends IProperties | IChildren = {}>(
-  mapStateToProps: (state: ModelData) => PropsType,
+  mapStateToProps: (state: ModelData) => Partial<IProperties & PropsType>,
   component: new(...args: any) => Component<PropsType>,
 ) {
   return class extends component {

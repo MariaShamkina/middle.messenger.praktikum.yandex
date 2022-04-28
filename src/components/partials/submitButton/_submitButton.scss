@@ -1,25 +1,41 @@
+$buttonHeight: 50px;
 .submit-button{
+  position: relative;
   background-color: $button-color-lighter;
   border-radius: 25px;
   font-size: 15px;
   color: $primary-light-color;
   text-transform: uppercase;
   width: 100%;
-  height: 50px;
+  height: $buttonHeight;
   margin-top: 40px;
-  
+  padding: 0 $buttonHeight;
+
   &:hover{
     background-color: $button-color-darker;
     cursor: pointer;
   }
+  & .spinner {
+    position: absolute;
+    top: calc((#{$buttonHeight} - #{$spinnerSize})/2);
+    right: calc((#{$buttonHeight} - #{$spinnerSize})/2);
+  }
 }
 
-.label-for-submit-button {
+.submit-button-with-img {
   display: inline-block;
-  cursor: pointer;
+  //cursor: pointer;
+  $imgSize: 35px;
 
   & .img-for-submit-button{
-    height: 35px;
-    width: 35px;
+    height: $imgSize;
+    width: $imgSize;
+  }
+
+  & .submit-spinner{
+    border-color: $primary-dark-color;
+    border-right-color: transparent;
+    top: calc((#{$imgSize} - #{$spinnerSize})/2);
+    right: calc(-#{$spinnerSize} - 5px);
   }
 }

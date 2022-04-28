@@ -1,0 +1,16 @@
+@keyframes spinner-border {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+$spinnerSize: 20px;
+.spinner {
+  display: none;
+  width: $spinnerSize;
+  height: $spinnerSize;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 1s linear infinite spinner-border;
+}

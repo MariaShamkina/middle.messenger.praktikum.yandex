@@ -12,15 +12,12 @@ import PasswordChangeZone from './modules/passwordChangeZone';
 /* eslint-enable import/no-cycle */
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 import DataForm from '../../partials/dataForm';
-import { store } from '../../../utils/store';
 import { UserController } from '../../../data/userController';
 
 export class ProfilePage extends Component {
   constructor() {
     super();
     document.title = 'Профиль';
-    const id = store.getState().userData?.id;
-    new UserController().getUser(id);
   }
 
   protected initChildren() {

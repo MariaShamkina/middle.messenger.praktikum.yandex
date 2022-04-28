@@ -42,11 +42,13 @@ export class HTTPTransport {
     options.timeout,
   );
 
-  post = (shortUrl: string, options: OptionsWithoutMethod = {}) => this.request(
-    shortUrl,
-    { ...options, method: METHODS.POST },
-    options.timeout,
-  );
+  post = <TResponse>(
+    shortUrl: string,
+    options: OptionsWithoutMethod = {}) => this.request<TResponse>(
+      shortUrl,
+      { ...options, method: METHODS.POST },
+      options.timeout,
+    );
 
   delete = (shortUrl: string, options: OptionsWithoutMethod = {}) => this.request(
     shortUrl,

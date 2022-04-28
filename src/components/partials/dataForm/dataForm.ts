@@ -5,7 +5,9 @@ import renderDOM from '../../../utils/renderDOM';
 import ChatPage from '../../pages/chat';
 import InputField from '../inputField';
 import { SubmitButton, ISubmitButtonProps } from '../submitButton/submitButton';
-import { convertToArray } from '../../../utils/helpers';
+import { convertToArray, getFormValueByName } from '../../../utils/helpers';
+import {LoginController} from "../../../data/loginController";
+import ErrorBlock from "../errorBlock";
 
 interface IDataFormProps extends IProperties{
   formClass: string;
@@ -32,12 +34,7 @@ export class DataForm extends Component<IDataFormProps> {
 
       const invalidInputs = getInvalidInputs(this.children);
       if (invalidInputs.length === 0) {
-        const formData = Array.from(new FormData(this.getContent() as HTMLFormElement)
-          .entries());
-        // eslint-disable-next-line no-console
-        console.log(formData);
-
-        renderDOM('#app', new ChatPage());// todo рендеринг на разные страницы должен быть
+        new LoginController().login(new FormData(this.getContent() as HTMLFormElement));
       } else {
         invalidInputs.forEach(
           (el: Component) => el.getContent().dispatchEvent(new Event('focusout')),
@@ -50,6 +47,9 @@ export class DataForm extends Component<IDataFormProps> {
   protected initChildren() {
     const props = this.props as IDataFormProps;
     this.children.submitButton = new SubmitButton(props.submitButtonProps);
+    this.children.errorBlock = new ErrorBlock({
+      errorsText: this.props.errorsText as string[],
+    });
   }
 
   render() {

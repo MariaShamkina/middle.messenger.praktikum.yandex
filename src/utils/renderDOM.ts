@@ -9,6 +9,16 @@ export default function renderDOM(rootSelector: string, component: Component) {
 
   component.dispatchComponentDidMount();
 
+  // const chat = new ChatAPI();
+  // const login = new AuthAPI();
+  // login.logIn({ login: 'string', password: 'string' }).then((res1) => {
+  //   console.log(res1);
+  //   chat.create({ title: 'Valera' }).then((r) => {
+  //     console.log(r);
+  //     chat.request().then((res) => console.log(res));
+  //   });
+  // });
+
   root.innerHTML = '';
 
   root.append(component.getContent());

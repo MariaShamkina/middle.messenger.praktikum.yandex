@@ -5,6 +5,13 @@ declare module '*.hbs';
 type ModelData = {
   [propName: string]: unknown;
   userData?: UserData;
+  isLoading?: {
+    submitButton: boolean,
+  }
+}
+
+interface ISpinner {
+  isLoading?: boolean;
 }
 
 type CreateChatData = {

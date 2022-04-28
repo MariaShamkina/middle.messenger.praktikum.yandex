@@ -1,8 +1,8 @@
-{{#if submitButtonIconSrc}}
-    <label for="{{name}}" class="label-for-submit-button">
-        <img class="img-for-submit-button" src="{{submitButtonIconSrc}}" alt="Отправить сообщение">
-{{/if}}
-        <input class="submit-button" type="submit" id="{{name}}" name="{{name}}" value="{{title}}" {{#if hiddenInput}}hidden{{/if}}>
-{{#if submitButtonIconSrc}}
-    </label>
-{{/if}}
+<button class="submit-button {{#if submitButtonIconSrc}}submit-button-with-img{{/if}}" type="submit" id="{{name}}" name="{{name}}" {{#if hiddenInput}}hidden{{/if}}>
+    {{#if submitButtonIconSrc}}
+        <img class="img-for-submit-button" src="{{submitButtonIconSrc}}" alt="{{title}}">
+    {{else}}
+        {{title}}
+    {{/if}}
+    {{{spinner}}}
+</button>

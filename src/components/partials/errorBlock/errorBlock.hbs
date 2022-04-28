@@ -1,0 +1,8 @@
+<div class="wrapper-error-field">
+    <img class="error-field-img" src="{{errorImgSrc}}" alt="Показать список ошибок"/>
+    <div hidden class="error-text-absolute">
+        {{#each errorsText}}
+            <div>{{this}}</div>
+        {{/each}}
+    </div>
+</div>
