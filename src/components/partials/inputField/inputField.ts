@@ -63,7 +63,7 @@ export class InputField extends Component<IInputFieldProps> {
   protected initChildren() {
     if (this.props.isValidate) {
       this.children.errorBlock = new ErrorBlock({
-        errorsText: this.props.errorsText as string[],
+        errorsText: this.props.errorsText as string[] ?? [],
       });
     }
   }

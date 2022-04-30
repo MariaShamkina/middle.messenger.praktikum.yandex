@@ -6,6 +6,7 @@
 
 $spinnerSize: 20px;
 .spinner {
+  position: absolute;
   display: none;
   width: $spinnerSize;
   height: $spinnerSize;

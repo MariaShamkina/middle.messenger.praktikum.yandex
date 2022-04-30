@@ -8,7 +8,7 @@ export class AuthApi {
   }
 
   signUp(data: SignUpData) {
-    return loginAPIInstance.post<IdData | BadRequestError>('/signup', { data });
+    return loginAPIInstance.post<IdData>('/signup', { data });
   }
 
   getUserData() {

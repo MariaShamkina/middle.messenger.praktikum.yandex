@@ -10,13 +10,13 @@ $buttonHeight: 50px;
   height: $buttonHeight;
   margin-top: 40px;
   padding: 0 $buttonHeight;
+  cursor: pointer;
 
   &:hover{
     background-color: $button-color-darker;
-    cursor: pointer;
   }
+
   & .spinner {
-    position: absolute;
     top: calc((#{$buttonHeight} - #{$spinnerSize})/2);
     right: calc((#{$buttonHeight} - #{$spinnerSize})/2);
   }
@@ -24,7 +24,9 @@ $buttonHeight: 50px;
 
 .submit-button-with-img {
   display: inline-block;
-  //cursor: pointer;
+  position: relative;
+  border: none;
+  cursor: pointer;
   $imgSize: 35px;
 
   & .img-for-submit-button{
@@ -32,7 +34,7 @@ $buttonHeight: 50px;
     width: $imgSize;
   }
 
-  & .submit-spinner{
+  & .spinner{
     border-color: $primary-dark-color;
     border-right-color: transparent;
     top: calc((#{$imgSize} - #{$spinnerSize})/2);

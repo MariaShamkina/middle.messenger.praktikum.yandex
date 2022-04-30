@@ -1,8 +1,9 @@
-<button class="submit-button {{#if submitButtonIconSrc}}submit-button-with-img{{/if}}" type="submit" id="{{name}}" name="{{name}}" {{#if hiddenInput}}hidden{{/if}}>
+<button class="{{#if submitButtonIconSrc}}submit-button-with-img{{else}}submit-button{{/if}}" type="submit" id="{{name}}" name="{{name}}" {{#if hiddenInput}}hidden{{/if}}>
     {{#if submitButtonIconSrc}}
         <img class="img-for-submit-button" src="{{submitButtonIconSrc}}" alt="{{title}}">
     {{else}}
         {{title}}
     {{/if}}
     {{{spinner}}}
+    {{{serverErrorBlock}}}
 </button>

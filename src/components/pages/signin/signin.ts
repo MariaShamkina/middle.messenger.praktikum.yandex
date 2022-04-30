@@ -73,7 +73,7 @@ export class SigninPage extends Component {
       inputFieldConfirmPassword.getContent().dispatchEvent(new Event('focusout')));
 
     inputFieldConfirmPassword.props.validateHandler = (value: string) => validatePasswordMatch(
-      value,
+      value ?? '',
       (inputFieldPassword.props as IInputFieldProps).value ?? '',
     );
 

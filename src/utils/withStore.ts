@@ -9,22 +9,22 @@ export function withStore<PropsType extends IProperties | IChildren = {}>(
   return class extends component {
     public static componentName = component.name;// todo зачем?
 
-    constructor(...args: any) {
+    constructor(props: PropsType) {
       const localState = mapStateToProps(store.getState());
       // todo подебижить и понять как сейчас прокси на пропсах и дидАпдейт обрабатывают
       //  изменения. По одному или кучей.
-      super({ ...args, ...localState });
+      super({ ...props, ...localState });
       this.state = localState;
 
-      // todo проверить, что хендлер не нужно вынести отдельной функцией
-      //  (что он сейчас удалится вместе с компонентом)
-      store.weakOn(StoreEvents.UPDATED, () => {
-        const newState = mapStateToProps(store.getState());
-        if (!isDeepEqual(this.state, newState)) {
-          this.setProps(newState);
-        }
-        this.state = newState;
-      });
+      store.weakOn(StoreEvents.UPDATED, this, this.handlerOnStoreChanges);
+    }
+
+    public handlerOnStoreChanges() {
+      const newState = mapStateToProps(store.getState());
+      if (!isDeepEqual(this.state, newState)) {
+        this.setProps(newState);
+      }
+      this.state = newState;
     }
   };
 }

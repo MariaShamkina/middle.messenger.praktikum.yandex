@@ -10,6 +10,7 @@ $search-icon-url: url("./img/search_icon.svg");
 @import "./components/partials/errorBlock/errorBlock";
 @import "./components/partials/searchField/searchField";
 @import "./components/partials/submitButton/submitButton";
+@import "./components/partials/dataForm/dataForm";
 @import "./components/partials/textArea/textArea";
 
 @import "./components/pages/profile/profile";
@@ -23,3 +24,4 @@ $search-icon-url: url("./img/search_icon.svg");
 @import "./components/pages/chat/modules/messagesDashboard/messagesDashboard";
 @import "./components/pages/chat/modules/newMessageForm/newMessageForm";
 @import "./components/pages/error/modules/errorPageContent";
+

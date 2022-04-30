@@ -3,8 +3,8 @@ import avatarZoneTemplate from './avatarZone.hbs';
 import { withStore } from '../../../../../utils/withStore';
 
 interface IAvatarZone extends IProperties{
-  avatarImgSrc: string,
-  userName: string,
+  avatarImgSrc?: string,
+  userName?: string,
 }
 
 class AvatarZone extends Component<IAvatarZone> {

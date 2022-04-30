@@ -1,9 +1,10 @@
 import { AuthApi } from '../utils/api/auth-api';
 import renderDOM from '../utils/renderDOM';
 import ChatPage from '../components/pages/chat';
-import { store } from '../utils/store';
-import { getFormValueByName, isBadRequestError } from '../utils/helpers';
 import LoginPage from '../components/pages/login';
+import { store } from '../utils/store';
+import { getFormValueByName } from '../utils/helpers';
+import { STATUS } from '../utils/HTTPTransport';
 
 const authApi = new AuthApi();
 
@@ -15,20 +16,29 @@ function mapFormDataToApiModel(formData: FormData): LogInData {
 }
 
 export class LoginController {
-  public async login(formData: FormData) {
+  public async login(formData: FormData): Promise<string> {
     try {
       const apiModel = mapFormDataToApiModel(formData);
       store.set('isLoading.submitButton', true);
 
-      const loginResponse = await authApi.logIn(apiModel);
-      if (isBadRequestError(loginResponse)) {
+      // await this.logout();// todo разлогиниться при входе на страницу логина
+
+      const loginResponse = await authApi.logIn(apiModel)
+        .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
+      if (loginResponse.status === STATUS.ERROR || loginResponse.status === STATUS.UNAUTH) {
         store.set('isLoading.submitButton', false);
-        return loginResponse.reason;
+        return loginResponse.errorText ?? '';
       }
 
-      const getUserResponse = await authApi.getUserData();
+      const getUserResponse = await authApi.getUserData()
+        .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
       store.set('isLoading.submitButton', false);
-      if (isBadRequestError(getUserResponse)) return getUserResponse.reason;
+      if (getUserResponse.status === STATUS.UNAUTH) {
+        return 'Пользователь не авторизован. Повторите попытку или обратитесь в службу поддержки';
+      }
+      if (getUserResponse.status === STATUS.ERROR) {
+        return loginResponse.errorText ?? '';
+      }
 
       store.set('user', getUserResponse);
       // RouteManagement.go('/chats');
@@ -43,10 +53,13 @@ export class LoginController {
   public async logout() {
     try {
       store.set('isLoading.submitButton', true);
-      const logoutResponse = await authApi.logOut();
+      const logoutResponse = await authApi.logOut()
+        .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
       store.set('isLoading.submitButton', false);
 
-      if (isBadRequestError(logoutResponse)) return logoutResponse.reason;
+      if (logoutResponse.status === STATUS.ERROR) {
+        return logoutResponse.errorText ?? '';
+      }
 
       store.set('user', {});
       // RouteManagement.go('/login');

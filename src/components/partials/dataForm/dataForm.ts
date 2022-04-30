@@ -1,13 +1,13 @@
 import dataFormTemplate from './dataForm.hbs';
 import Component, { IProperties } from '../../../utils/component';
 import { getInvalidInputs } from '../../../utils/validationRules';
-import renderDOM from '../../../utils/renderDOM';
-import ChatPage from '../../pages/chat';
 import InputField from '../inputField';
-import { SubmitButton, ISubmitButtonProps } from '../submitButton/submitButton';
-import { convertToArray, getFormValueByName } from '../../../utils/helpers';
-import {LoginController} from "../../../data/loginController";
-import ErrorBlock from "../errorBlock";
+import { ISubmitButtonProps } from '../submitButton/submitButton';
+import { convertToArray } from '../../../utils/helpers';
+import { LoginController } from '../../../data/loginController';
+import ErrorBlock from '../errorBlock';
+import SubmitButton from '../submitButton';
+import { IErrorBlockProps } from '../errorBlock/errorBlock';
 
 interface IDataFormProps extends IProperties{
   formClass: string;
@@ -27,15 +27,23 @@ export class DataForm extends Component<IDataFormProps> {
     events.submit = convertToArray<EventHandler>(events.submit);
     events.submit.push((e: Event) => {
       e.preventDefault();
-
       if (document.activeElement && document.activeElement.classList.contains('input-field')) {
         document.activeElement.closest('.form-field-wrapper')?.dispatchEvent(new Event('focusout'));
       }
 
       const invalidInputs = getInvalidInputs(this.children);
+      const serverErrorBlock = (this.children.submitButton as Component)
+        .children.serverErrorBlock as ErrorBlock;
       if (invalidInputs.length === 0) {
-        new LoginController().login(new FormData(this.getContent() as HTMLFormElement));
+        const formData = new FormData(this.getContent() as HTMLFormElement);
+        new LoginController().login(formData).then((errorMessage) => {
+          if (errorMessage !== '') {
+            (serverErrorBlock.props as IErrorBlockProps).errorsText = [errorMessage];
+            serverErrorBlock.show();
+          }
+        });
       } else {
+        serverErrorBlock.hide();
         invalidInputs.forEach(
           (el: Component) => el.getContent().dispatchEvent(new Event('focusout')),
         );
@@ -47,9 +55,6 @@ export class DataForm extends Component<IDataFormProps> {
   protected initChildren() {
     const props = this.props as IDataFormProps;
     this.children.submitButton = new SubmitButton(props.submitButtonProps);
-    this.children.errorBlock = new ErrorBlock({
-      errorsText: this.props.errorsText as string[],
-    });
   }
 
   render() {

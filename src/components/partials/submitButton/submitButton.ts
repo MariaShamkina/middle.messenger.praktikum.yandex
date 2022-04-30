@@ -2,6 +2,7 @@ import Component, { IProperties } from '../../../utils/component';
 import buttonTemplate from './submitButton.hbs';
 import Spinner from '../spinner';
 import { withStore } from '../../../utils/withStore';
+import ErrorBlock from '../errorBlock';
 
 export interface ISubmitButtonProps extends IProperties, ISpinner{
     name: string;
@@ -9,10 +10,29 @@ export interface ISubmitButtonProps extends IProperties, ISpinner{
     hiddenInput?: boolean;
     submitButtonIconSrc?: URL;
 }
-
-export class SubmitButton extends Component<ISubmitButtonProps> {
+class SubmitButton extends Component<ISubmitButtonProps> {
   protected initChildren() {
     this.children.spinner = new Spinner();
+    this.children.serverErrorBlock = new ErrorBlock({
+      errorsText: this.props.errorsText as string[] ?? [],
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+        },
+      },
+    });
+  }
+
+  protected componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string): boolean {
+    if (propName === 'isLoading') {
+      const spinner = this.children.spinner as Spinner;
+      if (newProp) spinner.show();
+      else spinner.hide();
+      return false;
+    }
+
+    return (oldProp !== newProp);
   }
 
   render() {

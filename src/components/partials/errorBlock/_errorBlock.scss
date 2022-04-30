@@ -1,10 +1,23 @@
 .wrapper-error-field{
   display: none;
+  position: absolute;
+  right: 5px;
+  height: 20px;
+}
+
+.submit-button > .wrapper-error-field,
+.submit-button-with-img > .wrapper-error-field{
+  right: -25px;
+  bottom: 15px;
+  font: 16px "Raleway", sans-serif;
+  text-align: initial;
+  text-transform: initial;
 }
 
 .error{
   &-field-img{
     width: 20px;
+    cursor: pointer;
   }
   
   &-text-absolute{

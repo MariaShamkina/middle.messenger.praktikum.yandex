@@ -12,7 +12,6 @@ import PasswordChangeZone from './modules/passwordChangeZone';
 /* eslint-enable import/no-cycle */
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 import DataForm from '../../partials/dataForm';
-import { UserController } from '../../../data/userController';
 
 export class ProfilePage extends Component {
   constructor() {
