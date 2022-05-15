@@ -4,6 +4,7 @@ import { withStore } from '../../../../../utils/withStore';
 
 interface IAvatarZone extends IProperties{
   avatarImgSrc?: string,
+  avatarUpdateIcon?: string,
   userName?: string,
 }
 
@@ -18,7 +19,8 @@ class AvatarZone extends Component<IAvatarZone> {
 
 function mapStateToProps(state: ModelData): IAvatarZone {
   return {
-    avatarImgSrc: state.userData?.avatar ?? '',
+    avatarUpdateIcon: new URL('../../../../../img/update_arrow.svg', import.meta.url).toString(),
+    avatarImgSrc: state.userData?.avatar ?? new URL('../../../../../img/dummy_avatar.svg', import.meta.url).toString(),
     userName: state.userData?.display_name ?? '',
   };
 }

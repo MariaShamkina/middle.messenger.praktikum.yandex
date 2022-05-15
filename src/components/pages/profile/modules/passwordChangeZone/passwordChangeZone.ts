@@ -7,6 +7,7 @@ import {
 } from '../../../../../utils/validationRules';
 import { IInputFieldProps } from '../../../../partials/inputField/inputField';
 import DataForm from '../../../../partials/dataForm';
+import { ProfileController } from '../../../../../data/profileController';
 
 export class PasswordChangeZone extends Component {
   constructor() {
@@ -32,6 +33,8 @@ export class PasswordChangeZone extends Component {
       validateHandler: (value) => validatePassword(value),
     });
     const inputFieldConfirmPassword = new InputField({
+      // todo проверить почему tab на это поле не работает.
+      // todo Проверить tab на остальных страницах.
       fieldName: 'confirm-password',
       fieldPlaceholder: 'Новый пароль (еще раз)',
       fieldType: 'password',
@@ -58,6 +61,7 @@ export class PasswordChangeZone extends Component {
         name: 'changePassword',
         title: 'Изменить пароль',
       },
+      dataFormHandler: (formData) => new ProfileController().changePassword(formData),
     });
   }
 

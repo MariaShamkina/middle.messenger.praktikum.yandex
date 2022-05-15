@@ -1,4 +1,4 @@
-import signinTemplate from './signin.hbs';
+import signupTemplate from './signup.hbs';
 import Component from '../../../utils/component';
 import LinkAway from '../../partials/linkAway';
 import InputField from '../../partials/inputField';
@@ -11,8 +11,9 @@ import {
   validatePasswordMatch, validatePhoneNumber,
 } from '../../../utils/validationRules';
 import DataForm from '../../partials/dataForm';
+import { SignupController } from '../../../data/signupController';
 
-export class SigninPage extends Component {
+export class SignupPage extends Component {
   constructor() {
     super();
     document.title = 'Регистрация';
@@ -92,6 +93,7 @@ export class SigninPage extends Component {
         name: 'register',
         title: 'Зарегистрироваться',
       },
+      dataFormHandler: (formData) => new SignupController().signup(formData),
     });
 
     this.children.linkAway = new LinkAway({
@@ -109,6 +111,6 @@ export class SigninPage extends Component {
   }
 
   render() {
-    return this.compile(signinTemplate, this.props);
+    return this.compile(signupTemplate, this.props);
   }
 }

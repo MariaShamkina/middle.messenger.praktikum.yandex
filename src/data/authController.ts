@@ -3,25 +3,24 @@ import renderDOM from '../utils/renderDOM';
 import ChatPage from '../components/pages/chat';
 import LoginPage from '../components/pages/login';
 import { store } from '../utils/store';
-import { getFormValueByName } from '../utils/helpers';
-import { STATUS } from '../utils/HTTPTransport';
+import { getFormValueByName, UserNotAuthError } from '../utils/helpers';
+import { ResponseResult, STATUS } from '../utils/HTTPTransport';
+import { RESOURCES_SERVER_PATH } from '../utils/api/constants';
 
 const authApi = new AuthApi();
 
-function mapFormDataToApiModel(formData: FormData): LogInData {
+function mapFormDataToLogInModel(formData: FormData): LogInData {
   return {
     login: getFormValueByName(formData, 'login') as string,
     password: getFormValueByName(formData, 'password') as string,
   };
 }
 
-export class LoginController {
+export class AuthController {
   public async login(formData: FormData): Promise<string> {
     try {
-      const apiModel = mapFormDataToApiModel(formData);
+      const apiModel = mapFormDataToLogInModel(formData);
       store.set('isLoading.submitButton', true);
-
-      // await this.logout();// todo разлогиниться при входе на страницу логина
 
       const loginResponse = await authApi.logIn(apiModel)
         .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
@@ -30,7 +29,7 @@ export class LoginController {
         return loginResponse.errorText ?? '';
       }
 
-      const getUserResponse = await authApi.getUserData()
+      const getUserResponse: ResponseResult<UserData> = await authApi.getUserData()
         .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
       store.set('isLoading.submitButton', false);
       if (getUserResponse.status === STATUS.UNAUTH) {
@@ -40,7 +39,10 @@ export class LoginController {
         return loginResponse.errorText ?? '';
       }
 
-      store.set('user', getUserResponse);
+      if (getUserResponse.data?.avatar) {
+        getUserResponse.data.avatar = `${RESOURCES_SERVER_PATH}${getUserResponse.data.avatar}`;
+      }
+      store.set('userData', getUserResponse.data);
       // RouteManagement.go('/chats');
       renderDOM('#app', new ChatPage());// todo рендеринг на разные страницы должен быть
       return '';
@@ -51,7 +53,7 @@ export class LoginController {
   }
 
   public async logout() {
-    try {
+    try { // todo выходить надо бы в любом случае и рендерить логин. А что делать с ошибкой?
       store.set('isLoading.submitButton', true);
       const logoutResponse = await authApi.logOut()
         .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
@@ -61,13 +63,38 @@ export class LoginController {
         return logoutResponse.errorText ?? '';
       }
 
-      store.set('user', {});
+      store.set('userData', undefined);
       // RouteManagement.go('/login');
       renderDOM('#app', new LoginPage());// todo рендеринг на разные страницы должен быть
       return '';
     } catch (error) {
       store.set('isLoading.submitButton', false);
       return error.toString();
+    }
+  }
+
+  public async getUserData() {
+    if (store.getState().userData) {
+      return '';
+    }
+
+    try {
+      store.set('isLoading.getUserData', true);
+      const getUserResponse: ResponseResult<UserData> = await authApi.getUserData()
+        .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
+      store.set('isLoading.getUserData', false);
+
+      if (getUserResponse.status === STATUS.ERROR || getUserResponse.status === STATUS.UNAUTH) {
+        throw new UserNotAuthError();
+      }
+      if (getUserResponse.data?.avatar) {
+        getUserResponse.data.avatar = `${RESOURCES_SERVER_PATH}${getUserResponse.data.avatar}`;
+      }
+      store.set('userData', getUserResponse.data);
+      return '';
+    } catch (error) {
+      store.set('isLoading.getUserData', false);
+      throw new UserNotAuthError();
     }
   }
 }

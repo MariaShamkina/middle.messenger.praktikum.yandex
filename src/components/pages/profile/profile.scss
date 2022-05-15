@@ -9,6 +9,36 @@
   align-items: center;
 }
 
+.profile-wrapper{
+  margin: 0 auto;
+  min-width: 600px;
+  background: rgba($primary-light-color, .8);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 35px 25px;
+  box-shadow: 0 5px 10px 0 rgba(black, .2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-info-zone{
+  padding: 0 15px;
+  flex-grow: .5;
+  border-left: 3px solid;
+  border-color: $primary-light-color;
+
+  & .input-field:read-write{
+    padding-left: 10px;
+    font-style: italic;
+    background-color: rgba($primary-light-color,.75);
+  }
+
+  & .submit-button{
+    width: fit-content;
+    align-self: center;
+  }
+}
+
 .contact-profile-container{
   display: flex;
   flex-direction: column;
@@ -51,16 +81,8 @@
   }
 }
 
-.profile-wrapper{
-  margin: 0 auto;
-  min-width: 600px;
-  background: rgba($primary-light-color, .8);
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 35px 25px;
-  box-shadow: 0 5px 10px 0 rgba(black, .2);
-  display: flex;
-  justify-content: space-between;
+.password-change-section .input-field{
+  width: 100%;
 }
 
 .linkGoBack{
@@ -80,22 +102,5 @@
 
   &:hover{
     box-shadow: 0 5px 10px 0 rgba(black,.9);
-  }
-}
-
-.right-info-zone{
-  padding: 0 15px;
-  flex-grow: .5;
-  border-left: 3px solid;
-  border-color: $primary-light-color;
-
-  & .input-field:read-write{
-    width: 100%;
-    padding-left: 10px;
-  }
-
-  & .submit-button{
-    width: fit-content;
-    align-self: center;
   }
 }

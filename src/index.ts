@@ -1,7 +1,7 @@
 import renderDOM from './utils/renderDOM';
-import LoginPage from './components/pages/login';
 import './index.scss';
+import ChatPage from './components/pages/chat';
 
-const loginPage = new LoginPage();
+const chatPage = new ChatPage();
 
-renderDOM('#app', loginPage);
+renderDOM('#app', chatPage);

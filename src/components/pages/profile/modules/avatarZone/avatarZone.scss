@@ -5,15 +5,27 @@
   justify-content: center;
 }
 
+$avatarSize: 150px;
+$borderWidth: 5px;
 .avatar-button{
-  width: 150px;
-  height: 150px;
+  position: relative;
+  width: $avatarSize;
+  height: $avatarSize;
   border-radius: 50%;
-  border: 5px solid $border-color;
+  border: $borderWidth solid $border-color;
   margin-right: 15px;
   margin-left: 15px;
   margin-bottom: 15px;
   cursor: pointer;
+
+  & #avatar_update_icon{
+    position: absolute;
+    width: $avatarSize - 2*$borderWidth;
+    height: $avatarSize - 2*$borderWidth;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+  }
 
   & #avatarImg{
     width: 100%;

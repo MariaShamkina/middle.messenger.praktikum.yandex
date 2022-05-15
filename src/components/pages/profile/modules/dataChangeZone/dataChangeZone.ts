@@ -3,13 +3,14 @@ import Component from '../../../../../utils/component';
 import ControlZone from '../controlZone';
 import DataForm from '../../../../partials/dataForm';
 import InputField from '../../../../partials/inputField';
-import { PROFILE_DATA } from '../../../../../data/profileData';
 import {
   validateEmail,
   validateLogin,
   validateName,
   validatePhoneNumber,
 } from '../../../../../utils/validationRules';
+import { ProfileController } from '../../../../../data/profileController';
+import { store } from '../../../../../utils/store';
 
 export class DataChangeZone extends Component {
   protected initChildren() {
@@ -18,7 +19,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Имя',
       fieldType: 'text',
       isValidate: true,
-      value: PROFILE_DATA.first_name,
+      value: store.getState().userData?.first_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -29,7 +30,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Фамилия',
       fieldType: 'text',
       isValidate: true,
-      value: PROFILE_DATA.second_name,
+      value: store.getState().userData?.second_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -40,7 +41,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Имя в чате',
       fieldType: 'text',
       isValidate: true,
-      value: PROFILE_DATA.display_name,
+      value: store.getState().userData?.display_name,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -51,7 +52,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Логин',
       fieldType: 'text',
       isValidate: true,
-      value: PROFILE_DATA.login,
+      value: store.getState().userData?.login,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -62,7 +63,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Почта',
       fieldType: 'email',
       isValidate: true,
-      value: PROFILE_DATA.email,
+      value: store.getState().userData?.email,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -73,7 +74,7 @@ export class DataChangeZone extends Component {
       fieldPlaceholder: 'Телефон',
       fieldType: 'tel',
       isValidate: true,
-      value: PROFILE_DATA.phone,
+      value: store.getState().userData?.phone,
       isReadOnly: true,
       isLabelShown: true,
       withoutBorder: true,
@@ -94,6 +95,7 @@ export class DataChangeZone extends Component {
         title: 'Сохранить изменения',
         hiddenInput: true,
       },
+      dataFormHandler: (formData) => new ProfileController().changeProfileData(formData),
     });
     this.children.controlZone = new ControlZone();
   }

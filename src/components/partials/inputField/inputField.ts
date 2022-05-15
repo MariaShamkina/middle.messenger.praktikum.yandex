@@ -15,6 +15,7 @@ export interface IInputFieldProps extends IProperties{
     withoutBorder?: boolean;
     isReadOnly?: boolean;
     isLabelShown?: boolean;
+    fileAcceptTypes?: string;
 }
 
 function displayErrors(inputWrapper: HTMLElement, errorBlock: ErrorBlock) {
@@ -53,11 +54,13 @@ export class InputField extends Component<IInputFieldProps> {
 
       if (changedProps.validateHandler) {
         changedProps.errorsText = changedProps.validateHandler(changedProps.value ?? '');
-        changedProps.isValid = changedProps.errorsText.length === 0;
+        // changedProps.isValid = changedProps.errorsText.length === 0;
       }
     }
 
     super(changedProps);
+
+    if (changedProps.isValidate) this.state.isValid = (changedProps.errorsText ?? []).length === 0;
   }
 
   protected initChildren() {
@@ -69,7 +72,6 @@ export class InputField extends Component<IInputFieldProps> {
   }
 
   protected componentDidUpdate(oldProp: unknown, newProp: unknown, propName: string): boolean {
-    if (oldProp === newProp) return false;
     const props = this.props as IInputFieldProps;
 
     if (propName === 'value' && props.validateHandler) {
@@ -78,7 +80,7 @@ export class InputField extends Component<IInputFieldProps> {
       this.state.isValid = props.errorsText.length === 0;
     }
 
-    return true;
+    return !(oldProp === newProp);
   }
 
   protected componentRenderFinished() {

@@ -4,10 +4,10 @@
       <img src="{{closeButtonImgSrc}}" width="24" title="Закрыть" alt="Закрыть окно">
     </button>
     <p class="changeAvatar-title">Загрузите файл</p>
-    <label for="file-upload" class="changeAvatar-file-upload">
-      <img src="{{addFileImgSrc}}" alt="Загрузить изображение">
+    <label for="avatar" class="changeAvatar-file-upload">
+      <img id="avatarImgPreview" src="{{addFileImgSrc}}" alt="Загрузить изображение">
     </label>
-    <input id="file-upload" type="file"/>
+    {{{inputField}}}
     {{{submitButton}}}
   </form>
 </div>

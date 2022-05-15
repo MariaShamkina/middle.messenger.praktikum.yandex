@@ -7,11 +7,10 @@ import renderDOM from '../../../utils/renderDOM';
 /* eslint-disable import/no-cycle */
 import DataChangeZone from './modules/dataChangeZone';
 import ChatPage from '../chat';
-import LoginPage from '../login';
 import PasswordChangeZone from './modules/passwordChangeZone';
-/* eslint-enable import/no-cycle */
 import ChangeAvatarModalWindow from './modules/changeAvatarModalWindow';
 import DataForm from '../../partials/dataForm';
+import { AuthController } from '../../../data/authController';
 
 export class ProfilePage extends Component {
   constructor() {
@@ -60,7 +59,7 @@ export class ProfilePage extends Component {
             (profileDataChildren.inputFields as Component[])
               .forEach((comp) => {
                 comp.props.isReadOnly = false;
-                comp.props.isLabelShown = false;
+                comp.props.isLabelShown = true;
               });
             (profileDataChildren.submitButton as Component).props.hiddenInput = false;
             (dataZoneChildren.controlZone as Component).hide();
@@ -70,7 +69,7 @@ export class ProfilePage extends Component {
             (this.children.dataChangeZone as Component).hide();
           }
           if ((e.target as HTMLElement).classList.contains('go-away-link')) {
-            renderDOM('#app', new LoginPage());
+            new AuthController().logout();
           }
         },
       },

@@ -1,35 +1,54 @@
-type BadRequestError = {
-    reason: string,
+type ApiModelData = FormData | {
+    [propName: string]: unknown;
 }
 
-type SignUpData = {
-    first_name: string,
-    second_name: string,
-    login: string,
-    email: string,
-    password: string,
-    phone: string,
+type BadRequestError = {
+    reason: string,
 }
 
 type IdData = {
     id: number,
 }
 
-type UserData = {
-    id: number,
+type PasswordData = {
+    password: string,
+}
+
+type AvatarData = {
+    avatar: string,
+}
+
+type BasicUserData = {
     first_name: string,
     second_name: string,
-    display_name: string,
     login: string,
     email: string,
     phone: string,
-    avatar: string,
-};
+}
+
+type AdditionalUserData = {
+    display_name: string,
+}
+
+type SignUpData = BasicUserData & PasswordData;
+
+type ProfileData = BasicUserData & AdditionalUserData;
+
+type UserData = IdData & BasicUserData & AvatarData & AdditionalUserData;
+
+type SearchData = {
+    login: string,
+}
 
 type LogInData = {
     login: string,
     password: string,
-};
+}
+
+type ChangePasswordData = {
+    oldPassword: string,
+    newPassword: string,
+}
 
 type ChatsResponse = {
     id: number,
@@ -39,4 +58,4 @@ type ChatsResponse = {
     last_message: {
         user: UserData,
     },
-};
+}

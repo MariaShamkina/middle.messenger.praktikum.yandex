@@ -7,6 +7,9 @@ import ProfilePage from '../profile';
 import ContactsModule from './modules/contacts';
 import ContentModule from './modules/content';
 import { CONTACTS_DATA } from '../../../data/contactsData';
+import { AuthController } from '../../../data/authController';
+import { UserNotAuthError } from '../../../utils/helpers';
+import LoginPage from '../login';
 
 export class ChatPage extends Component {
   constructor() {
@@ -23,7 +26,11 @@ export class ChatPage extends Component {
       className: 'my-profile-link',
       events: {
         click: () => {
-          renderDOM('#app', new ProfilePage());
+          new AuthController().getUserData()
+            .then(() => renderDOM('#app', new ProfilePage()))
+            .catch((error: UserNotAuthError) => {
+              renderDOM('#app', new LoginPage());// todo обработать исключение в классе роутинга
+            });
         },
       },
     });

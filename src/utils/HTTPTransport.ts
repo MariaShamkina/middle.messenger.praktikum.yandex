@@ -1,9 +1,9 @@
 enum METHODS {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    PATCH = 'PATCH',
-    DELETE = 'DELETE'
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE'
 }
 
 export enum STATUS {
@@ -20,13 +20,15 @@ export type ResponseResult<T = undefined> = {
 
 type Options = {
   method: METHODS;
-  data?: ModelData;
+  data?: ApiModelData;
+  contentType?: string;
   timeout?: number;
+  useCredentials?: boolean;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-function queryStringify(data: ModelData) {
+function queryStringify(data: ApiModelData) {
   return Object.entries(data)
     .reduce((prev, pair) => `${prev}${pair[0]}=${pair[1]}&`, '?')
     .slice(0, -1);
@@ -39,7 +41,8 @@ export class HTTPTransport {
     this.baseUrl = baseUrl;
   }
 
-  get = <TResponse = undefined>(shortUrl: string, options: OptionsWithoutMethod = {}) => {
+  get = <TResponse = undefined>
+  (shortUrl: string, options: OptionsWithoutMethod = {}) => {
     const { data } = options;
     return this.request<TResponse>(
       shortUrl + ((data) ? queryStringify(data) : ''),
@@ -48,15 +51,15 @@ export class HTTPTransport {
     );
   };
 
-  put = (shortUrl: string, options: OptionsWithoutMethod = {}) => this.request(
-    shortUrl,
-    { ...options, method: METHODS.PUT },
-    options.timeout,
-  );
+  put = <TResponse = undefined>(
+    shortUrl: string, options: OptionsWithoutMethod = {}) => this.request<TResponse>(
+      shortUrl,
+      { ...options, method: METHODS.PUT },
+      options.timeout,
+    );
 
   post = <TResponse = undefined>(
-    shortUrl: string,
-    options: OptionsWithoutMethod = {}) => this.request<TResponse>(
+    shortUrl: string, options: OptionsWithoutMethod = {}) => this.request<TResponse>(
       shortUrl,
       { ...options, method: METHODS.POST },
       options.timeout,
@@ -73,7 +76,9 @@ export class HTTPTransport {
     options: Options = { method: METHODS.GET },
     timeout = 5000,
   ): Promise<ResponseResult<TResponse>> {
-    const { method, data } = options;
+    const {
+      method, data, useCredentials = true,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -106,12 +111,12 @@ export class HTTPTransport {
       xhr.onerror = () => reject(new Error('Запрос завершился с ошибкой. Обратитесь в службу поддержки.'));
       xhr.timeout = timeout;
       xhr.ontimeout = () => reject(new Error('Сервер не отвечает. Попробуйте повторить попытку позже.'));
-      xhr.withCredentials = true;
-
+      xhr.withCredentials = useCredentials;
       xhr.setRequestHeader('accept', 'application/json');
       if (method === METHODS.GET || !data) {
-        xhr.setRequestHeader('Content-Type', 'text/plain');
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));

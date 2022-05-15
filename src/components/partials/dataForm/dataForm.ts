@@ -4,7 +4,6 @@ import { getInvalidInputs } from '../../../utils/validationRules';
 import InputField from '../inputField';
 import { ISubmitButtonProps } from '../submitButton/submitButton';
 import { convertToArray } from '../../../utils/helpers';
-import { LoginController } from '../../../data/loginController';
 import ErrorBlock from '../errorBlock';
 import SubmitButton from '../submitButton';
 import { IErrorBlockProps } from '../errorBlock/errorBlock';
@@ -13,6 +12,7 @@ interface IDataFormProps extends IProperties{
   formClass: string;
   inputFields: InputField[];
   submitButtonProps: ISubmitButtonProps;
+  dataFormHandler: (formData: FormData) => Promise<string>;
 }
 
 export class DataForm extends Component<IDataFormProps> {
@@ -36,7 +36,7 @@ export class DataForm extends Component<IDataFormProps> {
         .children.serverErrorBlock as ErrorBlock;
       if (invalidInputs.length === 0) {
         const formData = new FormData(this.getContent() as HTMLFormElement);
-        new LoginController().login(formData).then((errorMessage) => {
+        (this.props as IDataFormProps).dataFormHandler(formData).then((errorMessage) => {
           if (errorMessage !== '') {
             (serverErrorBlock.props as IErrorBlockProps).errorsText = [errorMessage];
             serverErrorBlock.show();

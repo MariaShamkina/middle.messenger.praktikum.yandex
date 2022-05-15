@@ -4,6 +4,13 @@ export function convertToArray<T>(obj: T | T[]): T[] {
   return [obj];
 }
 
+export class UserNotAuthError extends Error {
+  constructor(message: string = '') {
+    super(message);
+    this.name = 'UserNotAuthError';
+  }
+}
+
 export function getFormValueByName(formData: FormData, name: string) {
   if (!formData.has(name)) {
     throw new Error(`Form data conversion to api model failed. Field "${name}" is absent.`);

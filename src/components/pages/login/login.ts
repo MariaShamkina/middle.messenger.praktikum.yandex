@@ -1,6 +1,6 @@
 import loginTemplate from './login.hbs';
 import Component from '../../../utils/component';
-import SigninPage from '../signin';
+import SignupPage from '../signup';
 import LinkAway from '../../partials/linkAway';
 import InputField from '../../partials/inputField';
 import renderDOM from '../../../utils/renderDOM';
@@ -9,6 +9,7 @@ import {
   validatePassword,
 } from '../../../utils/validationRules';
 import DataForm from '../../partials/dataForm';
+import { AuthController } from '../../../data/authController';
 
 export class LoginPage extends Component {
   constructor() {
@@ -39,6 +40,7 @@ export class LoginPage extends Component {
         name: 'enter',
         title: 'Войти',
       },
+      dataFormHandler: (formData) => new AuthController().login(formData),
     });
 
     this.children.linkAway = new LinkAway({
@@ -49,7 +51,7 @@ export class LoginPage extends Component {
       className: 'link-away',
       events: {
         click: () => {
-          renderDOM('#app', new SigninPage());
+          renderDOM('#app', new SignupPage());
         },
       },
     });

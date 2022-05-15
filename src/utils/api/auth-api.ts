@@ -4,11 +4,11 @@ const loginAPIInstance = new HTTP(`${process.env.API_ENDPOINT}/auth`);
 
 export class AuthApi {
   logIn(data: LogInData) {
-    return loginAPIInstance.post('/signin', { data });
+    return loginAPIInstance.post('/signin', { data });// todo useCredentials = false ??
   }
 
   signUp(data: SignUpData) {
-    return loginAPIInstance.post<IdData>('/signup', { data });
+    return loginAPIInstance.post<IdData>('/signup', { data });// todo useCredentials = false ??
   }
 
   getUserData() {

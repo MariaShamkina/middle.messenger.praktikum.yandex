@@ -1,6 +1,18 @@
 <div class="form-field-wrapper{{#unless withoutBorder}} form-field-wrapper-border-and-width{{/unless}}">
-  <label class="field-label" {{#unless isLabelShown}}hidden{{/unless}} for="{{fieldName}}">{{fieldPlaceholder}}</label>
-  <input class="input-field {{fieldName}}-input-field" id="{{fieldName}}" type="{{fieldType}}" name="{{fieldName}}" placeholder="{{fieldPlaceholder}}" value="{{value}}" {{#if isReadOnly}}readOnly{{/if}}>
+  <label class="field-label"
+         for="{{fieldName}}"
+         {{#unless isLabelShown}}hidden{{/unless}}>
+      {{fieldPlaceholder}}
+  </label>
+  <input class="input-field {{fieldName}}-input-field"
+         id="{{fieldName}}"
+         name="{{fieldName}}"
+         type="{{fieldType}}"
+         {{#if fieldPlaceholder}}placeholder="{{fieldPlaceholder}}" {{/if}}
+         {{#if value}}value="{{value}}" {{/if}}
+         {{#if isReadOnly}}readOnly{{/if}}
+         {{#if fileAcceptTypes}}accept="{{fileAcceptTypes}}"{{/if}}
+  >
   {{#if isValidate}}
     {{{errorBlock}}}
   {{/if}}
