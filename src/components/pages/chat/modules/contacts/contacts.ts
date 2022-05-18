@@ -2,7 +2,7 @@ import Component, { IProperties } from '../../../../../utils/component';
 import contactsTemplate from './contacts.hbs';
 
 interface IContacts extends IProperties{
-  contacts: ContactData[];
+  contacts?: ContactData[];
 }
 
 export class ContactsModule extends Component<IContacts> {

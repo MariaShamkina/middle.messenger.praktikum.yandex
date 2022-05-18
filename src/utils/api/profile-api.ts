@@ -20,6 +20,6 @@ export class ProfileAPI {
   }
 
   findContacts(data: SearchData) {
-    return profileAPIInstance.post<UserData>('/search', { data });
+    return profileAPIInstance.post<[UserData]>('/search', { data });
   }
 }

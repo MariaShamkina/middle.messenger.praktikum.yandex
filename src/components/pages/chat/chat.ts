@@ -10,6 +10,9 @@ import { CONTACTS_DATA } from '../../../data/contactsData';
 import { AuthController } from '../../../data/authController';
 import { UserNotAuthError } from '../../../utils/helpers';
 import LoginPage from '../login';
+import NewContacts from './modules/newContacts';
+import { ProfileController } from '../../../data/profileController';
+import { INewContacts } from './modules/newContacts/newContacts';
 
 export class ChatPage extends Component {
   constructor() {
@@ -34,36 +37,72 @@ export class ChatPage extends Component {
         },
       },
     });
-    this.children.searchInput = new SearchField();
+    this.children.searchInput = new SearchField({
+      events: {
+        keypress: (e: KeyboardEvent) => {
+          if (e.key !== 'Enter') return;
+
+          e.preventDefault();
+          new ProfileController().searchContactsByLogin((e.target as HTMLInputElement).value)
+            .then((response) => {
+              if (!Array.isArray(response)) {
+                let errorMessage;
+                if (typeof response !== 'string') errorMessage = 'Неверный формат данных';
+              // todo вывести ошибки
+              // (serverErrorBlock.props as IErrorBlockProps).errorsText = [errorMessage];
+              // serverErrorBlock.show();
+              } else {
+                ((this.children.newContacts as Component).props as INewContacts)
+                  .newContacts = response;
+              }
+            });
+        },
+        search: (e: Event) => {
+          (this.children.newContacts as Component).hide();
+        },
+      },
+    });
+    this.children.newContacts = new NewContacts({
+      events: {
+        mouseenter: (e: Event) => (e.target as HTMLElement).classList.add('showScrollbar'),
+        mouseleave: (e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar'),
+      },
+    });
+    (this.children.newContacts as Component).hide();
     this.children.contacts = new ContactsModule({
       contacts: CONTACTS_DATA,
       events: {
-        click: (e: Event) => {
-          const tab = (e.target as HTMLElement).closest('.tab');
-          const contactsListWrapper = e.currentTarget as HTMLElement;
-          if (!tab || !contactsListWrapper.contains(tab)) {
-            return;
-          }
-          const prevActTab = contactsListWrapper.querySelector('.tab.active');
-          const contentProps = (this.children.content as Component).props;
-          if (prevActTab === tab) {
-            contentProps.contactId = null;
-          } else {
-            tab.classList.add('active');
-            if (prevActTab) { prevActTab.classList.remove('active'); }
-
-            const idField: HTMLElement | null = tab.querySelector('#id');
-            if (idField && idField.textContent) {
-              contentProps.contactId = parseInt(idField.textContent, 10);
-            }
-          }
-        },
         mouseenter: (e: Event) => (e.target as HTMLElement).classList.add('showScrollbar'),
         mouseleave: (e: Event) => (e.target as HTMLElement).classList.remove('showScrollbar'),
       },
     });
     this.children.content = new ContentModule({
       contactId: null,
+    });
+  }
+
+  protected componentRenderFinished() {
+    super.componentRenderFinished();
+    const chatContactsPanel = this.getContent().querySelector('.chat-contacts-panel');
+    chatContactsPanel?.addEventListener('click', (e: Event) => {
+      const tab = (e.target as HTMLElement).closest('.tab');
+      if (!tab || !chatContactsPanel.contains(tab)) {
+        return;
+      }
+
+      const prevActTab = chatContactsPanel.querySelector('.tab.active');
+      tab.classList.add('active');
+      if (prevActTab) { prevActTab.classList.remove('active'); }
+
+      const contentProps = (this.children.content as Component).props;
+      if (prevActTab === tab) {
+        contentProps.contactId = null;
+      } else {
+        const idField: HTMLElement | null = tab.querySelector('#id');
+        if (idField && idField.textContent) {
+          contentProps.contactId = parseInt(idField.textContent, 10);
+        }
+      }
     });
   }
 

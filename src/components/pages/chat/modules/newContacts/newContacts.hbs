@@ -1,0 +1,12 @@
+<div class="wrapper-chat-contacts-list new-wrapper-chat-contacts-list scrollbar-style">
+    <ul class="chat-contacts-list new-contacts-list">
+        {{#each newContacts}}
+        <li class="tab newTab"><img class="avatar" src="{{this.avatar}}" alt="Аватар собеседника">
+            <p hidden id="id">{{this.id}}</p>
+            <a class="tab-link" href="#">
+                {{#if this.display_name}}{{this.display_name}}{{else}}{{this.first_name}}{{/if}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+</div>

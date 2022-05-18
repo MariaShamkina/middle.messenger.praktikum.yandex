@@ -1,6 +1,6 @@
 import renderDOM from '../utils/renderDOM';
 import { store } from '../utils/store';
-import { getFormValueByName } from '../utils/helpers';
+import { getFormValueByName, getFullAvatarPath } from '../utils/helpers';
 import { ResponseResult, STATUS } from '../utils/HTTPTransport';
 import LoginPage from '../components/pages/login';
 import ProfilePage from '../components/pages/profile';
@@ -27,9 +27,15 @@ function mapFormDataToProfileDataModel(formData: FormData): ProfileData {
   };
 }
 
+function mapFormDataToSearchDataModel(searchString: string): SearchData {
+  return {
+    login: searchString,
+  };
+}
+
 export class ProfileController {
   public getUser(id: Number | undefined) {
-    if (!id) throw new Error('Пользователь не идетифицирован.');
+    if (!id) throw new Error('Пользователь не идентифицирован.');
     profileAPI.getUserProfileById(id).then((data) => store.set('user', data));
   }
 
@@ -76,9 +82,10 @@ export class ProfileController {
         return changeProfileResponse.errorText ?? '';
       }
 
-      if (changeProfileResponse.data?.avatar) {
-        changeProfileResponse.data.avatar = `${RESOURCES_SERVER_PATH}${changeProfileResponse.data.avatar}`;
+      if (changeProfileResponse.data) {
+        changeProfileResponse.data.avatar = getFullAvatarPath(changeProfileResponse.data.avatar);
       }
+
       store.set('userData', changeProfileResponse.data);
 
       // RouteManagement.go('/chats');
@@ -114,6 +121,36 @@ export class ProfileController {
       return '';
     } catch (error) {
       store.set('isLoading.submitButton', false);
+      return error.toString();
+    }
+  }
+
+  public async searchContactsByLogin(searchString: string): Promise<string | [UserData]> {
+    try { // todo сделать крутилку
+      const apiModel = mapFormDataToSearchDataModel(searchString);
+      store.set('isLoading.searchButton', true);
+
+      const searchContactsResponse: ResponseResult<[UserData]> = await profileAPI
+        .findContacts(apiModel)
+        .catch((error: Error) => ({ status: STATUS.ERROR, errorText: error.message }));
+      store.set('isLoading.searchButton', false);
+
+      if (searchContactsResponse.status === STATUS.UNAUTH) {
+        renderDOM('#app', new LoginPage());// todo рендеринг на разные страницы должен быть
+        // todo удалить данные о пользователе из Store
+      }
+      if (searchContactsResponse.status === STATUS.ERROR) {
+        return searchContactsResponse.errorText ?? '';
+      }
+
+      if (searchContactsResponse.data && searchContactsResponse.data.length > 0) {
+        searchContactsResponse.data.forEach((contact) => {
+          contact.avatar = getFullAvatarPath(contact.avatar);
+        });
+      }
+      return searchContactsResponse.data ?? '';
+    } catch (error) {
+      store.set('isLoading.searchButton', false);
       return error.toString();
     }
   }

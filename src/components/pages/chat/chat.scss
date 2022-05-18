@@ -26,6 +26,14 @@
   height: 100%;
 }
 
+.emptyLine{
+  height: 10px;
+}
+
+.wrapper-chat-contacts-list[style*="display: none;"]  + .emptyLine{
+  display: none;
+}
+
 .scrollbar-style{
       
   &::-webkit-scrollbar-track{

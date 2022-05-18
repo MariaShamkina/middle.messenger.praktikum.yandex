@@ -1,3 +1,5 @@
+import { RESOURCES_SERVER_PATH, UNDEFINED_AVATAR_ICON } from './api/constants';
+
 export function convertToArray<T>(obj: T | T[]): T[] {
   if (!obj) return [];
   if (Array.isArray(obj)) return obj;
@@ -78,4 +80,8 @@ export function isDeepEqual(obj1: unknown, obj2: unknown): boolean {
 
     return isDeepEqual(obj1[currKey], obj2[currKey]);
   });
+}
+
+export function getFullAvatarPath(relativePath: string) {
+  return relativePath ? `${RESOURCES_SERVER_PATH}${relativePath}` : UNDEFINED_AVATAR_ICON;
 }

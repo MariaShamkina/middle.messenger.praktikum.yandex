@@ -3,9 +3,8 @@ import renderDOM from '../utils/renderDOM';
 import ChatPage from '../components/pages/chat';
 import LoginPage from '../components/pages/login';
 import { store } from '../utils/store';
-import { getFormValueByName, UserNotAuthError } from '../utils/helpers';
+import { getFormValueByName, getFullAvatarPath, UserNotAuthError } from '../utils/helpers';
 import { ResponseResult, STATUS } from '../utils/HTTPTransport';
-import { RESOURCES_SERVER_PATH } from '../utils/api/constants';
 
 const authApi = new AuthApi();
 
@@ -39,9 +38,10 @@ export class AuthController {
         return loginResponse.errorText ?? '';
       }
 
-      if (getUserResponse.data?.avatar) {
-        getUserResponse.data.avatar = `${RESOURCES_SERVER_PATH}${getUserResponse.data.avatar}`;
+      if (getUserResponse.data) {
+        getUserResponse.data.avatar = getFullAvatarPath(getUserResponse.data.avatar);
       }
+
       store.set('userData', getUserResponse.data);
       // RouteManagement.go('/chats');
       renderDOM('#app', new ChatPage());// todo рендеринг на разные страницы должен быть
@@ -87,9 +87,10 @@ export class AuthController {
       if (getUserResponse.status === STATUS.ERROR || getUserResponse.status === STATUS.UNAUTH) {
         throw new UserNotAuthError();
       }
-      if (getUserResponse.data?.avatar) {
-        getUserResponse.data.avatar = `${RESOURCES_SERVER_PATH}${getUserResponse.data.avatar}`;
+      if (getUserResponse.data) {
+        getUserResponse.data.avatar = getFullAvatarPath(getUserResponse.data.avatar);
       }
+
       store.set('userData', getUserResponse.data);
       return '';
     } catch (error) {

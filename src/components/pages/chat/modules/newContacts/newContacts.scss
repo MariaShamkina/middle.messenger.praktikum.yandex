@@ -1,0 +1,15 @@
+@keyframes example {
+  from {max-height: 0;}
+  to {max-height: 30vh;}
+}
+
+.new-wrapper-chat-contacts-list{
+  max-height: 30vh;
+  animation-name: example;
+  animation-duration: 1s;
+}
+
+.newTab{
+  background-color: $border-color;
+  color: $secondary-background-color;
+}
